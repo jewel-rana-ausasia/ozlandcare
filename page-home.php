@@ -1470,7 +1470,7 @@ $testimonials = [
     }
 
     .testimonial-swiper {
-        padding: 40px 20px 70px 20px !important;
+        padding: 40px 0 70px !important;
     }
 
     /* Custom Dot Styling */
