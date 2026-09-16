@@ -176,12 +176,14 @@
 		<div class="py-6 flex flex-col sm:flex-row justify-center items-center gap-4">
 
 			<div class="copyright-area-content">
-				<p class="text-sm">
-					Copyright © <?php echo date('Y'); ?> Ozland Care |
-					Website by
-					<a href="https://www.ausasiaonline.com.au/" target="_blank" rel="noopener noreferrer" class="text-white hover:text-white/80 transition duration-300 font-semibold">
-						Aus Asia Online
-					</a>
+				<p class="text-sm text-center">
+					Copyright © <?php echo date('Y'); ?> Ozland Care |<br class="sm:hidden">
+					<span class="whitespace-nowrap">
+						Website by
+						<a href="https://www.ausasiaonline.com.au/" target="_blank" rel="noopener noreferrer" class="text-white hover:text-white/80 transition duration-300 font-semibold">
+							Aus Asia Online
+						</a>
+					</span>
 				</p>
 			</div>
 
