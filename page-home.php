@@ -1209,12 +1209,20 @@ $services = [
     #service-slider {
         scroll-behavior: smooth;
     }
+
+    @media (min-width: 768px) and (max-width: 1023px) {
+        .services-section-container {
+            max-width: none !important;
+            padding-right: 0.75rem !important;
+            padding-left: 0.75rem !important;
+        }
+    }
 </style>
 
 <section class="relative bg-white overflow-hidden">
     <div class="absolute top-0 w-full h-[400px] bg-blue z-0"></div>
 
-    <div class="container mx-auto px-6 xl:px-0 pt-20 pb-20 relative z-10">
+    <div class="services-section-container container mx-auto px-6 xl:px-0 pt-20 pb-20 relative z-10">
 
         <div class="text-center mb-16">
             <h2 class="text-4xl xl:text-5xl font-bold text-white mb-4 tracking-tight">Our Services</h2>
@@ -1226,7 +1234,7 @@ $services = [
                 <div class="flex-shrink-0 w-full md:w-[calc(50%-0.625rem)] xl:w-[calc(25%-15px)] snap-start group bg-white rounded-[2rem] shadow-lg overflow-hidden flex flex-col transition-all duration-500 hover:scale-[1.02] my-4">
                     <div class="p-2 pb-0">
                         <a href="<?php echo esc_url($service['href']); ?>" class="block">
-                            <div class="relative h-72 md:h-96 xl:h-72 w-full rounded-[1.5rem] overflow-hidden">
+                            <div class="relative h-72 md:h-80 lg:h-96 xl:h-72 w-full rounded-[1.5rem] overflow-hidden">
                                 <img src="<?php echo esc_url($service['image_url']); ?>"
                                     class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                                     alt="<?php echo esc_attr($service['title']); ?>">
