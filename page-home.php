@@ -943,19 +943,16 @@ $about_mission_part1 = "Ozland Care is built on the values of respect, dignity a
 $about_mission_part2 = "At Ozland Care, we are more than a service provider. We are your trusted partner on your NDIS journey. Our team offers clear guidance, reliable support and practical help so you can achieve the outcomes that matter most to you.";
 $values = [
     [
-        'label' => 'Integrity',
         'title' => 'Transparent Care',
         'desc'  => 'We always act with honesty and openness. Every decision we make is focused on what is best for you and your well-being.',
         'icon'  => 'fas fa-shield-heart'
     ],
     [
-        'label' => 'Expertise',
         'title' => 'Skilled Team',
         'desc'  => 'Our team includes trained and experienced professionals who provide safe, reliable and high-quality support based on proven care practices.',
         'icon'  => 'fas fa-user-nurse'
     ],
     [
-        'label' => 'Community',
         'title' => 'Working Together',
         'desc'  => 'We work closely with families, health professionals and the NDIS to make sure you receive the support you need for a smooth and positive journey.',
         'icon'  => 'fas fa-people-group'
@@ -967,44 +964,39 @@ $values = [
     <div class="absolute top-0 right-0 w-1/2 h-full bg-slate-50/50 -skew-x-12 translate-x-1/4 pointer-events-none"></div>
 
     <div class="container mx-auto px-6 relative z-10">
-        <div class="flex flex-col lg:flex-row gap-20 items-start">
+        <div class="flex flex-col lg:flex-row gap-12 lg:gap-20 items-start">
 
-            <div class="lg:w-1/2">
-                <div class="inline-flex items-center gap-4 mb-8">
+            <div class="w-full lg:w-1/2">
+                <div class="inline-flex items-center gap-4 mb-6 sm:mb-8">
                     <span class="text-[10px] font-bold tracking-[0.4em] text-primary uppercase italic"><?php echo esc_html($about_subtitle); ?></span>
                     <div class="h-[1px] w-20 bg-primary/20"></div>
                 </div>
 
-                <h2 class="text-3xl md:text-6xl font-semibold text-slate-900 leading-[1.1] mb-10 tracking-tighter">
+                <h2 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-semibold text-slate-900 leading-[1.1] mb-7 sm:mb-10 tracking-tighter">
                     <?php echo esc_html($about_title_main); ?>
                     <span class="italic text-primary"><?php echo esc_html($about_title_highlight); ?></span>
                 </h2>
 
-                <p class="text-lg text-slate-950 font-normal leading-relaxed mb-5">
+                <p class="text-base sm:text-lg text-slate-950 font-normal leading-relaxed mb-5">
                     <?php echo esc_html($about_mission_part1); ?>
                 </p>
 
-                <p class="text-lg text-slate-950 font-normal leading-relaxed mb-5">
+                <p class="text-base sm:text-lg text-slate-950 font-normal leading-relaxed mb-5">
                     <?php echo esc_html($about_mission_part2); ?>
                 </p>
             </div>
 
-            <div class="lg:w-1/2 grid grid-cols-1 gap-6">
+            <div class="w-full lg:w-1/2 grid grid-cols-1 gap-6">
                 <?php foreach ($values as $value) : ?>
-                    <div class="group relative lg:flex items-center gap-8 p-8 bg-white border border-slate-100 rounded-3xl transition-all duration-500 hover:shadow-[0_30px_60px_rgba(15,23,42,0.05)] hover:border-primary/20 overflow-hidden">
+                    <div class="group relative flex flex-col sm:flex-row items-start sm:items-center gap-5 sm:gap-6 lg:gap-8 p-5 sm:p-6 lg:p-8 bg-white border border-slate-100 rounded-2xl lg:rounded-3xl transition-all duration-500 hover:shadow-[0_30px_60px_rgba(15,23,42,0.05)] hover:border-primary/20 overflow-hidden">
 
-                        <span class="absolute -right-4 -bottom-4 text-7xl font-black text-slate-50 group-hover:text-blue-50 transition-colors duration-500 select-none">
-                            <?php echo $value['label']; ?>
-                        </span>
-
-                        <div class="flex-shrink-0 w-20 h-20 rounded-2xl bg-slate-50 flex items-center justify-center transition-all duration-500 group-hover:bg-primary group-hover:scale-110 shadow-inner">
-                            <i class="<?php echo $value['icon']; ?> text-3xl text-primary group-hover:text-white transition-colors"></i>
+                        <div class="flex-shrink-0 w-16 h-16 lg:w-20 lg:h-20 rounded-2xl bg-slate-50 flex items-center justify-center transition-all duration-500 group-hover:bg-primary group-hover:scale-110 shadow-inner">
+                            <i class="<?php echo $value['icon']; ?> text-2xl lg:text-3xl text-primary group-hover:text-white transition-colors"></i>
                         </div>
 
-                        <div class="relative z-10">
-                            <!-- <span class="text-[10px] font-bold text-[#0096c7] uppercase tracking-[0.2em] mb-2 block"><?php echo $value['label']; ?></span> -->
-                            <h3 class="text-2xl font-bold text-slate-900 mb-2 tracking-tight"><?php echo $value['title']; ?></h3>
-                            <p class="text-slate-900 text-[16px] leading-relaxed max-w-sm">
+                        <div class="relative z-10 w-full sm:flex-1">
+                            <h3 class="text-xl lg:text-2xl font-bold text-slate-900 mb-2 tracking-tight"><?php echo $value['title']; ?></h3>
+                            <p class="w-full lg:max-w-sm text-slate-900 text-[16px] leading-relaxed">
                                 <?php echo $value['desc']; ?>
                             </p>
                         </div>
