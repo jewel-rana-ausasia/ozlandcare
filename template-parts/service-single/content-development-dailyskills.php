@@ -302,139 +302,18 @@
 
 <?php endif; ?>
 <!-- Faq Section -->
-<section class="py-24 bg-white overflow-hidden">
-    <div class="container mx-auto px-6 max-w-7xl">
-        <div class="mb-12 reveal">
-            <div class="flex items-center gap-3 mb-4">
-                <span class="w-10 h-[2px] bg-primary"></span>
-                <span class="text-[0.7rem] uppercase tracking-[0.4em] text-primary font-bold">Reliability & Trust</span>
-            </div>
-            <h2 class="font-serif text-4xl md:text-5xl text-slate-900 leading-tight mb-6">
-                Frequently Asked <span class="text-primary">Questions (FAQs)</span>
-            </h2>
-        </div>
-        <div class="flex flex-col lg:flex-row gap-16 xl:gap-24 items-center">
+<?php
+$faqs = [
+    ['Can this help me live more independently?', 'Yes! It builds confidence and skills to manage daily life and participate in the community.'],
+    ['What life skills are included?', 'Communication, problem-solving, time management, social interaction and decision-making skills.'],
+    ['Is the support flexible?', 'Absolutely. Programs are tailored to your goals, pace and interests.'],
+    ['How long can I use this support?', 'It can be short-term for specific skills or ongoing to develop independence over time.'],
+    ['Where can this support take place?', 'Support can happen at home, in the community, or in group sessions, depending on your needs.']
+];
 
-            <div class="lg:w-1/2 relative reveal">
-                <div class="absolute -top-10 -left-10 w-64 h-64 bg-teal-50 rounded-full mix-blend-multiply filter blur-3xl opacity-70 animate-blob"></div>
-                <div class="absolute -bottom-10 -right-10 w-64 h-64 bg-slate-100 rounded-full mix-blend-multiply filter blur-3xl opacity-70 animate-blob animation-delay-2000"></div>
-
-                <div class="relative">
-                    <div class="relative z-10 rounded-[3rem] overflow-hidden border-[12px] border-white shadow-2xl shadow-slate-200">
-                        <img
-                            src="<?php echo esc_url(get_template_directory_uri() . '/assets/images/get-the-clarity-you-deserve.jpg'); ?>"
-                            alt="Ozland Care Support"
-                            class="w-full h-[550px] object-cover">
-                    </div>
-
-                    <div class="absolute -top-6 -right-6 w-24 h-24 bg-primary rounded-3xl -z-10 rotate-12"></div>
-                    <div class="absolute -bottom-6 -left-6 w-32 h-32 border-4 border-teal-100 rounded-full -z-10"></div>
-
-                    <div class="absolute top-1/2 -translate-y-1/2 -right-12 w-24 h-48 opacity-20" style="background-image: radial-gradient(#006666 2px, transparent 2px); background-size: 15px 15px;"></div>
-                </div>
-            </div>
-
-            <div class="lg:w-1/2">
-
-
-                <div class="space-y-4">
-                    <?php
-                    $faqs = [
-                        ['Can this help me live more independently?', 'Yes! It builds confidence and skills to manage daily life and participate in the community.'],
-                        ['What life skills are included?', 'Communication, problem-solving, time management, social interaction and decision-making skills.'],
-                        ['Is the support flexible?', 'Absolutely. Programs are tailored to your goals, pace and interests.'],
-                        ['How long can I use this support?', 'It can be short-term for specific skills or ongoing to develop independence over time.'],
-                        ['Where can this support take place?', 'Support can happen at home, in the community, or in group sessions, depending on your needs.']
-                    ];
-
-                    foreach ($faqs as $i => $faq): ?>
-                        <div class="faq-container group border-b border-slate-100 transition-all duration-300">
-                            <button class="faq-header w-full flex items-center justify-between py-8 outline-none text-left">
-                                <span class="text-lg md:text-xl font-bold text-slate-800 group-hover:text-blue transition-colors duration-300">
-                                    <?php echo $faq[0]; ?>
-                                </span>
-                                <div class="relative w-6 h-6 flex items-center justify-center shrink-0">
-                                    <div class="absolute w-full h-[2px] bg-slate-300 group-hover:bg-primary transition-all duration-300"></div>
-                                    <div class="faq-icon-v absolute w-[2px] h-full bg-slate-300 group-hover:bg-blue transition-all duration-300"></div>
-                                </div>
-                            </button>
-                            <div class="faq-body overflow-hidden transition-all duration-500 ease-in-out" style="max-height: 0;">
-                                <div class="pb-8">
-                                    <p class="text-slate-950 text-base leading-relaxed max-w-2xl border-l-2 border-blue pl-6">
-                                        <?php echo $faq[1]; ?>
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                    <?php endforeach; ?>
-                </div>
-            </div>
-
-        </div>
-    </div>
-</section>
-
-<style>
-    /* Blob Animation */
-    @keyframes blob {
-        0% {
-            transform: translate(0px, 0px) scale(1);
-        }
-
-        33% {
-            transform: translate(30px, -50px) scale(1.1);
-        }
-
-        66% {
-            transform: translate(-20px, 20px) scale(0.9);
-        }
-
-        100% {
-            transform: translate(0px, 0px) scale(1);
-        }
-    }
-
-    .animate-blob {
-        animation: blob 7s infinite;
-    }
-
-    .animation-delay-2000 {
-        animation-delay: 2s;
-    }
-
-    /* Active State Styling */
-    .faq-container.active .faq-icon-v {
-        transform: rotate(90deg);
-        opacity: 0;
-    }
-
-    .faq-container.active {
-        border-bottom-color: #0a74bb;
-    }
-
-    .faq-container.active button span {
-        color: #0a74bb;
-    }
-</style>
-
-<script>
-    document.querySelectorAll('.faq-header').forEach(header => {
-        header.addEventListener('click', () => {
-            const container = header.parentElement;
-            const body = container.querySelector('.faq-body');
-            const isActive = container.classList.contains('active');
-
-            // Close others
-            document.querySelectorAll('.faq-container').forEach(c => {
-                c.classList.remove('active');
-                c.querySelector('.faq-body').style.maxHeight = '0';
-            });
-
-            // Toggle current
-            if (!isActive) {
-                container.classList.add('active');
-                body.style.maxHeight = body.scrollHeight + "px";
-            }
-        });
-    });
-</script>
+get_template_part(
+    'template-parts/service-single/faq',
+    null,
+    ['faqs' => $faqs]
+);
+?>
