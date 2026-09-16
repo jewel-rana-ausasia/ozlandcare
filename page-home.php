@@ -1671,7 +1671,7 @@ $faqs = [
         </div>
 
 
-        <div class="container mx-auto px-6 lg:px-10 relative z-10">
+        <div class="container mx-auto max-w-7xl px-6 lg:px-10 xl:px-0 relative z-10">
 
             <div class="max-w-5xl">
 
@@ -1712,17 +1712,17 @@ $faqs = [
     ========================================================== -->
     <div class="relative bg-white pb-16 md:pb-20 lg:pb-24">
 
-        <div class="container mx-auto px-6 lg:px-10 relative z-10">
+        <div class="container mx-auto max-w-7xl px-6 lg:px-10 xl:px-0 relative z-10">
 
             <div
-                class="grid grid-cols-1 lg:grid-cols-9 gap-12 lg:gap-14 xl:gap-16 items-stretch">
+                class="grid grid-cols-1 lg:grid-cols-[minmax(0,0.92fr)_minmax(0,1fr)] gap-12 lg:gap-14 xl:gap-16 items-stretch">
 
 
                 <!-- =================================================
                      LEFT IMAGE
                 ================================================== -->
                 <div
-                    class="lg:col-span-4 relative -mt-14 md:-mt-20 lg:-mt-24">
+                    class="relative -mt-14 md:-mt-20 lg:-mt-24">
 
 
                     <!-- Blurred purple background shape -->
@@ -1793,7 +1793,7 @@ $faqs = [
                      Starts entirely on white background
                 ================================================== -->
                 <div
-                    class="lg:col-span-5 w-full pt-2 lg:pt-10 xl:pt-12"
+                    class="w-full pt-2 lg:pt-10 xl:pt-12"
                     x-data="{ active: null }">
 
 

@@ -35,7 +35,7 @@ if (empty($service_faqs)) {
 
     <div class="relative bg-white pb-12 sm:pb-16 md:pb-20 xl:pb-24">
         <div class="container relative z-10 mx-auto max-w-7xl px-4 sm:px-6 md:px-8 lg:px-14 2xl:px-0">
-            <div class="grid grid-cols-1 items-stretch gap-8 sm:gap-10 md:gap-12 xl:grid-cols-[minmax(0,0.86fr)_minmax(0,1fr)] xl:gap-16">
+            <div class="grid grid-cols-1 items-stretch gap-8 sm:gap-10 md:gap-12 xl:grid-cols-[minmax(0,0.92fr)_minmax(0,1fr)] xl:gap-16">
                 <div class="relative -mt-10 sm:-mt-14 md:-mt-20 xl:-mt-24">
                     <div class="service-faq-blob absolute -left-6 -top-5 h-44 w-44 rounded-full bg-primary/[0.08] opacity-80 blur-3xl sm:-left-8 sm:-top-6 sm:h-52 sm:w-52 md:-left-10 md:-top-8 md:h-64 md:w-64" aria-hidden="true"></div>
                     <div class="service-faq-blob service-faq-blob-delay absolute -bottom-6 -right-6 h-44 w-44 rounded-full bg-slate-100 opacity-90 blur-3xl sm:-bottom-8 sm:-right-8 sm:h-52 sm:w-52 md:-bottom-10 md:-right-10 md:h-64 md:w-64" aria-hidden="true"></div>
