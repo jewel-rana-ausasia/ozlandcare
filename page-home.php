@@ -1223,10 +1223,10 @@ $services = [
 
         <div id="service-slider" class="flex overflow-x-auto no-scrollbar gap-5 pb-10 snap-x snap-mandatory">
             <?php foreach ($services as $service) : ?>
-                <div class="flex-shrink-0 w-[85%] md:w-[45%] xl:w-[calc(25%-15px)] snap-start group bg-white rounded-[2rem] shadow-lg overflow-hidden flex flex-col transition-all duration-500 hover:scale-[1.02] my-4">
+                <div class="flex-shrink-0 w-full md:w-[calc(50%-0.625rem)] xl:w-[calc(25%-15px)] snap-start group bg-white rounded-[2rem] shadow-lg overflow-hidden flex flex-col transition-all duration-500 hover:scale-[1.02] my-4">
                     <div class="p-2 pb-0">
                         <a href="<?php echo esc_url($service['href']); ?>" class="block">
-                            <div class="relative h-64 w-full rounded-[1.5rem] overflow-hidden">
+                            <div class="relative h-72 md:h-96 xl:h-72 w-full rounded-[1.5rem] overflow-hidden">
                                 <img src="<?php echo esc_url($service['image_url']); ?>"
                                     class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                                     alt="<?php echo esc_attr($service['title']); ?>">
