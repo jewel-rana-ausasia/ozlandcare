@@ -78,6 +78,8 @@ $mobile_preview       = is_readable($mobile_preview_path)
 
     /* Inline preview paints immediately while the full image decodes. */
     .hero-slider-shell {
+        height: calc(100vh - 140px);
+        height: calc(100dvh - 140px);
         background-color: #000;
         background-image: url("<?= esc_attr($mobile_preview); ?>");
         background-position: top center;
@@ -192,7 +194,7 @@ $mobile_preview       = is_readable($mobile_preview_path)
     }
 </style>
 
-<section class="hero-slider-shell relative h-[calc(100vh-140px)] flex items-center overflow-hidden grain">
+<section class="hero-slider-shell relative flex items-center overflow-hidden grain">
 
     <div class="absolute inset-0 z-0">
         <picture>
@@ -283,6 +285,34 @@ $mobile_preview       = is_readable($mobile_preview_path)
 
 <script>
     document.addEventListener('DOMContentLoaded', () => {
+        const sliderShell = document.querySelector('.hero-slider-shell');
+        const siteHeader = document.getElementById('masthead');
+
+        const syncSliderHeight = () => {
+            if (!sliderShell || !siteHeader) {
+                return;
+            }
+
+            const viewportHeight = window.visualViewport
+                ? window.visualViewport.height
+                : window.innerHeight;
+            const headerHeight = siteHeader.getBoundingClientRect().height;
+
+            sliderShell.style.height = `${Math.max(0, viewportHeight - headerHeight)}px`;
+        };
+
+        syncSliderHeight();
+        window.addEventListener('resize', syncSliderHeight);
+
+        if (window.visualViewport) {
+            window.visualViewport.addEventListener('resize', syncSliderHeight);
+        }
+
+        if ('ResizeObserver' in window && siteHeader) {
+            const headerResizeObserver = new ResizeObserver(syncSliderHeight);
+            headerResizeObserver.observe(siteHeader);
+        }
+
         const slides = document.querySelectorAll('.hero-slide');
         const progressFill = document.getElementById('progressFill');
         let current = 0;
