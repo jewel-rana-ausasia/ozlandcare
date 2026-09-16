@@ -280,7 +280,7 @@ get_header();
         </h1>
     </div>
 
-    <div class="max-w-6xl mx-auto w-full grid grid-cols-1 lg:grid-cols-7 gap-8 items-start relative z-10 px-2">
+    <div class="max-w-6xl mx-auto w-full grid grid-cols-1 lg:grid-cols-7 gap-8 items-start relative z-10">
 
         <div class="lg:col-span-5 bg-white shadow-2xl border border-slate-100/80 overflow-hidden transition-all duration-500">
 
