@@ -40,7 +40,7 @@
         <div class="mt-16 p-10 rounded-[2.5rem] bg-primary text-white reveal">
             <div class="max-w-4xl mx-auto text-center">
                 <p class="text-lg leading-relaxed mb-0">
-                    We will work closely with you to ensure that the support you receive is aligned with your NDIS plan and daily routine. Whether it's <strong>grooming, meal preparation, or mobility assistance</strong>, we’re here to help you become more independent while working with you and your family to reflect your identity.
+                    We will work closely with you to ensure that the support you receive is aligned with your NDIS plan and daily routine. Whether it's <strong class="!text-white">grooming, meal preparation, or mobility assistance</strong>, we’re here to help you become more independent while working with you and your family to reflect your identity.
                 </p>
             </div>
         </div>
