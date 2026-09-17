@@ -637,9 +637,9 @@ get_header();
 
     function validateAssessmentName(input, label) {
         const value = input.value.trim();
-        const message = value && !singleNameRegex.test(value)
-            ? `Enter one ${label} without spaces.`
-            : '';
+        const message = value && !singleNameRegex.test(value) ?
+            `Enter one ${label} without spaces.` :
+            '';
 
         input.setCustomValidity(message);
         input.classList.toggle('input-error', Boolean(message));
@@ -1132,42 +1132,95 @@ $values = [
 <!-- Service Section Started -->
 <?php
 $services = [
+    // 1) Support Coordination
     [
         'image_url'   => get_template_directory_uri() . '/assets/images/services/ndis-support-coordination.jpg',
-        'title'       => 'NDIS Support Coordination',
+        'title'       => 'Support Coordination',
         'description' => 'Guidance to help participants understand and implement their NDIS plans, connect with providers, and achieve their goals.',
         'href'        => site_url('/ndis-support-coordination/')
     ],
+
+    // 2) Supported Independent Living (SIL)
     [
         'image_url'   => get_template_directory_uri() . '/assets/images/services/assist-daily-tasks-or-shared-living.jpg',
-        'title'       => 'SIL Supported Independent Living',
+        'title'       => 'Supported Independent Living (SIL)',
         'description' => 'Support with daily living tasks within shared or individual living spaces to promote independence.',
         'href'        => site_url('/assist-daily-tasks-shared-living/')
     ],
+
+    // 3) Community Participation
     [
         'image_url'   => get_template_directory_uri() . '/assets/images/services/innovative-community-participation.jpg',
         'title'       => 'Community Participation',
         'description' => 'Engaging and creative programs that foster active involvement in community, social, and civic life.',
         'href'        => site_url('/innovative-community-participation/')
     ],
+
+    // 4) Assist-Personal Activities
     [
         'image_url'   => get_template_directory_uri() . '/assets/images/services/assist-personal-activities.jpg',
-        'title'       => 'Personal Activities',
+        'title'       => 'Assist-Personal Activities',
         'description' => 'Help with daily personal activities such as hygiene, grooming, and self-care to maintain wellbeing.',
         'href'        => site_url('/assist-personal-activities/')
     ],
-    [
-        'image_url'   => get_template_directory_uri() . '/assets/images/services/assist-traveltransport.jpg',
-        'title'       => 'Transport',
-        'description' => 'Safe, reliable transport solutions to attend appointments, community outings, and personal errands.',
-        'href'        => site_url('/assist-travel-transport/')
-    ],
+
+    // 5) Innovative Community Participation
     [
         'image_url'   => get_template_directory_uri() . '/assets/images/services/assistance-with-social-and-community-participation.jpg',
-        'title'       => 'Assistance with Social and Community Participation',
+        'title'       => 'Innovative Community Participation',
         'description' => 'Support to engage in community, social, and recreational activities, helping participants build connections and confidence.',
         'href'        => site_url('/assistance-with-social-and-community-participation/')
     ],
+
+    // 6) Development-Life Skills
+    [
+        'image_url'   => get_template_directory_uri() . '/assets/images/services/development-of-daily-living-and-life-skills.jpg',
+        'title'       => 'Development-Life Skills',
+        'description' => 'Personalised coaching and support to build practical life skills and enhance self-reliance.',
+        'href'        => site_url('/development-of-daily-living-life-skills/')
+    ],
+
+    // 7) Household Tasks
+    [
+        'image_url'   => get_template_directory_uri() . '/assets/images/services/household-tasks.jpg',
+        'title'       => 'Household Tasks',
+        'description' => 'Assistance with cleaning, laundry, meal preparation, and daily household responsibilities.',
+        'href'        => site_url('/household-tasks/')
+    ],
+
+    // 8) Assist-Travel/Transport
+    [
+        'image_url'   => get_template_directory_uri() . '/assets/images/services/assist-traveltransport.jpg',
+        'title'       => 'Assist-Travel/Transport',
+        'description' => 'Safe, reliable transport solutions to attend appointments, community outings, and personal errands.',
+        'href'        => site_url('/assist-travel-transport/')
+    ],
+
+    // 9) Group/Centre Activities
+    [
+        'image_url'   => get_template_directory_uri() . '/assets/images/services/group-or-centre-based-activities.jpg',
+        'title'       => 'Group/Centre Activities',
+        'description' => 'Facilitated group activities and centre-based programs that encourage social connections and learning.',
+        'href'        => site_url('/group-centre-based-activities/')
+    ],
+
+    // 10) Specialised Driver Training
+    [
+        'image_url'   => get_template_directory_uri() . '/assets/images/services/specialised-driver-training.jpg',
+        'title'       => 'Specialised Driver Training',
+        'description' => 'Structured training to build safe driving skills and confidence behind the wheel.',
+        'href'        => site_url('/specialised-driver-training/')
+    ],
+
+    // 11) Home Modification
+    [
+        'image_url'   => get_template_directory_uri() . '/assets/images/services/home-modification-design-and-construction.jpg',
+        'title'       => 'Home Modification',
+        'description' => 'Tailored home modification design and construction to enhance accessibility and independence.',
+        'href'        => site_url('/home-modification-design-construction/')
+    ],
+
+    // Remaining existing services
     [
         'image_url'   => get_template_directory_uri() . '/assets/images/services/daily-personal-care.jpg',
         'title'       => 'Daily Personal Care',
@@ -1175,40 +1228,10 @@ $services = [
         'href'        => site_url('/daily-personal-care/')
     ],
     [
-        'image_url'   => get_template_directory_uri() . '/assets/images/services/home-modification-design-and-construction.jpg',
-        'title'       => 'Home Modification Design & Construction',
-        'description' => 'Tailored home modification design and construction to enhance accessibility and independence.',
-        'href'        => site_url('/home-modification-design-construction/')
-    ],
-    [
-        'image_url'   => get_template_directory_uri() . '/assets/images/services/development-of-daily-living-and-life-skills.jpg',
-        'title'       => 'Development of Daily Living & Life Skills',
-        'description' => 'Personalised coaching and support to build practical life skills and enhance self-reliance.',
-        'href'        => site_url('/development-of-daily-living-life-skills/')
-    ],
-    [
-        'image_url'   => get_template_directory_uri() . '/assets/images/services/household-tasks.jpg',
-        'title'       => 'Household Tasks',
-        'description' => 'Assistance with cleaning, laundry, meal preparation, and daily household responsibilities.',
-        'href'        => site_url('/household-tasks/')
-    ],
-    [
         'image_url'   => get_template_directory_uri() . '/assets/images/services/participation-in-community-social-and-civic-activities.jpg',
         'title'       => 'Participation in Community, Social & Civic Activities',
         'description' => 'Opportunities to engage in meaningful social, civic, and community experiences.',
         'href'        => site_url('/participation-in-community-social-civic-activities/')
-    ],
-    [
-        'image_url'   => get_template_directory_uri() . '/assets/images/services/specialised-driver-training.jpg',
-        'title'       => 'Specialised driver training',
-        'description' => 'Structured training to build safe driving skills and confidence behind the wheel.',
-        'href'        => site_url('/specialised-driver-training/')
-    ],
-    [
-        'image_url'   => get_template_directory_uri() . '/assets/images/services/group-or-centre-based-activities.jpg',
-        'title'       => 'Group/Centre-Based Activities',
-        'description' => 'Facilitated group activities and centre-based programs that encourage social connections and learning.',
-        'href'        => site_url('/group-centre-based-activities/')
     ]
 ];
 ?>
