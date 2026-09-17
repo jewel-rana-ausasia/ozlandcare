@@ -543,9 +543,9 @@ $has_support_coordination_layout =
     } elseif (is_page('home-modification-design-construction')) {
 
         get_template_part('template-parts/service-single/content', 'home-modifications');
-    } elseif (is_page('assist-daily-tasks-shared-living')) {
+    } elseif (is_page('supported-independent-living-sil')) {
 
-        get_template_part('template-parts/service-single/content', 'assist-dailytasks');
+        get_template_part('template-parts/service-single/content', 'sil');
     } elseif (is_page('innovative-community-participation')) {
 
         get_template_part('template-parts/service-single/content', 'innovative-communityparticipation');

@@ -2,7 +2,7 @@
     <div class="container mx-auto px-6 max-w-7xl">
         <div class="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6 reveal">
             <div class="max-w-3xl">
-                <h2 class="font-serif text-4xl text-slate-900 mb-4">Reasons to Choose Us for <span class="text-primary">Daily Living & Shared Support</span></h2>
+                <h2 class="font-serif text-4xl text-slate-900 mb-4">Reasons to Choose Us for <span class="text-primary">Supported Independent Living</span></h2>
                 <p class="text-slate-950 text-base">As a registered NDIS provider, Ozland Care focuses on delivering person-centred support tailored to your needs, goals and preferences.</p>
             </div>
         </div>
@@ -42,7 +42,7 @@
 <section class="py-24 bg-[#fafcfc]">
     <div class="container mx-auto px-6 max-w-7xl">
         <div class="text-center mb-20 reveal">
-            <h2 class="font-serif text-4xl text-slate-900 mb-4">The Impact of Our <span class="italic text-primary">Daily Living & Shared Support</span></h2>
+            <h2 class="font-serif text-4xl text-slate-900 mb-4">The Impact of Our <span class="italic text-primary">Supported Independent Living</span></h2>
             <div class="flex justify-center">
                 <svg width="320" height="40" viewBox="0 0 320 40" xmlns="http://www.w3.org/2000/svg">
                     <defs>
@@ -139,7 +139,7 @@
                 <span class="text-[0.7rem] uppercase tracking-[0.4em] text-primary font-bold">Comprehensive Support</span>
             </div>
             <h2 class="font-serif text-4xl md:text-5xl text-slate-900 mb-6 leading-tight">
-                Complete Daily Living & <span class="italic font-light">Shared Support</span>
+                Complete Supported Independent <span class="italic font-light">Living (SIL)</span>
                 <span class="text-primary mt-2">Services in Sydney</span>
             </h2>
             <p class="text-slate-800 text-base leading-relaxed">
@@ -182,10 +182,10 @@
     <div class="container mx-auto px-6 max-w-7xl">
         <div class="mb-16 reveal">
             <h2 class="font-serif text-4xl text-slate-900 mb-8 leading-tight">
-                Advantages of <span class="text-primary">Daily Living & Shared Support</span>
+                Advantages of <span class="text-primary">Supported Independent Living</span>
             </h2>
             <p class="text-slate-700 text-base leading-relaxed mb-6">
-                Choosing Ozland Care for assistance with daily tasks and shared living provides:
+                Choosing Ozland Care for your Supported Independent Living (SIL) supports provides:
             </p>
         </div>
 
@@ -224,9 +224,9 @@
 <!-- Faq Section -->
 <?php
 $faqs = [
-    ['What support is provided with daily tasks in a shared living arrangement?', 'Support can include personal care, meal preparation, cleaning, household routines and assistance to build everyday living skills, based on your individual needs and goals.'],
+    ['What support is provided under Supported Independent Living (SIL)?', 'Support can include personal care, meal preparation, cleaning, household routines and assistance to build everyday living skills, based on your individual needs and goals.'],
     ['Can the support be adjusted to suit my daily routine?', 'Yes. We work with you and your household to agree on a support schedule that reflects your usual routine, assessed needs, NDIS plan and available support hours.'],
-    ['Is assistance with daily tasks in shared living funded by the NDIS?', 'It may be funded through your Core Supports when it is considered reasonable and necessary and is included in your NDIS plan.'],
+    ['Is Supported Independent Living (SIL) funded by the NDIS?', 'It may be funded through your Core Supports when it is considered reasonable and necessary and is included in your NDIS plan.'],
     ['Will support workers help me become more independent?', 'Yes. Support workers can complete tasks with you, helping you develop the skills and confidence to manage more of your daily routine independently.'],
     ['Can support help me live safely and comfortably with housemates?', 'Yes. Support workers can assist with household routines, shared responsibilities, communication and maintaining a safe and comfortable living environment.']
 ];

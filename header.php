@@ -1184,7 +1184,7 @@
                                     } elseif (
                                         false !== strpos(
                                             $service_title_lower,
-                                            'shared living'
+                                            'independent living'
                                         )
                                     ) {
 
@@ -1518,7 +1518,7 @@
                                             } elseif (
                                                 false !== strpos(
                                                     $service_title_lower,
-                                                    'shared living'
+                                                    'independent living'
                                                 )
                                             ) {
 

@@ -1145,7 +1145,7 @@ $services = [
         'image_url'   => get_template_directory_uri() . '/assets/images/services/assist-daily-tasks-or-shared-living.jpg',
         'title'       => 'Supported Independent Living (SIL)',
         'description' => 'Support with daily living tasks within shared or individual living spaces to promote independence.',
-        'href'        => site_url('/assist-daily-tasks-shared-living/')
+        'href'        => site_url('/supported-independent-living-sil/')
     ],
 
     // 3) Community Participation
