@@ -76,28 +76,24 @@
 
 				<ul class="space-y-5 text-base font-medium list-none p-0 m-0 border-none outline-none">
 					<?php
-					$parent = get_page_by_path('our-services');
+					// Top 5 services, in the same order as the Our Services page
+					$footer_services = [
+						['title' => 'Support Coordination',                'href' => site_url('/ndis-support-coordination/')],
+						['title' => 'Supported Independent Living (SIL)',  'href' => site_url('/assist-daily-tasks-shared-living/')],
+						['title' => 'Community Participation',             'href' => site_url('/innovative-community-participation/')],
+						['title' => 'Assist-Personal Activities',          'href' => site_url('/assist-personal-activities/')],
+						['title' => 'Innovative Community Participation',  'href' => site_url('/assistance-with-social-and-community-participation/')],
+					];
 
-					if ($parent) {
-						$child_pages = get_pages([
-							'child_of'    => $parent->ID,
-							'sort_column' => 'menu_order',
-							'sort_order'  => 'ASC',
-						]);
-
-						// Limit to max 5 सेवices
-						$child_pages = array_slice($child_pages, 0, 5);
-
-						foreach ($child_pages as $page) {
+					foreach ($footer_services as $service) {
 					?>
-							<li class="list-none before:hidden ml-0 pl-0">
-								<a href="<?php echo get_permalink($page->ID); ?>"
-									class="text-white hover:text-white/80 transition-colors duration-300 inline-flex items-start gap-2 group no-underline">
-									<span><?php echo esc_html($page->post_title); ?></span>
-								</a>
-							</li>
+						<li class="list-none before:hidden ml-0 pl-0">
+							<a href="<?php echo esc_url($service['href']); ?>"
+								class="text-white hover:text-white/80 transition-colors duration-300 inline-flex items-start gap-2 group no-underline">
+								<span><?php echo esc_html($service['title']); ?></span>
+							</a>
+						</li>
 					<?php
-						}
 					}
 					?>
 
