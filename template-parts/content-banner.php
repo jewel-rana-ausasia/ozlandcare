@@ -23,7 +23,7 @@ if (is_404()) {
 ?>
 
 <section
-    class="content-banner-shell relative min-h-[250px] md:min-h-[350px] lg:min-h-[450px] flex items-center justify-center overflow-hidden"
+    class="content-banner-shell relative min-h-[200px] md:min-h-[300px] lg:min-h-[400px] xl:min-h-[450px] flex items-center justify-center overflow-hidden"
     style="background-color: #000;<?php echo $placeholder ? ' background-image: url(&quot;' . esc_attr($placeholder) . '&quot;); background-size: cover;' : ''; ?>">
 
     <?php if ($show_image && $image_url) : ?>

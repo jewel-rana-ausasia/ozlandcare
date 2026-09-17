@@ -30,7 +30,7 @@ get_header();
     </section>
 
     <!-- REFERRAL FORM -->
-    <section class="max-w-7xl mx-auto px-6 pb-20 lg:pb-28">
+    <section class="referral-form-section max-w-7xl mx-auto px-6 pb-20 lg:pb-28">
         <div>
 
             <!-- Form -->
@@ -260,6 +260,23 @@ get_header();
     .referral-input.field-invalid {
         border-color: #ef4444;
         background-color: #fef2f2;
+    }
+
+    @media (max-width: 639px) {
+        .referral-form-section {
+            padding-left: 0.75rem;
+            padding-right: 0.75rem;
+        }
+
+        .referral-form-shell {
+            padding-left: 0;
+            padding-right: 0;
+        }
+
+        .referral-panel {
+            padding-left: 1rem;
+            padding-right: 1rem;
+        }
     }
 
     @media (min-width: 768px) {
