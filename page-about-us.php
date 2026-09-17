@@ -111,16 +111,18 @@ get_header();
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
 
             <!-- Image -->
-            <div class="animate-slideInLeft">
+            <div class="animate-slideInRight lg:order-2">
                 <div class="rounded-[2rem] overflow-hidden shadow-sm">
-                    <img src="<?php echo get_template_directory_uri(); ?>/assets/images/about-us-main.png"
+                    <img src="<?php echo get_template_directory_uri(); ?>/assets/images/about-us-main.jpg"
                         alt="NDIS Disability Support Service in Australia"
+                        width="712" height="590"
+                        fetchpriority="high" decoding="async"
                         class="w-full h-auto object-cover aspect-square lg:aspect-auto">
                 </div>
             </div>
 
             <!-- Content -->
-            <div class="animate-slideInRight">
+            <div class="animate-slideInLeft lg:order-1">
                 <div class="flex items-center gap-2 mb-4">
                     <span class="text-primary font-semibold text-lg">About Us</span>
                     <svg class="w-4 h-4 text-primary transform -rotate-45" fill="none" stroke="currentColor" viewBox="0 0 24 24">
