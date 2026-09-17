@@ -507,16 +507,15 @@ get_header();
                             </div>
 
                             <div class="border-t border-slate-100 pt-6">
-                                <h4 class="text-xs font-black text-[#702d7e] uppercase tracking-wider mb-4">Optional: Request Direct Callback From A Specialist</h4>
                                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
-                                    <input type="text" id="assessmentFirstName" name="first_name" placeholder="First Name" autocomplete="given-name" title="Enter one first name without spaces." class="p-3.5 bg-slate-50 border-2 border-transparent focus:border-[#702d7e] focus:bg-white rounded-xl outline-none transition-all text-sm font-bold" required>
-                                    <input type="text" id="assessmentSurname" name="last_name" placeholder="Surname" autocomplete="family-name" title="Enter one surname without spaces." class="p-3.5 bg-slate-50 border-2 border-transparent focus:border-[#702d7e] focus:bg-white rounded-xl outline-none transition-all text-sm font-bold">
+                                    <input type="text" id="assessmentFirstName" name="first_name" placeholder="First Name *" autocomplete="given-name" title="Enter one first name without spaces." class="p-3.5 bg-slate-50 border-2 border-transparent focus:border-[#702d7e] focus:bg-white rounded-xl outline-none transition-all text-sm font-bold" required>
+                                    <input type="text" id="assessmentSurname" name="last_name" placeholder="Surname *" autocomplete="family-name" title="Enter one surname without spaces." class="p-3.5 bg-slate-50 border-2 border-transparent focus:border-[#702d7e] focus:bg-white rounded-xl outline-none transition-all text-sm font-bold" required>
 
                                     <input
                                         type="tel"
                                         id="assessmentPhone"
                                         name="phone"
-                                        placeholder="Mobile"
+                                        placeholder="Mobile *"
                                         inputmode="numeric"
                                         autocomplete="tel"
                                         pattern="^04[0-9]{8}$"
@@ -526,7 +525,7 @@ get_header();
                                         class="p-3.5 bg-slate-50 border-2 border-transparent focus:border-[#702d7e] focus:bg-white rounded-xl outline-none transition-all text-sm font-bold"
                                         required>
 
-                                    <input type="email" id="email" name="email" placeholder="Email Address" class="p-3.5 bg-slate-50 border-2 border-transparent focus:border-[#702d7e] focus:bg-white rounded-xl outline-none transition-all text-sm font-bold" required>
+                                    <input type="email" id="email" name="email" placeholder="Email Address *" class="p-3.5 bg-slate-50 border-2 border-transparent focus:border-[#702d7e] focus:bg-white rounded-xl outline-none transition-all text-sm font-bold" required>
                                 </div>
                             </div>
                         </div>
@@ -541,7 +540,7 @@ get_header();
                             <button type="button" id="nextBtn" class="px-10 py-3.5 bg-gradient-to-r from-[#702d7e] to-[#8c3fa1] text-white rounded-xl font-black uppercase text-[11px] tracking-widest transition-all shadow-md hover:opacity-95">
                                 Next Step →
                             </button>
-                            <button type="submit" id="submitBtn" class="hidden px-10 py-3.5 bg-primary text-white rounded-xl font-black uppercase text-[11px] tracking-widest hover:bg-secondary transition-all shadow-md">
+                            <button type="submit" id="submitBtn" class="hidden px-10 py-3.5 bg-primary text-white rounded-xl font-black uppercase text-[11px] tracking-widest hover:bg-[#0a74bb] transition-all shadow-md">
                                 Submit Details
                             </button>
                         </div>
@@ -851,6 +850,25 @@ get_header();
 
         phoneInput.classList.remove('input-error');
         emailInput.classList.remove('input-error');
+        firstNameInput.classList.remove('input-error');
+        surnameInput.classList.remove('input-error');
+
+        // All contact details are mandatory
+        const mandatoryContactFields = [
+            [firstNameInput, 'first name'],
+            [surnameInput, 'surname'],
+            [phoneInput, 'mobile number'],
+            [emailInput, 'email address'],
+        ];
+
+        for (const [input, label] of mandatoryContactFields) {
+            if (!input.value.trim()) {
+                input.classList.add('input-error');
+                input.focus();
+                alert(`Please enter your ${label}.`);
+                return;
+            }
+        }
 
         if (!validateAssessmentName(firstNameInput, 'first name')) {
             firstNameInput.reportValidity();
