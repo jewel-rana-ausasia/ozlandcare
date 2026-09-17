@@ -985,7 +985,7 @@
             </div>
 
             <div id="main-header" class="bg-white transition-all duration-300 shadow-sm">
-                <div class="container mx-auto px-2 sm:px-3 md:px-4">
+                <div class="container mx-auto px-4 md:px-4">
 
                     <div class="flex items-center justify-between py-2 lg:py-3 xl:py-4">
 
@@ -1007,8 +1007,13 @@
                         </div>
 
                         <!-- We Love NDIS Logo (Premium Badge Style) -->
-                        <div class="flex items-center pl-3">
-                            <div class="relative p-1 hover:ring-primary/60 transition-all duration-300">
+                        <div class="flex items-center pl-2 sm:pl-6 lg:pl-8 mr-auto 2xl:mr-0">
+
+                            <!-- divider between site logo and NDIS badge -->
+                            <span aria-hidden="true"
+                                class="block w-px h-8 sm:h-10 lg:h-12 bg-gradient-to-b from-transparent via-primary/30 to-transparent"></span>
+
+                            <div class="relative p-1 ml-2 sm:ml-6 lg:ml-8 hover:ring-primary/60 transition-all duration-300">
 
                                 <!-- soft glow layer -->
                                 <img src="<?php echo get_template_directory_uri(); ?>/assets/images/we-love-ndis-logo.png"
