@@ -172,6 +172,156 @@ $has_support_coordination_layout =
     .service-details-content .bg-primary li {
         color: rgba(255, 255, 255, 0.92) !important;
     }
+
+    .service-details-content > section:is(
+        [class~="py-24"],
+        [class~="py-16"],
+        [class~="pb-16"],
+        [class~="pb-24"]
+    ) :is(h1, h2) {
+        font-family: 'Plus Jakarta Sans', 'Inter', sans-serif;
+        font-size: 2.5rem;
+        font-weight: 700;
+        line-height: 1.2;
+        letter-spacing: -0.025em;
+    }
+
+    /*
+     * Responsive treatment for the service-content sections only. The shared
+     * service CTA and FAQ use different section classes and are intentionally
+     * outside these selectors.
+     */
+    @media (max-width: 1023px) {
+        .service-details-content > section:is(
+            [class~="py-24"],
+            [class~="py-16"],
+            [class~="pb-16"],
+            [class~="pb-24"]
+        ) :is(h1, h2) {
+            font-size: 2.25rem;
+        }
+
+        .service-details-content > section[class~="py-24"] {
+            padding-top: 4rem;
+            padding-bottom: 4rem;
+        }
+
+        .service-details-content > section[class~="py-24"] > .container,
+        .service-details-content > section[class~="py-16"] > .container,
+        .service-details-content > section[class~="pb-16"] > .container,
+        .service-details-content > section[class~="pb-24"] > .container {
+            padding-left: 2rem;
+            padding-right: 2rem;
+        }
+
+        .service-details-content > section[class~="py-24"] [class~="p-10"] {
+            padding: 2rem;
+        }
+
+        .service-details-content > section[class~="py-24"] [class~="p-12"] {
+            padding: 2.5rem;
+        }
+
+        .service-details-content > section[class~="py-24"] [class~="mb-20"],
+        .service-details-content > section[class~="py-24"] [class~="mb-16"] {
+            margin-bottom: 3rem;
+        }
+    }
+
+    @media (max-width: 639px) {
+        .service-details-content > section[class~="py-24"] {
+            padding-top: 3rem;
+            padding-bottom: 3rem;
+        }
+
+        .service-details-content > section[class~="py-16"] {
+            padding-top: 3rem;
+            padding-bottom: 3rem;
+        }
+
+        .service-details-content > section[class~="pb-16"],
+        .service-details-content > section[class~="pb-24"] {
+            padding-bottom: 3rem;
+        }
+
+        .service-details-content > section[class~="py-24"] > .container,
+        .service-details-content > section[class~="py-16"] > .container,
+        .service-details-content > section[class~="pb-16"] > .container,
+        .service-details-content > section[class~="pb-24"] > .container {
+            width: 100%;
+            padding-left: 1rem;
+            padding-right: 1rem;
+        }
+
+        .service-details-content > section[class~="py-24"] h2,
+        .service-details-content > section[class~="py-16"] h1,
+        .service-details-content > section[class~="pb-16"] h2,
+        .service-details-content > section[class~="pb-24"] h2 {
+            overflow-wrap: anywhere;
+            font-size: 1.875rem;
+            line-height: 1.2;
+        }
+
+        .service-details-content > section[class~="py-24"] [class~="p-10"],
+        .service-details-content > section[class~="py-24"] [class~="p-12"] {
+            padding: 1.5rem;
+        }
+
+        .service-details-content > section[class~="py-24"] [class~="rounded-[2.5rem]"],
+        .service-details-content > section[class~="py-24"] [class~="rounded-[3rem]"] {
+            border-radius: 1.5rem;
+        }
+
+        .service-details-content > section[class~="py-24"] [class~="gap-10"],
+        .service-details-content > section[class~="py-16"] [class~="gap-10"] {
+            gap: 2rem;
+        }
+
+        .service-details-content > section[class~="py-24"] .flex[class~="gap-8"] {
+            gap: 1rem;
+        }
+
+        .service-details-content > section[class~="py-24"] [class~="text-6xl"] {
+            flex: 0 0 auto;
+            font-size: 2.5rem;
+        }
+
+        .service-details-content > section[class~="py-24"] [class~="mb-20"],
+        .service-details-content > section[class~="py-24"] [class~="mb-16"] {
+            margin-bottom: 2.5rem;
+        }
+
+        .service-details-content > section[class~="py-24"] svg[width="320"] {
+            width: 100%;
+            max-width: 20rem;
+            height: auto;
+        }
+
+        .service-details-content > section[class~="py-24"] img,
+        .service-details-content > section[class~="py-16"] img,
+        .service-details-content > section[class~="pb-16"] img,
+        .service-details-content > section[class~="pb-24"] img {
+            max-width: 100%;
+        }
+
+        .service-details-content > section[class~="py-24"] table,
+        .service-details-content > section[class~="py-16"] table,
+        .service-details-content > section[class~="pb-16"] table,
+        .service-details-content > section[class~="pb-24"] table {
+            display: block;
+            width: 100%;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        .service-details-content > section[class~="py-24"] .grid > *,
+        .service-details-content > section[class~="py-16"] .grid > *,
+        .service-details-content > section[class~="pb-16"] .grid > *,
+        .service-details-content > section[class~="pb-24"] .grid > *,
+        .service-details-content > section[class~="py-24"] .flex > * {
+            min-width: 0;
+        }
+    }
 </style>
 
 <main class="service-details-content bg-[#fafcfc] overflow-hidden">
