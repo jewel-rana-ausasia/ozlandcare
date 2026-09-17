@@ -41,12 +41,12 @@ if ($is_support_coordination && $service_details && class_exists('DOMDocument'))
         foreach (iterator_to_array($content_root->childNodes) as $content_node) {
             $node_text = trim(preg_replace('/\s+/', ' ', $content_node->textContent));
 
-            if (stripos($node_text, 'What is NDIS Support Coordination?') === 0) {
+            if (preg_match('/^what is\s+(?:the\s+)?(?:ndis\s+)?support\s+coordination\s*\??/i', $node_text)) {
                 $content_phase = 'overview';
                 continue;
             }
 
-            if (stripos($node_text, 'The 3 Levels of Support Coordination') === 0) {
+            if (preg_match('/^the\s+3\s+levels\s+of\s+(?:ndis\s+)?support\s+coordination/i', $node_text)) {
                 $content_phase = 'levels_intro';
                 continue;
             }
@@ -342,34 +342,33 @@ $has_support_coordination_layout =
 
 <main class="service-details-content bg-[#fafcfc] overflow-hidden">
     <?php if ($has_support_coordination_layout) : ?>
-    <section class="relative py-16 lg:py-24">
+    <section class="relative py-24 lg:py-32">
         <div class="container mx-auto px-6 max-w-7xl">
-            <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
 
-                <div class="lg:col-span-5 order-2 lg:order-1 reveal">
-                    <p class="mb-4 text-sm font-bold uppercase tracking-[0.2em] text-primary">Support Coordination</p>
-                    <h1 class="font-serif text-3xl lg:text-5xl text-slate-900 leading-[1.1] mb-7">
-                        <?php echo $service_title ? wp_kses_post($service_title) : 'NDIS Support Coordination'; ?>
+                <div class="lg:col-span-6 order-2 lg:order-1 reveal">
+                    <h1 class="font-serif text-3xl lg:text-5xl text-slate-900 leading-[1.1] mb-8">
+                        <?php echo $service_title ? wp_kses_post($service_title) : 'Support Coordination'; ?>
                     </h1>
-                    <div class="support-intro-copy text-base text-slate-700 font-normal leading-relaxed">
+                    <div class="support-intro-copy max-w-2xl text-base text-slate-700 font-normal leading-relaxed">
                         <?php echo wp_kses_post(implode('', $support_coordination_content['intro'])); ?>
                     </div>
                 </div>
 
-                <div class="lg:col-span-7 order-1 lg:order-2 reveal" style="transition-delay: 0.2s">
+                <div class="lg:col-span-6 order-1 lg:order-2 reveal" style="transition-delay: 0.2s">
                     <div class="relative">
                         <div class="absolute -top-10 -right-10 w-64 h-64 bg-primary/10 rounded-full mix-blend-multiply filter blur-3xl opacity-70"></div>
-                        <div class="image-mask overflow-hidden shadow-[0_32px_64px_-16px_rgba(0,0,0,0.2)] aspect-[16/10] sm:aspect-[3/2] lg:aspect-[4/3] lg:min-h-[520px] relative">
+                        <div class="image-mask overflow-hidden shadow-[0_32px_64px_-16px_rgba(0,0,0,0.2)] aspect-[16/10] sm:aspect-[3/2] lg:aspect-[4/3] relative">
                             <?php if ($service_image) : ?>
                                 <img
                                     src="<?php echo esc_url($service_image['url']); ?>"
                                     class="w-full h-full object-cover"
-                                    alt="<?php echo esc_attr($service_image['alt'] ?? 'NDIS Support Coordination'); ?>">
+                                    alt="<?php echo esc_attr($service_image['alt'] ?? 'Support Coordination'); ?>">
                             <?php else : ?>
                                 <img
                                     src="<?php echo esc_url(get_template_directory_uri() . '/assets/images/default-hero.jpg'); ?>"
                                     class="w-full h-full object-cover"
-                                    alt="NDIS Support Coordination">
+                                    alt="Support Coordination">
                             <?php endif; ?>
                         </div>
                     </div>
@@ -383,8 +382,7 @@ $has_support_coordination_layout =
         <div class="container mx-auto px-6 max-w-7xl">
             <div class="reveal">
                 <div class="max-w-4xl mb-7">
-                    <p class="mb-3 text-sm font-bold uppercase tracking-[0.18em] text-primary">Understanding Your Plan</p>
-                    <h2 class="font-serif text-3xl lg:text-4xl text-slate-900 leading-tight">What is NDIS Support Coordination?</h2>
+                    <h2 class="font-serif text-3xl lg:text-4xl text-slate-900 leading-tight">What is Support Coordination?</h2>
                 </div>
 
                 <div class="w-full border-y border-primary/15 divide-y divide-primary/15">
@@ -406,7 +404,6 @@ $has_support_coordination_layout =
     <section class="pb-24 lg:pb-32">
         <div class="container mx-auto px-6 max-w-7xl">
             <div class="max-w-3xl mb-10 reveal">
-                <p class="mb-3 text-sm font-bold uppercase tracking-[0.18em] text-primary">Support That Fits Your Needs</p>
                 <h2 class="font-serif text-3xl lg:text-4xl text-slate-900 leading-tight mb-5">The 3 Levels of Support Coordination</h2>
                 <div class="text-slate-700 leading-relaxed">
                     <?php echo wp_kses_post(implode('', $support_coordination_content['levels_intro'])); ?>

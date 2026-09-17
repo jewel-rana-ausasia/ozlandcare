@@ -3,7 +3,7 @@
         <div class="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6 reveal">
             <div class="max-w-3xl">
                 <h2 class="font-serif text-4xl text-slate-900 mb-4">
-                    Why Choose Ozland Care for <span class="text-primary">NDIS Support Coordination in Sydney?</span>
+                    Why Choose Ozland Care for <span class="text-primary">Support Coordination in Sydney?</span>
                 </h2>
 
                 <p class="text-slate-950 text-base">
@@ -100,7 +100,7 @@
             <div class="space-y-12">
                 <?php
                 $steps = [
-                    ['Understanding Your NDIS Plan', 'We will help you fully understand your plan and how to use your funding effectively, so you are always in control.'],
+                    ['Understanding Your Plan', 'We will help you fully understand your plan and how to use your funding effectively, so you are always in control.'],
                     ['Finding the Right Service Providers', 'We will assist you in finding providers that best suit your goals and needs, offering you options and supporting you in making the best choices.'],
                     ['Managing Communication', 'We will handle the communication with service providers and take care of the paperwork, so you don’t have to worry about the details while keeping you in control of the process.'],
                     ['Building Capacity and Independence', 'We will work with you to develop the skills you need to manage your plan independently. Whether it’s handling your funding, talking to providers, or advocating for yourself.'],
@@ -119,7 +119,7 @@
 
             <div class="bg-primary p-12 lg:p-16 rounded-[3rem] text-white relative overflow-hidden reveal h-full flex">
                 <div class="relative z-10 flex flex-col justify-center">
-                    <h3 class="font-serif text-3xl mb-6 italic">NDIS Support Coordination</h3>
+                    <h3 class="font-serif text-3xl mb-6 italic">Support Coordination</h3>
 
                     <p class="text-white/80 leading-relaxed mb-8">
                         NDIS Support Coordination helps you understand and implement your NDIS plan effectively. We guide you to use your funding efficiently and ensure you remain in control of your supports.
@@ -134,7 +134,7 @@
                             <div class="w-5 h-5 rounded-full bg-white/20 flex items-center justify-center">
                                 <div class="w-2 h-2 rounded-full bg-white/70"></div>
                             </div>
-                            <span class="text-sm font-medium text-white">Understanding Your NDIS Plan</span>
+                            <span class="text-sm font-medium text-white">Understanding Your Plan</span>
                         </li>
                         <li class="flex items-center gap-3">
                             <div class="w-5 h-5 rounded-full bg-white/20 flex items-center justify-center">
