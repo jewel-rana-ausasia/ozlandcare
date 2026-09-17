@@ -173,34 +173,59 @@ $has_support_coordination_layout =
         color: rgba(255, 255, 255, 0.92) !important;
     }
 
-    .service-details-content > section:is(
-        [class~="py-24"],
-        [class~="py-16"],
-        [class~="pb-16"],
-        [class~="pb-24"]
-    ) :is(h1, h2) {
+    /*
+     * Section titles use a single fluid scale instead of fixed sizes plus
+     * breakpoint overrides, so every service detail page reads consistently at
+     * any width rather than jumping at 640px and 1024px. Each clamp runs from
+     * its phone size at a 360px viewport to its full size at 1280px.
+     *
+     * The FAQ band is excluded: it ships its own tuned Tailwind scale.
+     */
+    .service-details-content > section:not(.service-faq-section) :is(h1, h2) {
         font-family: 'Plus Jakarta Sans', 'Inter', sans-serif;
-        font-size: 2.5rem;
+        font-size: clamp(1.5rem, 1.11rem + 1.74vw, 2.5rem);
         font-weight: 700;
         line-height: 1.2;
         letter-spacing: -0.025em;
+        overflow-wrap: anywhere;
+    }
+
+    /* Both shared CTA parts lead with a display-size h3 rather than an h2. */
+    .service-details-content > section h3[class~="text-4xl"],
+    .service-details-content > section h3[class~="text-3xl"][class*="sm:text-4xl"] {
+        font-size: clamp(1.5rem, 0.91rem + 2.61vw, 3rem);
+        line-height: 1.2;
+        overflow-wrap: anywhere;
+    }
+
+    /* Secondary panel titles stay one step below their section heading. */
+    .service-details-content > section h3[class~="text-3xl"]:not([class*="sm:text-"]) {
+        font-size: clamp(1.25rem, 1.01rem + 1.09vw, 1.875rem);
+        line-height: 1.3;
+        overflow-wrap: anywhere;
     }
 
     /*
-     * Responsive treatment for the service-content sections only. The shared
-     * service CTA and FAQ use different section classes and are intentionally
-     * outside these selectors.
+     * Card titles scale too, otherwise they match or outgrow the section
+     * heading above them once that heading drops to its phone size.
+     * Headings that already declare their own responsive size are left alone.
+     */
+    .service-details-content > section h4[class~="text-2xl"]:not([class*="lg:text-"]) {
+        font-size: clamp(1.125rem, 0.98rem + 0.65vw, 1.5rem);
+        line-height: 1.3;
+    }
+
+    .service-details-content > section h4[class~="text-xl"]:not([class*="lg:text-"]) {
+        font-size: clamp(1rem, 0.9rem + 0.43vw, 1.25rem);
+        line-height: 1.35;
+    }
+
+    /*
+     * Spacing-only treatment for the service-content sections. Titles are
+     * handled by the fluid scale above and need no breakpoint overrides; the
+     * shared service CTA and FAQ manage their own padding.
      */
     @media (max-width: 1023px) {
-        .service-details-content > section:is(
-            [class~="py-24"],
-            [class~="py-16"],
-            [class~="pb-16"],
-            [class~="pb-24"]
-        ) :is(h1, h2) {
-            font-size: 2.25rem;
-        }
-
         .service-details-content > section[class~="py-24"] {
             padding-top: 4rem;
             padding-bottom: 4rem;
@@ -251,15 +276,6 @@ $has_support_coordination_layout =
             width: 100%;
             padding-left: 1rem;
             padding-right: 1rem;
-        }
-
-        .service-details-content > section[class~="py-24"] h2,
-        .service-details-content > section[class~="py-16"] h1,
-        .service-details-content > section[class~="pb-16"] h2,
-        .service-details-content > section[class~="pb-24"] h2 {
-            overflow-wrap: anywhere;
-            font-size: 1.875rem;
-            line-height: 1.2;
         }
 
         .service-details-content > section[class~="py-24"] [class~="p-10"],
@@ -343,7 +359,7 @@ $has_support_coordination_layout =
                 <div class="lg:col-span-7 order-1 lg:order-2 reveal" style="transition-delay: 0.2s">
                     <div class="relative">
                         <div class="absolute -top-10 -right-10 w-64 h-64 bg-primary/10 rounded-full mix-blend-multiply filter blur-3xl opacity-70"></div>
-                        <div class="image-mask overflow-hidden shadow-[0_32px_64px_-16px_rgba(0,0,0,0.2)] aspect-[4/3] lg:min-h-[520px] relative">
+                        <div class="image-mask overflow-hidden shadow-[0_32px_64px_-16px_rgba(0,0,0,0.2)] aspect-[16/10] sm:aspect-[3/2] lg:aspect-[4/3] lg:min-h-[520px] relative">
                             <?php if ($service_image) : ?>
                                 <img
                                     src="<?php echo esc_url($service_image['url']); ?>"
@@ -446,7 +462,7 @@ $has_support_coordination_layout =
                 <div class="lg:col-span-6 order-1 lg:order-2 reveal" style="transition-delay: 0.2s">
                     <div class="relative">
                         <div class="absolute -top-10 -right-10 w-64 h-64 bg-teal-50 rounded-full mix-blend-multiply filter blur-3xl opacity-70"></div>
-                        <div class="image-mask overflow-hidden shadow-[0_32px_64px_-16px_rgba(0,0,0,0.2)] aspect-[1/1] relative">
+                        <div class="image-mask overflow-hidden shadow-[0_32px_64px_-16px_rgba(0,0,0,0.2)] aspect-[16/10] sm:aspect-[4/3] lg:aspect-[1/1] relative">
                             <?php
                             if ($service_image) :
                                 $service_image_url = esc_url($service_image['url']);
