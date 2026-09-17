@@ -134,24 +134,31 @@ $has_support_coordination_layout =
         margin: 0;
     }
 
+    /*
+     * The level title and body arrive as one WYSIWYG <ul>, so the card's
+     * typography is set here to match the icon cards in the "Why Choose"
+     * section: first item is the h4-equivalent title, the rest is body copy.
+     */
     .support-level-card ul {
         list-style: none;
         margin: 0;
         padding: 0;
+        position: relative;
+        z-index: 10;
     }
 
     .support-level-card li {
-        color: #475569;
-        font-size: 0.95rem;
-        line-height: 1.75;
+        color: #020617;
+        font-size: 0.875rem;
+        line-height: 1.625;
     }
 
     .support-level-card li:first-child {
         color: #0f172a;
-        font-size: 1.05rem;
+        font-size: 1.25rem;
         font-weight: 700;
-        line-height: 1.45;
-        margin-bottom: 0.85rem;
+        line-height: 1.3;
+        margin-bottom: 0.75rem;
     }
 
     /*
@@ -410,14 +417,28 @@ $has_support_coordination_layout =
                 </div>
             </div>
 
-            <div class="grid md:grid-cols-3 gap-6">
-                <?php foreach ($support_coordination_content['levels'] as $level_index => $level_block) : ?>
-                    <article class="support-level-card relative rounded-[2rem] bg-white border border-slate-100 p-7 lg:p-8 shadow-[0_18px_45px_-30px_rgba(15,23,42,0.28)] reveal">
-                        <span class="flex items-center justify-center w-11 h-11 mb-6 rounded-xl bg-primary text-white text-sm font-bold">
-                            <?php echo esc_html(sprintf('%02d', $level_index + 1)); ?>
-                        </span>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <?php
+                $level_icons = ['fas fa-link', 'fas fa-compass', 'fas fa-user-gear'];
+
+                foreach ($support_coordination_content['levels'] as $level_index => $level_block) :
+                    $level_number = esc_html(sprintf('%02d', $level_index + 1));
+                    $level_icon   = $level_icons[$level_index] ?? 'fas fa-circle-check';
+                ?>
+                    <div class="support-level-card group relative p-10 rounded-[2.5rem] bg-[#eef1f5] border border-slate-200 transition-all duration-500 hover:bg-white hover:shadow-[0_30px_60px_rgba(15,23,42,0.08)] overflow-hidden reveal" style="transition-delay: <?php echo $level_index * 100; ?>ms">
+
+                        <!-- Background Icon -->
+                        <div class="absolute -top-6 -right-6 text-primary/5 group-hover:text-primary/10 transition-colors duration-500 pointer-events-none">
+                            <i class="<?php echo esc_attr($level_icon); ?> text-9xl"></i>
+                        </div>
+
+                        <!-- Icon Box -->
+                        <div class="w-14 h-14 rounded-2xl bg-white shadow-sm flex items-center justify-center mb-8 transition-all duration-300 group-hover:bg-primary group-hover:scale-110 relative z-10">
+                            <span class="text-lg font-bold text-primary group-hover:text-white transition-colors"><?php echo $level_number; ?></span>
+                        </div>
+
                         <?php echo wp_kses_post($level_block); ?>
-                    </article>
+                    </div>
                 <?php endforeach; ?>
             </div>
         </div>
