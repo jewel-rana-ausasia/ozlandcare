@@ -1470,7 +1470,7 @@ $testimonials_desc = "Real feedback from participants and families who trust Ozl
 
 $testimonials = [
     [
-        'name'     => 'Jackie Smith',
+        'name'     => 'Jackie S.',
         'role'     => 'Carer',
         'quote'    => "Providing good service. The support worker was absolutely good and very punctual and get me out of bed in time too. I'm very happy and would like to continue the service with Ozland Care",
         'initials' => 'JS',
@@ -1482,19 +1482,19 @@ $testimonials = [
         'initials' => 'A',
     ],
     [
-        'name'     => 'Scott Turner',
+        'name'     => 'Scott T.',
         'role'     => 'NDIS Participant',
-        'quote'    => 'I have been with Oz land care from late last year. I have found Majid and his staff very helpful and respectful. My personal development aspect,I feel has improved by their help.My personal development has improved also by their help.I highly recommend this provider to all genuinely looking for their needs to be met Regards Scott Turner',
+        'quote'    => 'I have been with Oz land care from late last year. I have found Majid and his staff very helpful and respectful. My personal development aspect,I feel has improved by their help.My personal development has improved also by their help.I highly recommend this provider to all genuinely looking for their needs to be met Regards Scott T.',
         'initials' => 'ST',
     ],
     [
-        'name'     => 'Azzam Siddiqui',
+        'name'     => 'Azzam S.',
         'role'     => 'Local Guide',
         'quote'    => "Majid provided me with the full range of supports. I had a lot of trouble trying to understand how to use the NDIS funding appropriately and he went above and beyond in his service. Can't recommend him enough. It's very easy to be confused and get taken advantage of within the NDIS labyrinth but I can definitely trust that Majid and his team always do the right thing.",
         'initials' => 'AS',
     ],
     [
-        'name'     => 'Basima Ghanem',
+        'name'     => 'Basima G.',
         'role'     => 'NDIS Participant',
         'quote'    => 'We are very happy to be with Ozlandcare they take their work with strong commitment and respect I would highly recommend Ozlandcare to anyone looking for a provider',
         'initials' => 'BG',
