@@ -45,28 +45,28 @@ function ozlandcare_referral_cf7_template()
             [text client_address id:client_address class:referral-input class:bg-slate-50 class:border class:border-slate-200 class:rounded-xl class:px-5 class:py-3.5 class:focus:outline-none class:focus:border-blue class:focus:bg-white class:focus:ring-4 class:focus:ring-blue/10 class:transition-all placeholder "Street, suburb, state, postcode"]
         </div>
         <div class="group flex flex-col">
-            <label for="client_phone" class="text-xs font-bold uppercase tracking-widest text-slate-900 mb-2 ml-1 group-focus-within:text-blue transition-colors">Mobile</label>
-            [tel client_phone id:client_phone class:referral-input class:bg-slate-50 class:border class:border-slate-200 class:rounded-xl class:px-5 class:py-3.5 class:focus:outline-none class:focus:border-blue class:focus:bg-white class:focus:ring-4 class:focus:ring-blue/10 class:transition-all placeholder "Mobile"]
+            <label for="client_phone" class="text-xs font-bold uppercase tracking-widest text-slate-900 mb-2 ml-1 group-focus-within:text-blue transition-colors">Mobile <span class="text-primary">*</span></label>
+            [tel* client_phone id:client_phone class:referral-input class:bg-slate-50 class:border class:border-slate-200 class:rounded-xl class:px-5 class:py-3.5 class:focus:outline-none class:focus:border-blue class:focus:bg-white class:focus:ring-4 class:focus:ring-blue/10 class:transition-all placeholder "Mobile"]
         </div>
         <div class="group flex flex-col">
-            <label for="client_email" class="text-xs font-bold uppercase tracking-widest text-slate-900 mb-2 ml-1 group-focus-within:text-blue transition-colors">Email</label>
-            [email client_email id:client_email class:referral-input class:bg-slate-50 class:border class:border-slate-200 class:rounded-xl class:px-5 class:py-3.5 class:focus:outline-none class:focus:border-blue class:focus:bg-white class:focus:ring-4 class:focus:ring-blue/10 class:transition-all placeholder "Enter email address"]
+            <label for="client_email" class="text-xs font-bold uppercase tracking-widest text-slate-900 mb-2 ml-1 group-focus-within:text-blue transition-colors">Email <span class="text-primary">*</span></label>
+            [email* client_email id:client_email class:referral-input class:bg-slate-50 class:border class:border-slate-200 class:rounded-xl class:px-5 class:py-3.5 class:focus:outline-none class:focus:border-blue class:focus:bg-white class:focus:ring-4 class:focus:ring-blue/10 class:transition-all placeholder "Enter email address"]
         </div>
         <div class="group flex flex-col md:col-span-2">
-            <label for="present_situation" class="text-xs font-bold uppercase tracking-widest text-slate-900 mb-2 ml-1 group-focus-within:text-blue transition-colors">Present Situation</label>
-            [textarea present_situation id:present_situation rows:3 class:referral-input class:bg-slate-50 class:border class:border-slate-200 class:rounded-xl class:px-5 class:py-4 class:focus:outline-none class:focus:border-blue class:focus:bg-white class:focus:ring-4 class:focus:ring-blue/10 class:transition-all class:resize-none placeholder "Describe the client's current situation..."]
+            <label for="present_situation" class="text-xs font-bold uppercase tracking-widest text-slate-900 mb-2 ml-1 group-focus-within:text-blue transition-colors">Present Situation <span class="text-primary">*</span></label>
+            [textarea* present_situation id:present_situation rows:3 class:referral-input class:bg-slate-50 class:border class:border-slate-200 class:rounded-xl class:px-5 class:py-4 class:focus:outline-none class:focus:border-blue class:focus:bg-white class:focus:ring-4 class:focus:ring-blue/10 class:transition-all class:resize-none placeholder "Describe the client's current situation..."]
         </div>
         <div class="group flex flex-col md:col-span-2">
-            <label for="identified_needs" class="text-xs font-bold uppercase tracking-widest text-slate-900 mb-2 ml-1 group-focus-within:text-blue transition-colors">Specific Requirements/Preferences</label>
-            [textarea identified_needs id:identified_needs rows:3 class:referral-input class:bg-slate-50 class:border class:border-slate-200 class:rounded-xl class:px-5 class:py-4 class:focus:outline-none class:focus:border-blue class:focus:bg-white class:focus:ring-4 class:focus:ring-blue/10 class:transition-all class:resize-none placeholder "(interests, physical/cultural/belief-based requirements including any worker preferences)"]
+            <label for="identified_needs" class="text-xs font-bold uppercase tracking-widest text-slate-900 mb-2 ml-1 group-focus-within:text-blue transition-colors">Specific Requirements/Preferences <span class="text-primary">*</span></label>
+            [textarea* identified_needs id:identified_needs rows:3 class:referral-input class:bg-slate-50 class:border class:border-slate-200 class:rounded-xl class:px-5 class:py-4 class:focus:outline-none class:focus:border-blue class:focus:bg-white class:focus:ring-4 class:focus:ring-blue/10 class:transition-all class:resize-none placeholder "(interests, physical/cultural/belief-based requirements including any worker preferences)"]
         </div>
         <div class="group flex flex-col md:col-span-2">
-            <label for="risk_behaviours" class="text-xs font-bold uppercase tracking-widest text-slate-900 mb-2 ml-1 group-focus-within:text-blue transition-colors">Identified Risks &amp; Behaviours of Concern</label>
-            [textarea risk_behaviours id:risk_behaviours rows:3 class:referral-input class:bg-slate-50 class:border class:border-slate-200 class:rounded-xl class:px-5 class:py-4 class:focus:outline-none class:focus:border-blue class:focus:bg-white class:focus:ring-4 class:focus:ring-blue/10 class:transition-all class:resize-none placeholder "(e.g. lifting, medication, mental issues, dietary, swallowing)"]
+            <label for="risk_behaviours" class="text-xs font-bold uppercase tracking-widest text-slate-900 mb-2 ml-1 group-focus-within:text-blue transition-colors">Identified Risks &amp; Behaviours of Concern <span class="text-primary">*</span></label>
+            [textarea* risk_behaviours id:risk_behaviours rows:3 class:referral-input class:bg-slate-50 class:border class:border-slate-200 class:rounded-xl class:px-5 class:py-4 class:focus:outline-none class:focus:border-blue class:focus:bg-white class:focus:ring-4 class:focus:ring-blue/10 class:transition-all class:resize-none placeholder "(e.g. lifting, medication, mental issues, dietary, swallowing)"]
         </div>
         <div class="group flex flex-col md:col-span-2">
-            <label for="risk_management" class="text-xs font-bold uppercase tracking-widest text-slate-900 mb-2 ml-1 group-focus-within:text-blue transition-colors">Risk Management Plan (if behaviours of concern)</label>
-            [textarea risk_management id:risk_management rows:3 class:referral-input class:bg-slate-50 class:border class:border-slate-200 class:rounded-xl class:px-5 class:py-4 class:focus:outline-none class:focus:border-blue class:focus:bg-white class:focus:ring-4 class:focus:ring-blue/10 class:transition-all class:resize-none placeholder "Describe strategies currently in place..."]
+            <label for="risk_management" class="text-xs font-bold uppercase tracking-widest text-slate-900 mb-2 ml-1 group-focus-within:text-blue transition-colors">Risk Management Plan (if behaviours of concern) <span class="text-primary">*</span></label>
+            [textarea* risk_management id:risk_management rows:3 class:referral-input class:bg-slate-50 class:border class:border-slate-200 class:rounded-xl class:px-5 class:py-4 class:focus:outline-none class:focus:border-blue class:focus:bg-white class:focus:ring-4 class:focus:ring-blue/10 class:transition-all class:resize-none placeholder "Describe strategies currently in place..."]
         </div>
     </div>
 </div>
@@ -86,20 +86,20 @@ function ozlandcare_referral_cf7_template()
             [text* referrer_surname id:referrer_surname class:referral-input class:bg-slate-50 class:border class:border-slate-200 class:rounded-xl class:px-5 class:py-3.5 class:focus:outline-none class:focus:border-blue class:focus:bg-white class:focus:ring-4 class:focus:ring-blue/10 class:transition-all placeholder "Enter surname"]
         </div>
         <div class="group flex flex-col">
-            <label for="referrer_position" class="text-xs font-bold uppercase tracking-widest text-slate-900 mb-2 ml-1 group-focus-within:text-blue transition-colors">Position</label>
-            [text referrer_position id:referrer_position class:referral-input class:bg-slate-50 class:border class:border-slate-200 class:rounded-xl class:px-5 class:py-3.5 class:focus:outline-none class:focus:border-blue class:focus:bg-white class:focus:ring-4 class:focus:ring-blue/10 class:transition-all placeholder "e.g. Support Coordinator"]
+            <label for="referrer_position" class="text-xs font-bold uppercase tracking-widest text-slate-900 mb-2 ml-1 group-focus-within:text-blue transition-colors">Position <span class="text-primary">*</span></label>
+            [text* referrer_position id:referrer_position class:referral-input class:bg-slate-50 class:border class:border-slate-200 class:rounded-xl class:px-5 class:py-3.5 class:focus:outline-none class:focus:border-blue class:focus:bg-white class:focus:ring-4 class:focus:ring-blue/10 class:transition-all placeholder "e.g. Support Coordinator"]
         </div>
         <div class="group flex flex-col">
-            <label for="referrer_org" class="text-xs font-bold uppercase tracking-widest text-slate-900 mb-2 ml-1 group-focus-within:text-blue transition-colors">Organisation</label>
-            [text referrer_org id:referrer_org class:referral-input class:bg-slate-50 class:border class:border-slate-200 class:rounded-xl class:px-5 class:py-3.5 class:focus:outline-none class:focus:border-blue class:focus:bg-white class:focus:ring-4 class:focus:ring-blue/10 class:transition-all placeholder "Organisation name"]
+            <label for="referrer_org" class="text-xs font-bold uppercase tracking-widest text-slate-900 mb-2 ml-1 group-focus-within:text-blue transition-colors">Organisation <span class="text-primary">*</span></label>
+            [text* referrer_org id:referrer_org class:referral-input class:bg-slate-50 class:border class:border-slate-200 class:rounded-xl class:px-5 class:py-3.5 class:focus:outline-none class:focus:border-blue class:focus:bg-white class:focus:ring-4 class:focus:ring-blue/10 class:transition-all placeholder "Organisation name"]
         </div>
         <div class="group flex flex-col md:col-span-2">
             <label for="referrer_contact" class="text-xs font-bold uppercase tracking-widest text-slate-900 mb-2 ml-1 group-focus-within:text-blue transition-colors">Contact Details <span class="text-primary">*</span></label>
             [text* referrer_contact id:referrer_contact class:referral-input class:bg-slate-50 class:border class:border-slate-200 class:rounded-xl class:px-5 class:py-3.5 class:focus:outline-none class:focus:border-blue class:focus:bg-white class:focus:ring-4 class:focus:ring-blue/10 class:transition-all placeholder "Email address or Australian mobile"]
         </div>
         <div class="group flex flex-col md:col-span-2">
-            <label for="referral_reason" class="text-xs font-bold uppercase tracking-widest text-slate-900 mb-2 ml-1 group-focus-within:text-blue transition-colors">Referral Reason</label>
-            [textarea referral_reason id:referral_reason rows:3 class:referral-input class:bg-slate-50 class:border class:border-slate-200 class:rounded-xl class:px-5 class:py-4 class:focus:outline-none class:focus:border-blue class:focus:bg-white class:focus:ring-4 class:focus:ring-blue/10 class:transition-all class:resize-none placeholder "Why is this referral being made..."]
+            <label for="referral_reason" class="text-xs font-bold uppercase tracking-widest text-slate-900 mb-2 ml-1 group-focus-within:text-blue transition-colors">Referral Reason <span class="text-primary">*</span></label>
+            [textarea* referral_reason id:referral_reason rows:3 class:referral-input class:bg-slate-50 class:border class:border-slate-200 class:rounded-xl class:px-5 class:py-4 class:focus:outline-none class:focus:border-blue class:focus:bg-white class:focus:ring-4 class:focus:ring-blue/10 class:transition-all class:resize-none placeholder "Why is this referral being made..."]
         </div>
     </div>
 </div>
@@ -166,11 +166,8 @@ function ozlandcare_referral_cf7_template()
 </div>
 
 <div class="flex justify-end">
-    <button type="submit" class="group relative bg-primary hover:bg-primaryDark text-white font-bold px-9 py-4 rounded-2xl transition-all duration-300 shadow-xl shadow-primary/20 hover:shadow-primary/30 hover:-translate-y-1 active:scale-95 flex items-center gap-3">
+    <button type="submit" class="referral-submit relative text-white font-bold px-9 py-4 rounded-2xl transition-all duration-300 hover:-translate-y-1 active:scale-95 flex items-center justify-center">
         <span>Submit Referral</span>
-        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
-        </svg>
     </button>
 </div>
 CF7;
@@ -185,7 +182,7 @@ function ozlandcare_provision_referral_cf7_form()
 		return 0;
 	}
 
-	$schema_version = '11';
+	$schema_version = '12';
 	$contact_forms = WPCF7_ContactForm::find(array(
 		'title'          => 'Referral',
 		'posts_per_page' => 1,
@@ -292,7 +289,7 @@ function ozlandcare_provision_referral_cf7_form()
 
 	return $form_id;
 }
-//add_action('init', 'ozlandcare_provision_referral_cf7_form', 20);
+add_action('init', 'ozlandcare_provision_referral_cf7_form', 20);
 
 /**
  * Render the configured form without hard-coding its database ID.

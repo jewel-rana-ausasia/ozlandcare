@@ -251,6 +251,22 @@ get_header();
         background: #fef2f2;
     }
 
+    .referral-form-shell .referral-submit {
+        background: #5f2a7d;
+        box-shadow: 0 18px 35px rgba(95, 42, 125, 0.25);
+    }
+
+    .referral-form-shell .referral-submit:hover,
+    .referral-form-shell .referral-submit:focus-visible,
+    .referral-form-shell .referral-submit:active {
+        background: #0a74bb;
+        box-shadow: 0 18px 35px rgba(10, 116, 187, 0.3);
+    }
+
+    .referral-form-shell .referral-submit:focus-visible {
+        outline: 2px solid #0a74bb;
+        outline-offset: 3px;
+    }
     .referral-form-shell form.submitting button[type="submit"] {
         opacity: 0.65;
         pointer-events: none;
@@ -321,8 +337,19 @@ get_header();
         ].filter(Boolean);
         const requiredInputs = [
             document.getElementById('client_name'),
+            document.getElementById('client_surname'),
+            document.getElementById('client_phone'),
+            document.getElementById('client_email'),
+            document.getElementById('present_situation'),
+            document.getElementById('identified_needs'),
+            document.getElementById('risk_behaviours'),
+            document.getElementById('risk_management'),
             document.getElementById('referrer_name'),
+            document.getElementById('referrer_surname'),
+            document.getElementById('referrer_position'),
+            document.getElementById('referrer_org'),
             document.getElementById('referrer_contact'),
+            document.getElementById('referral_reason'),
             document.getElementById('declaration_name'),
             document.getElementById('declaration_date'),
             form.querySelector('input[name="consent"]')
