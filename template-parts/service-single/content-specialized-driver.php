@@ -102,7 +102,7 @@
                 <div class="relative z-10 flex flex-col justify-center">
                     <h3 class="font-serif text-3xl mb-6 italic">Freedom Behind the Wheel</h3>
                     <p class="text-teal-50/80 leading-relaxed mb-8">
-                        Independence begins with the freedom of movement. Our specialized instructors help you navigate the road with confidence, ensuring that your mobility goals are achieved safely and professionally.
+                        Independence begins with the freedom of movement. Our specialised instructors help you navigate the road with confidence, ensuring that your mobility goals are achieved safely and professionally.
                     </p>
                     <ul class="space-y-4">
                         <li class="flex items-center gap-3">

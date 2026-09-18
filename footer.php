@@ -79,10 +79,10 @@
 					// Top 5 services, in the same order as the Our Services page
 					$footer_services = [
 						['title' => 'Support Coordination',                'href' => site_url('/ndis-support-coordination/')],
-						['title' => 'Supported Independent Living (SIL)',  'href' => site_url('/assist-daily-tasks-shared-living/')],
-						['title' => 'Innovative Community Participation',  'href' => site_url('/innovative-community-participation/')],
-						['title' => 'Assist-Personal Activities',          'href' => site_url('/assist-personal-activities/')],
+						['title' => 'Supported Independent Living (SIL)',  'href' => site_url('/supported-independent-living-sil/')],
 						['title' => 'Community Participation',             'href' => site_url('/assistance-with-social-and-community-participation/')],
+						['title' => 'Assist-Personal Activities',          'href' => site_url('/assist-personal-activities/')],
+						['title' => 'Innovative Community Participation',  'href' => site_url('/innovative-community-participation/')],
 					];
 
 					foreach ($footer_services as $service) {

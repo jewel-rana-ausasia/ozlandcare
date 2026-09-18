@@ -42,7 +42,7 @@
 <section class="py-24 bg-[#fafcfc]">
     <div class="container mx-auto px-6 max-w-7xl">
         <div class="text-center mb-20 reveal">
-            <h2 class="font-serif text-4xl text-slate-900 mb-4">The Impact of Our <span class="italic text-primary">Supported Independent Living</span></h2>
+            <h2 class="font-serif text-4xl text-slate-900 mb-4">The Impact of Our <span class="italic text-primary">Supported Independent Living Services</span></h2>
             <div class="flex justify-center">
                 <svg width="320" height="40" viewBox="0 0 320 40" xmlns="http://www.w3.org/2000/svg">
                     <defs>
