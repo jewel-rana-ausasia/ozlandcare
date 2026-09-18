@@ -4,7 +4,7 @@
             <div class="max-w-3xl">
                 <h2 class="font-serif text-4xl text-slate-900 mb-4">
                     Why Choose Ozland Care for
-                    <span class="text-primary">Assistance with Social and Community Participation?</span>
+                    <span class="text-primary">Community Participation?</span>
                 </h2>
 
                 <p class="text-slate-950 text-base">
@@ -49,7 +49,7 @@
     <div class="container mx-auto px-6 max-w-7xl">
         <div class="text-center mb-20 reveal">
             <h2 class="font-serif text-4xl text-slate-900 mb-4">
-                How Our Assistance with Social and Community Participation Services Make a Difference
+                How Our Community Participation Services Make a Difference
             </h2>
             <div class="flex justify-center">
                 <svg width="320" height="40" viewBox="0 0 320 40" xmlns="http://www.w3.org/2000/svg">
@@ -164,7 +164,7 @@
                 <span class="text-[0.7rem] uppercase tracking-[0.4em] text-primary font-bold">Services Portfolio</span>
             </div>
             <h2 class="font-serif text-4xl md:text-5xl text-slate-900 mb-6 leading-tight">
-                Comprehensive <span class="italic font-light">Social and Community Participation</span>
+                Comprehensive <span class="italic font-light">Community Participation</span>
                 <span class="text-primary mt-2">Services in Sydney</span>
             </h2>
 
@@ -212,7 +212,7 @@
     <div class="container mx-auto px-6 max-w-7xl">
         <div class="mb-16 reveal">
             <h2 class="font-serif text-4xl text-slate-900 mb-8 leading-tight">
-                The Benefits of <span class="text-primary">Social and Community Participation</span>
+                The Benefits of <span class="text-primary">Community Participation</span>
             </h2>
             <p class="text-slate-700 text-base leading-relaxed mb-6">
                 At Ozland Care, we are committed to enhancing your quality of life through our NDIS Assistance with Social and Community Participation services. Engaging in social and community activities offers a wide range of benefits:
@@ -337,11 +337,11 @@
 <!-- Faq Section -->
 <?php
 $faqs = [
-    ['Is Assistance with Social and Community Participation covered by the NDIS?', 'Yes, Assistance with Social and Community Participation is covered under the NDIS if it is included in your plan. It falls under the Core Supports budget.'],
-    ['Who can access Assistance with Social and Community Participation services?', 'Participants with an NDIS plan who need assistance engaging in social or community activities can access this service, provided it is outlined in their plan to support their goals.'],
-    ['How does Assistance with Social and Community Participation help me?', 'This service helps you become more involved in your community, build meaningful relationships, improve your social skills, and foster a sense of belonging, which contributes to your overall well-being and personal growth.'],
-    ['How do I include Assistance with Social and Community Participation in my NDIS plan?', 'You can request Assistance with Social and Community Participation during your NDIS planning meeting, where the support will be outlined based on your goals and needs.'],
-    ['Why choose Ozland Care for Social and Community Participation?', 'Ozland Care offers individualised support to help you connect with your community in ways that align with your personal interests and goals. We provide a person-centred approach, ensuring you feel empowered, respected, and valued while engaging in activities that promote your independence and well-being.'],
+    ['Is Community Participation covered by the NDIS?', 'Yes, Assistance with Social and Community Participation is covered under the NDIS if it is included in your plan. It falls under the Core Supports budget.'],
+    ['Who can access Community Participation services?', 'Participants with an NDIS plan who need assistance engaging in social or community activities can access this service, provided it is outlined in their plan to support their goals.'],
+    ['How does Community Participation help me?', 'This service helps you become more involved in your community, build meaningful relationships, improve your social skills, and foster a sense of belonging, which contributes to your overall well-being and personal growth.'],
+    ['How do I include Community Participation in my NDIS plan?', 'You can request Assistance with Social and Community Participation during your NDIS planning meeting, where the support will be outlined based on your goals and needs.'],
+    ['Why choose Ozland Care for Community Participation?', 'Ozland Care offers individualised support to help you connect with your community in ways that align with your personal interests and goals. We provide a person-centred approach, ensuring you feel empowered, respected, and valued while engaging in activities that promote your independence and well-being.'],
 ];
 
 get_template_part(

@@ -2,7 +2,7 @@
     <div class="container mx-auto px-6 max-w-7xl">
         <div class="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6 reveal">
             <div class="max-w-3xl">
-                <h2 class="font-serif text-4xl text-slate-900 mb-4">Reasons to Choose Ozland Care for <span class="text-primary">Community Participation</span></h2>
+                <h2 class="font-serif text-4xl text-slate-900 mb-4">Reasons to Choose Ozland Care for <span class="text-primary">Innovative Community Participation</span></h2>
                 <p class="text-slate-950 text-base">As a registered NDIS provider, Ozland Care delivers community participation services that are personalised, engaging and empowering.</p>
             </div>
         </div>
@@ -139,7 +139,7 @@
                 <span class="text-[0.7rem] uppercase tracking-[0.4em] text-primary font-bold">Services Portfolio</span>
             </div>
             <h2 class="font-serif text-4xl md:text-5xl text-slate-900 mb-6 leading-tight">
-                Complete Community <span class="italic font-light">Participation Services</span>
+                Complete Innovative Community <span class="italic font-light">Participation Services</span>
                 <span class="text-primary mt-2">in Sydney</span>
             </h2>
             <p class="text-slate-800 text-base leading-relaxed">
@@ -182,7 +182,7 @@
     <div class="container mx-auto px-6 max-w-7xl">
         <div class="mb-16 reveal">
             <h2 class="font-serif text-4xl text-slate-900 mb-8 leading-tight">
-                Positive Impact of <span class="text-primary">Community Participation</span>
+                Positive Impact of <span class="text-primary">Innovative Community Participation</span>
             </h2>
             <p class="text-slate-700 text-base leading-relaxed mb-6">
                 Choosing Ozland Care for community participation provides:

@@ -25,10 +25,10 @@ $services = [
         'href'        => site_url('/assist-daily-tasks-shared-living/')
     ],
 
-    // 3) Community Participation
+    // 3) Innovative Community Participation
     [
         'image_url'   => get_template_directory_uri() . '/assets/images/services/innovative-community-participation.jpg',
-        'title'       => 'Community Participation',
+        'title'       => 'Innovative Community Participation',
         'description' => 'Engaging and creative programs that foster active involvement in community, social, and civic life.',
         'href'        => site_url('/innovative-community-participation/')
     ],
@@ -41,10 +41,10 @@ $services = [
         'href'        => site_url('/assist-personal-activities/')
     ],
 
-    // 5) Innovative Community Participation
+    // 5) Community Participation
     [
         'image_url'   => get_template_directory_uri() . '/assets/images/services/assistance-with-social-and-community-participation.jpg',
-        'title'       => 'Innovative Community Participation',
+        'title'       => 'Community Participation',
         'description' => 'Support to engage in community, social, and recreational activities, helping participants build connections and confidence.',
         'href'        => site_url('/assistance-with-social-and-community-participation/')
     ],
