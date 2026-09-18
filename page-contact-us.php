@@ -22,7 +22,7 @@ get_header();
                     <div class="absolute top-0 -inset-full h-full w-1/2 z-5 block transform -skew-x-12 bg-gradient-to-r from-transparent via-white/40 to-transparent group-hover:animate-[shine_1.5s_ease-in-out] pointer-events-none"></div>
 
                     <div class="mb-5">
-                        <div class="w-14 h-14 bg-slate-50 rounded-2xl flex items-center justify-center text-primary shadow-inner transition-all duration-500 group-hover:bg-blue group-hover:scale-110">
+                        <div class="w-14 h-14 bg-slate-50 rounded-2xl flex items-center justify-center text-primary shadow-inner transition-all duration-500 group-hover:bg-primary group-hover:scale-110">
                             <i class="fas fa-location-dot text-xl group-hover:text-white transition-colors"></i>
                         </div>
                     </div>
@@ -37,7 +37,7 @@ get_header();
                     </div>
 
                     <div class="mt-5">
-                        <a href="https://share.google/x057P0vkYzs1N8xva" target="_blank" rel="noopener" class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-primary text-white group-hover:w-full group-hover:rounded-xl group-hover:bg-blue transition-all duration-500 overflow-hidden">
+                        <a href="https://share.google/x057P0vkYzs1N8xva" target="_blank" rel="noopener" class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-primary text-white group-hover:w-full group-hover:rounded-xl group-hover:bg-primaryDark transition-all duration-500 overflow-hidden">
                             <span class="hidden group-hover:block text-xs font-bold tracking-widest mr-2 opacity-0 group-hover:opacity-100 transition-opacity">DIRECTIONS</span>
                             <i class="fas fa-arrow-right text-xs"></i>
                         </a>
@@ -51,7 +51,7 @@ get_header();
                     <div class="absolute top-0 -inset-full h-full w-1/2 z-5 block transform -skew-x-12 bg-gradient-to-r from-transparent via-white/40 to-transparent group-hover:animate-[shine_1.5s_ease-in-out] pointer-events-none"></div>
 
                     <div class="mb-5">
-                        <div class="w-14 h-14 bg-slate-50 rounded-2xl flex items-center justify-center text-primary shadow-inner transition-all duration-500 group-hover:bg-blue group-hover:scale-110">
+                        <div class="w-14 h-14 bg-slate-50 rounded-2xl flex items-center justify-center text-primary shadow-inner transition-all duration-500 group-hover:bg-primary group-hover:scale-110">
                             <i class="fas fa-envelope text-xl group-hover:text-white transition-colors"></i>
                         </div>
                     </div>
@@ -59,11 +59,11 @@ get_header();
                     <div class="flex-grow">
                         <h3 class="text-xs font-black uppercase tracking-[0.4em] text-teal-800/40 mb-3 block">Connect</h3>
                         <h4 class="text-2xl font-bold text-slate-800 mb-4 tracking-tight">Email Support</h4>
-                        <a href="mailto:admin@ozlandcare.com.au" class="lg:text-lg text-primary font-bold group-hover:text-blue transition-colors">admin@ozlandcare.com.au</a>
+                        <a href="mailto:admin@ozlandcare.com.au" class="lg:text-lg text-primary font-bold group-hover:text-primaryDark transition-colors">admin@ozlandcare.com.au</a>
                     </div>
 
                     <div class="mt-5">
-                        <a href="mailto:admin@ozlandcare.com.au" class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-primary text-white group-hover:w-full group-hover:rounded-xl group-hover:bg-blue transition-all duration-500 overflow-hidden">
+                        <a href="mailto:admin@ozlandcare.com.au" class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-primary text-white group-hover:w-full group-hover:rounded-xl group-hover:bg-primaryDark transition-all duration-500 overflow-hidden">
                             <span class="hidden group-hover:block text-xs font-bold tracking-widest mr-2 opacity-0 group-hover:opacity-100 transition-opacity">SEND MAIL</span>
                             <i class="fas fa-arrow-right text-xs"></i>
                         </a>
@@ -77,7 +77,7 @@ get_header();
                     <div class="absolute top-0 -inset-full h-full w-1/2 z-5 block transform -skew-x-12 bg-gradient-to-r from-transparent via-white/40 to-transparent group-hover:animate-[shine_1.5s_ease-in-out] pointer-events-none"></div>
 
                     <div class="mb-5">
-                        <div class="w-14 h-14 bg-slate-50 rounded-2xl flex items-center justify-center text-primary shadow-inner transition-all duration-500 group-hover:bg-blue group-hover:scale-110">
+                        <div class="w-14 h-14 bg-slate-50 rounded-2xl flex items-center justify-center text-primary shadow-inner transition-all duration-500 group-hover:bg-primary group-hover:scale-110">
                             <i class="fas fa-phone text-xl group-hover:text-white transition-colors"></i>
                         </div>
                     </div>
@@ -85,11 +85,11 @@ get_header();
                     <div class="flex-grow">
                         <h3 class="text-xs font-black uppercase tracking-[0.4em] text-teal-800/40 mb-3 block">Hotline</h3>
                         <h4 class="text-2xl font-bold text-slate-800 mb-4 tracking-tight">Call Anytime</h4>
-                        <a href="tel:1300951223" class="block text-lg text-primary font-black group-hover:text-blue">1300 951 223</a>
+                        <a href="tel:1300951223" class="block text-lg text-primary font-black group-hover:text-primaryDark">1300 951 223</a>
                     </div>
 
                     <div class="mt-5">
-                        <a href="tel:0416247317" class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-primary text-white group-hover:w-full group-hover:rounded-xl group-hover:bg-blue transition-all duration-500 overflow-hidden">
+                        <a href="tel:0416247317" class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-primary text-white group-hover:w-full group-hover:rounded-xl group-hover:bg-primaryDark transition-all duration-500 overflow-hidden">
                             <span class="hidden group-hover:block text-xs font-bold tracking-widest mr-2 opacity-0 group-hover:opacity-100 transition-opacity">CALL NOW</span>
                             <i class="fas fa-arrow-right text-xs"></i>
                         </a>
@@ -358,6 +358,16 @@ get_header();
 
 <script>
     document.addEventListener('DOMContentLoaded', function() {
+        // All contact fields are compulsory - mirror CF7's required rule in the browser.
+        ['contactName', 'contactSurname', 'contactPhone', 'contactEmail', 'contactSubject', 'contactMessage'].forEach(function(fieldId) {
+            const field = document.getElementById(fieldId);
+
+            if (field) {
+                field.setAttribute('required', 'required');
+                field.setAttribute('aria-required', 'true');
+            }
+        });
+
         const phoneInput = document.getElementById('contactPhone');
         const emailInput = document.getElementById('contactEmail');
         const firstNameInput = document.getElementById('contactName');
