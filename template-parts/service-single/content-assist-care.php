@@ -2,20 +2,20 @@
     <div class="container mx-auto px-6 max-w-7xl">
         <div class="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6 reveal">
             <div class="max-w-3xl">
-                <h2 class="font-serif text-4xl text-slate-900 mb-4">Why Choose Ozland Care for <span class="text-primary">Daily Personal Care?</span></h2>
-                <p class="text-slate-950 text-lg">As an NDIS-approved provider, Ozland Care is dedicated to helping you live a life of independence and well-being. Our Daily Personal Care services align with your goals and reflect your individual preferences and needs.</p>
+                <h2 class="font-serif text-4xl text-slate-900 mb-4">Why Choose Ozland Care for <span class="text-primary">Assist-Personal Activities?</span></h2>
+                <p class="text-slate-950 text-lg">As an NDIS-approved provider, Ozland Care delivers assistance with daily personal activities that is practical, discreet, and shaped around how you want your own day to run, supporting your independence rather than replacing it.</p>
             </div>
         </div>
 
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             <?php
             $services = [
-                ['fas fa-ear-listen', 'Active Listening', 'We take the time to understand your needs and goals, making sure our support works for you. Your voice is at the centre of everything we do.'],
-                ['fas fa-user', 'Person-Centred Approach', 'We prioritize you, the participant, ensuring our support reflects your unique preferences, goals, and values. Your choices guide every step of the care we provide.'],
-                ['fas fa-scale-balanced', 'Promote Your Choice and Control', 'We empower you to make informed decisions, giving you full control over your care and ensuring your preferences are respected.'],
-                ['fas fa-dumbbell', 'Strengths-Based Support', 'We focus on your abilities, helping you build on your strengths, achieve your goals, and live a life of dignity and fulfillment.'],
-                ['fas fa-house', 'Build Your Independence', 'Our support workers help you develop the skills and confidence to manage daily tasks and live more independently.'],
-                ['fas fa-handshake', 'Identity & Culture', 'Proudly serving the Sydney area, we provide care that recognises your cultural, language, and gender preferences, ensuring you feel heard, valued, and understood.']
+                ['fas fa-ear-listen', 'We Start With Your Routine', 'Before anything else we map how your day actually runs: what you already manage, what gets difficult, and when. Support is built around that, not around a standard roster.'],
+                ['fas fa-user', 'Only As Much Help As You Want', 'You decide where a support worker steps in and where you would rather do it yourself. The aim is assistance that fits, never assistance that takes over.'],
+                ['fas fa-scale-balanced', 'Choice and Control, Daily', 'From who supports you to the order your morning runs in, the decisions stay yours. We review regularly so the support keeps matching your preferences.'],
+                ['fas fa-dumbbell', 'Building Capability Over Time', 'Where you want to take more on, we break tasks into achievable steps and gradually reduce prompting, so your independence grows rather than your reliance on us.'],
+                ['fas fa-house', 'Support at the Right Hours', 'Mornings, evenings, drop-in visits between commitments or overnight assistance, arranged for the times your routine genuinely needs cover.'],
+                ['fas fa-handshake', 'Identity and Culture', 'Proudly serving the Sydney area, we match you with workers who respect your cultural, language and gender preferences, so personal support always feels comfortable.']
             ];
 
             foreach ($services as $i => $svc): ?>
@@ -40,7 +40,7 @@
         <div class="mt-16 p-10 rounded-[2.5rem] bg-primary text-white reveal">
             <div class="max-w-4xl mx-auto text-center">
                 <p class="text-lg leading-relaxed mb-0">
-                    We will work closely with you to ensure that the support you receive is aligned with your NDIS plan and daily routine. Whether it's <strong class="!text-white">grooming, meal preparation, or mobility assistance</strong>, we’re here to help you become more independent while working with you and your family to reflect your identity.
+                    We work closely with you so the assistance you receive matches your NDIS plan and your daily routine. Whether that means <strong class="!text-white">support with self-care, mobility and transfers, or simply getting ready for the day</strong>, the focus stays on helping you do more for yourself, alongside you and your family.
                 </p>
             </div>
         </div>
@@ -51,7 +51,7 @@
 <section class="py-24 bg-[#fafcfc]">
     <div class="container mx-auto px-6 max-w-7xl">
         <div class="text-center mb-20 reveal">
-            <h2 class="font-serif text-4xl text-slate-900 mb-4">How Our Daily Personal Care <span class="italic text-primary">Makes a Difference</span></h2>
+            <h2 class="font-serif text-4xl text-slate-900 mb-4">How Our Assist-Personal Activities <span class="italic text-primary">Support Makes a Difference</span></h2>
             <div class="flex justify-center">
                 <svg width="320" height="40" viewBox="0 0 320 40" xmlns="http://www.w3.org/2000/svg">
                     <defs>
@@ -91,9 +91,9 @@
             <div class="space-y-12">
                 <?php
                 $steps = [
-                    ['Personalised Support', 'We work with you to ensure the support you receive reflects your goals and preferences, giving you more control over your care.'],
-                    ['Empathy and Respect', 'Our support workers are sensitive to your needs, making sure you feel safe, respected, and empowered.'],
-                    ['Holistic Support', 'Beyond physical assistance, we care about your emotional well-being, helping reduce isolation and promoting a sense of connection while supporting your independence.']
+                    ['A Routine We Build Together', 'We walk through your day with you and, if you like, your family, identifying where assistance makes the biggest difference and which parts you would rather keep to yourself.'],
+                    ['Dignity in Every Task', 'Personal activities are personal. Our workers assist discreetly, ask before acting, and keep your privacy and comfort at the centre of the support.'],
+                    ['Support That Adapts', 'Needs change week to week. We review how the support is working and adjust hours, tasks and workers so your assistance keeps pace with your goals.']
                 ];
                 foreach ($steps as $idx => $step): ?>
                     <div class="flex gap-8 reveal" style="transition-delay: <?php echo $idx * 150; ?>ms">
@@ -110,26 +110,26 @@
                 <div class="relative z-10 flex flex-col justify-center">
                     <h3 class="font-serif text-3xl mb-6 italic">Our Professional Commitment</h3>
                     <p class="text-teal-50/80 leading-relaxed mb-8">
-                        We know that looking for personal care support can sometimes feel overwhelming. At Ozland Care, we make sure your experience is not only professional but compassionate and respectful, putting your needs first while promoting your independence and choice.
+                        We know that accepting help with personal tasks takes trust. At Ozland Care we make sure that support is discreet, professional and led by you, assisting where you want it and stepping back where you do not.
                     </p>
                     <ul class="space-y-4">
                         <li class="flex items-center gap-3">
                             <div class="w-5 h-5 rounded-full bg-teal-400/20 flex items-center justify-center">
                                 <div class="w-2 h-2 rounded-full bg-teal-300"></div>
                             </div>
-                            <span class="text-sm font-medium text-teal-50">Safe, respected, and empowered approach</span>
+                            <span class="text-sm font-medium text-teal-50">You set the level of help, task by task</span>
                         </li>
                         <li class="flex items-center gap-3">
                             <div class="w-5 h-5 rounded-full bg-teal-400/20 flex items-center justify-center">
                                 <div class="w-2 h-2 rounded-full bg-teal-300"></div>
                             </div>
-                            <span class="text-sm font-medium text-teal-50">Focus on emotional well-being & connection</span>
+                            <span class="text-sm font-medium text-teal-50">Discreet, dignified personal support</span>
                         </li>
                         <li class="flex items-center gap-3">
                             <div class="w-5 h-5 rounded-full bg-teal-400/20 flex items-center justify-center">
                                 <div class="w-2 h-2 rounded-full bg-teal-300"></div>
                             </div>
-                            <span class="text-sm font-medium text-teal-50">Promoting choice and control at every step</span>
+                            <span class="text-sm font-medium text-teal-50">Mornings, evenings and overnight cover</span>
                         </li>
                     </ul>
                 </div>
@@ -147,23 +147,23 @@
                 <span class="text-[0.7rem] uppercase tracking-[0.4em] text-primary font-bold">Services Portfolio</span>
             </div>
             <h2 class="font-serif text-4xl md:text-5xl text-slate-900 mb-6 leading-tight">
-                Comprehensive <span class="italic font-light">Daily Personal Care</span>
-                <span class="text-primary mt-2">Assistance in Sydney</span>
+                Comprehensive <span class="italic font-light">Assist-Personal Activities</span>
+                <span class="text-primary mt-2">Support in Sydney</span>
             </h2>
             <p class="text-slate-800 text-base leading-relaxed">
-                Our Daily Personal Care Assistance includes a wide range of services designed to align with your NDIS plan and support your daily routine and well-being:
+                Our Assist-Personal Activities support covers the personal tasks that shape your day, each delivered in line with your NDIS plan and your own preferences:
             </p>
         </div>
 
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             <?php
             $personal_services = [
-                ['Bathing and Showering', 'Assistance with personal hygiene in a way that respects your dignity and comfort.'],
-                ['Grooming', 'Help with hair care, skincare, and other personal grooming tasks to help you look your best.'],
-                ['Dressing', 'Support in choosing and wearing clothing that suits your personal style and preferences.'],
-                ['Meal Preparation', 'Assistance with preparing nutritious meals based on your specific dietary needs.'],
-                ['Mobility Support', 'Help with moving around your home, getting in and out of bed, or other mobility needs.'],
-                ['Personal Hygiene', 'Support with oral care and other hygiene tasks to maintain a healthy, dignified lifestyle.']
+                ['Morning and Evening Routines', 'Assistance getting up, getting ready and settling again, structured so you start and end the day on your own terms.'],
+                ['Dressing and Self-Care', 'Support and prompting with dressing, grooming and personal hygiene, at the level of help you actually want.'],
+                ['Eating and Drinking', 'Assistance at mealtimes, including preparation, positioning and support to eat and drink safely and comfortably.'],
+                ['Mobility and Transfers', 'Safe assistance moving around your home, transferring to and from bed or chair, and using mobility equipment with confidence.'],
+                ['Medication Prompting', 'Reminders and supervision so prescribed medication is taken on time, in line with your plan and care requirements.'],
+                ['Getting Out the Door', 'Help preparing for work, study, appointments and social plans, so the routine never becomes the reason your day stalls.']
             ];
 
             foreach ($personal_services as $index => $service): ?>
@@ -198,25 +198,25 @@
     <div class="container mx-auto px-6 max-w-7xl">
         <div class="mb-16 reveal">
             <h2 class="font-serif text-4xl text-slate-900 mb-8 leading-tight">
-                The Benefits of Our <span class="text-primary">Daily Personal Care Assistance</span>
+                The Benefits of Our <span class="text-primary">Assist-Personal Activities Support</span>
             </h2>
             <p class="text-slate-700 text-base leading-relaxed mb-6">
-                As an NDIS-approved service provider, Ozland Care is committed to delivering you the highest standard of support. We believe that personal care is about more than just assistance; it is about fostering a partnership that respects your dignity and enhances your lifestyle.
+                As an NDIS-approved service provider, Ozland Care treats personal support as a partnership. The measure of good assistance is not how much we do for you, but how much of your day stays under your own control.
             </p>
             <p class="text-slate-700 text-base leading-relaxed">
-                Choosing Ozland Care for your Daily Personal Care needs provides a range of significant benefits designed to support your independence and well-being:
+                Choosing Ozland Care for your Assist-Personal Activities support brings a range of practical benefits:
             </p>
         </div>
 
         <div class="space-y-10 reveal">
             <?php
             $benefits = [
-                ['Improved Quality of Life', 'Our services enhance your daily experience, giving you the support you need to live life to its fullest whilst maintaining your independence.'],
-                ['Peace of Mind', 'With professional and compassionate care, you can focus on what matters most, knowing you have full control over your care and well-being.'],
-                ['Enhanced Safety', 'Our trained staff helps minimize the risk of accidents, creating a safer and more secure home environment.'],
-                ['Emotional Support', 'Our team provides a compassionate ear and companionship, enhancing your emotional well-being and helping you feel more connected.'],
-                ['Comfort and Ease', 'Our support workers seamlessly integrate into your routine, allowing you to maintain comfort and independence.'],
-                ['Increased Flexibility', 'Our services adapt to your changing needs, ensuring continuity of care as your circumstances change.']
+                ['Greater Day-to-Day Independence', 'With the right assistance at the right moments, more of your routine stays in your hands rather than being done for you.'],
+                ['A Routine That Holds', 'Consistent support at the times that matter keeps your day predictable, which makes work, study and social plans far easier to commit to.'],
+                ['Reduced Risk at Home', 'Trained assistance with transfers, mobility and personal tasks lowers the chance of falls and injuries in the moments they most often happen.'],
+                ['Skills That Build', 'Where you want to take more on, structured practice and fading prompts turn assisted tasks into ones you manage yourself.'],
+                ['Confidence and Dignity', 'Respectful, discreet support means personal activities stay private and comfortable, which changes how the whole day feels.'],
+                ['Support for Family', 'Reliable assistance takes pressure off family members, letting those relationships be about connection rather than care tasks.']
             ];
 
             foreach ($benefits as $benefit): ?>
@@ -331,11 +331,11 @@
 <!-- Faq Section -->
 <?php
 $faqs = [
-    ['Is Daily Personal Care covered by the NDIS?', 'Yes, Daily Personal Care is covered under the NDIS if it is outlined in the participant’s plan.'],
-    ['Who can receive Daily Personal Care services?', 'Daily Personal Care is available to individuals with disabilities, chronic illnesses, or aging-related needs who require assistance with everyday tasks.'],
-    ['How does Daily Personal Care help?', 'Daily Personal Care support helps participants maintain their independence, dignity, and quality of life by assisting with essential activities, enabling greater comfort and control over daily routines.'],
-    ['How do I include Daily Personal Care in my NDIS plan?', 'You can discuss your needs during your NDIS planning meeting to include Daily Personal Care under your Core Supports budget.'],
-    ['Why choose Ozland Care for Daily Personal Care?', 'We offer compassionate and personalised care aligned with your unique needs and NDIS plan. Our team empowers you to manage daily life with ease and dignity through active listening and a person-centred approach.']
+    ['Is assistance with personal activities covered by the NDIS?', 'Yes. It sits under the Core Supports budget as assistance with daily personal activities, provided it is included in your plan.'],
+    ['How is this different from daily personal care?', 'Daily personal care focuses on hands-on help with hygiene and grooming. Assist-Personal Activities covers the wider set of personal tasks that make up your day, including self-care, eating, mobility, medication prompting and getting ready, with the emphasis on you doing as much as you want to yourself.'],
+    ['Can I choose how much help I receive?', 'Yes. You set the level of assistance task by task, and it can be reduced as your confidence grows or increased if your needs change.'],
+    ['When can support be scheduled?', 'Support can be arranged for mornings, evenings, drop-in visits through the day, or overnight, depending on your plan and your routine.'],
+    ['Why choose Ozland Care for Assist-Personal Activities?', 'We listen first, match you with workers you are comfortable with, and keep adjusting the support so it builds your independence instead of quietly replacing it.']
 ];
 
 get_template_part(
