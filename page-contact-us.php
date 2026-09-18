@@ -133,8 +133,8 @@ get_header();
                         <div class="space-y-10">
 
                             <div class="flex items-center gap-6 group/item">
-                                <div class="flex-shrink-0 w-14 h-14 flex items-center justify-center bg-white/10 backdrop-blur-md rounded-2xl border border-white/20 shadow-lg group-hover/item:bg-blue transition-all duration-300">
-                                    <i class="fas fa-phone-alt text-xl"></i>
+                                <div class="flex-shrink-0 w-14 h-14 flex items-center justify-center bg-white/10 backdrop-blur-md rounded-2xl border border-white/20 shadow-lg group-hover/item:bg-white group-hover/item:border-white transition-all duration-300">
+                                    <i class="fas fa-phone-alt text-xl group-hover/item:text-primary transition-colors duration-300"></i>
                                 </div>
 
                                 <div>
@@ -144,8 +144,8 @@ get_header();
                             </div>
 
                             <div class="flex items-center gap-6 group/item">
-                                <div class="flex-shrink-0 w-14 h-14 flex items-center justify-center bg-white/10 backdrop-blur-md rounded-2xl border border-white/20 shadow-lg group-hover/item:bg-blue transition-all duration-300">
-                                    <i class="fas fa-envelope-open text-xl"></i>
+                                <div class="flex-shrink-0 w-14 h-14 flex items-center justify-center bg-white/10 backdrop-blur-md rounded-2xl border border-white/20 shadow-lg group-hover/item:bg-white group-hover/item:border-white transition-all duration-300">
+                                    <i class="fas fa-envelope-open text-xl group-hover/item:text-primary transition-colors duration-300"></i>
                                 </div>
 
                                 <div>
@@ -155,8 +155,8 @@ get_header();
                             </div>
 
                             <div class="flex items-center gap-6 group/item">
-                                <div class="flex-shrink-0 w-14 h-14 flex items-center justify-center bg-white/10 backdrop-blur-md rounded-2xl border border-white/20 shadow-lg group-hover/item:bg-blue transition-all duration-300">
-                                    <i class="fas fa-map-marker-alt text-xl"></i>
+                                <div class="flex-shrink-0 w-14 h-14 flex items-center justify-center bg-white/10 backdrop-blur-md rounded-2xl border border-white/20 shadow-lg group-hover/item:bg-white group-hover/item:border-white transition-all duration-300">
+                                    <i class="fas fa-map-marker-alt text-xl group-hover/item:text-primary transition-colors duration-300"></i>
                                 </div>
 
                                 <div>
@@ -182,8 +182,13 @@ get_header();
 
     <!-- Map Section -->
     <section class="w-full bg-white p-4 lg:p-5">
-        <div class="w-full h-96 md:h-[550px] rounded-2xl overflow-hidden shadow-xl">
-            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3932.088083646574!2d151.0051514!3d-33.8157505!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6b12952eab3543f3%3A0x4861d417509fc72c!2sOzland%20Care!5e1!3m2!1sen!2sbd!4v1772598650253!5m2!1sen!2sbd" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        <!-- Opens the Google map connections early so the embed paints as soon as possible. -->
+        <link rel="preconnect" href="https://maps.googleapis.com" crossorigin>
+        <link rel="preconnect" href="https://maps.gstatic.com" crossorigin>
+        <link rel="preconnect" href="https://khms0.googleapis.com" crossorigin>
+
+        <div class="w-full h-96 md:h-[550px] rounded-2xl overflow-hidden shadow-xl bg-[#e8e6e1]">
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3932.088083646574!2d151.0051514!3d-33.8157505!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6b12952eab3543f3%3A0x4861d417509fc72c!2sOzland%20Care!5e1!3m2!1sen!2sbd!4v1772598650253!5m2!1sen!2sbd" width="100%" height="100%" style="border:0;display:block;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Ozland Care office location"></iframe>
         </div>
     </section>
 
