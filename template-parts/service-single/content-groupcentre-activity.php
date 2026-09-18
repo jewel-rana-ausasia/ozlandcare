@@ -2,7 +2,7 @@
     <div class="container mx-auto px-6 max-w-7xl">
         <div class="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6 reveal">
             <div class="max-w-3xl">
-                <h2 class="font-serif text-4xl text-slate-900 mb-4">Why Participants Trust Us for <span class="text-primary">Group & Centre Programs</span></h2>
+                <h2 class="font-serif text-4xl text-slate-900 mb-4">Why Participants Trust Us for <span class="text-primary">Group/Centre Activities</span></h2>
                 <p class="text-slate-950 text-base">As a registered NDIS provider, Ozland Care offers services that are engaging, inclusive and empowering.</p>
             </div>
         </div>
@@ -42,7 +42,7 @@
 <section class="py-24 bg-[#fafcfc]">
     <div class="container mx-auto px-6 max-w-7xl">
         <div class="text-center mb-20 reveal">
-            <h2 class="font-serif text-4xl text-slate-900 mb-4">The Impact of <span class="italic text-primary">Group & Centre-Based Activities</span></h2>
+            <h2 class="font-serif text-4xl text-slate-900 mb-4">The Impact of <span class="italic text-primary">Group/Centre Activities</span></h2>
             <div class="flex justify-center">
                 <svg width="320" height="40" viewBox="0 0 320 40" xmlns="http://www.w3.org/2000/svg">
                     <defs>
@@ -139,7 +139,7 @@
                 <span class="text-[0.7rem] uppercase tracking-[0.4em] text-primary font-bold">Program Portfolio</span>
             </div>
             <h2 class="font-serif text-4xl md:text-5xl text-slate-900 mb-6 leading-tight">
-                Complete Group & <span class="italic font-light">Centre-Based Services</span>
+                Complete <span class="italic font-light">Group/Centre Activities</span>
                 <span class="text-primary">in Sydney</span>
             </h2>
             <p class="text-slate-800 text-base leading-relaxed">
@@ -182,7 +182,7 @@
     <div class="container mx-auto px-6 max-w-7xl">
         <div class="mb-16 reveal">
             <h2 class="font-serif text-4xl text-slate-900 mb-8 leading-tight">
-                Key Benefits of <span class="text-primary">Group-Based Activities</span>
+                Key Benefits of <span class="text-primary">Group/Centre Activities</span>
             </h2>
             <p class="text-slate-700 text-base leading-relaxed mb-6">
                 Choosing Ozland Care for group activities provides:

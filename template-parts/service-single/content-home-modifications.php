@@ -2,7 +2,7 @@
     <div class="container mx-auto px-6 max-w-7xl">
         <div class="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6 reveal">
             <div class="max-w-3xl">
-                <h2 class="font-serif text-4xl text-slate-900 mb-4">Reasons to Choose Ozland Care for <span class="text-primary">Home Modifications</span></h2>
+                <h2 class="font-serif text-4xl text-slate-900 mb-4">Reasons to Choose Ozland Care for <span class="text-primary">Home Modification</span></h2>
                 <p class="text-slate-950 text-base">As an NDIS-registered provider, Ozland Care delivers home modification services that are personalised, safe, and practical.</p>
             </div>
         </div>
@@ -182,7 +182,7 @@
     <div class="container mx-auto px-6 max-w-7xl">
         <div class="mb-16 reveal">
             <h2 class="font-serif text-4xl text-slate-900 mb-8 leading-tight">
-                Key Advantages of <span class="text-primary">Home Adaptations</span>
+                Key Advantages of <span class="text-primary">Home Modification</span>
             </h2>
             <p class="text-slate-700 text-base leading-relaxed mb-6">
                 Choosing Ozland Care for home modifications offers multiple advantages:

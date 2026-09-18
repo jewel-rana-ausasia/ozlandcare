@@ -2,7 +2,7 @@
     <div class="container mx-auto px-6 max-w-7xl">
         <div class="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6 reveal">
             <div class="max-w-3xl">
-                <h2 class="font-serif text-4xl text-slate-900 mb-4">Why Choose Ozland Care for <span class="text-primary">Life Skills Development?</span></h2>
+                <h2 class="font-serif text-4xl text-slate-900 mb-4">Why Choose Ozland Care for <span class="text-primary">Development-Life Skills?</span></h2>
                 <p class="text-slate-950 text-base">As a registered NDIS provider, Ozland Care delivers person-centred services designed to strengthen independence and confidence.</p>
             </div>
         </div>
@@ -42,7 +42,7 @@
 <section class="py-24 bg-[#fafcfc]">
     <div class="container mx-auto px-6 max-w-7xl">
         <div class="text-center mb-20 reveal">
-            <h2 class="font-serif text-4xl text-slate-900 mb-4">How Life Skills Development <span class="italic text-primary">Makes a Difference</span></h2>
+            <h2 class="font-serif text-4xl text-slate-900 mb-4">How Development-Life Skills <span class="italic text-primary">Make a Difference</span></h2>
             <div class="flex justify-center">
                 <svg width="320" height="40" viewBox="0 0 320 40" xmlns="http://www.w3.org/2000/svg">
                     <defs>
@@ -139,7 +139,7 @@
                 <span class="text-[0.7rem] uppercase tracking-[0.4em] text-primary font-bold">Training Portfolio</span>
             </div>
             <h2 class="font-serif text-4xl md:text-5xl text-slate-900 mb-6 leading-tight">
-                Comprehensive Daily Living & <span class="italic font-light">Life Skills Services</span>
+                Comprehensive <span class="italic font-light">Development-Life Skills Services</span>
                 <span class="text-primary">in Sydney</span>
             </h2>
             <p class="text-slate-800 text-base leading-relaxed">
@@ -182,7 +182,7 @@
     <div class="container mx-auto px-6 max-w-7xl">
         <div class="mb-16 reveal">
             <h2 class="font-serif text-4xl text-slate-900 mb-8 leading-tight">
-                Benefits of <span class="text-primary">Life Skills Development</span>
+                Benefits of <span class="text-primary">Development-Life Skills</span>
             </h2>
             <p class="text-slate-700 text-base leading-relaxed mb-6">
                 Choosing Ozland Care for daily living and life skills support provides:
