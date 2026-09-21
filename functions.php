@@ -367,7 +367,7 @@ function ozlandcare_output_critical_image_preload()
 {
 	static $preload_output = false;
 
-	if ($preload_output || is_404()) {
+	if ($preload_output || is_404() || is_page_template('page-incident-report.php')) {
 		return;
 	}
 	$preload_output = true;
@@ -396,3 +396,4 @@ function ozlandcare_output_critical_image_preload()
 require_once get_template_directory() . '/inc/referral-cf7.php';
 require_once get_template_directory() . '/inc/contact-cf7.php';
 require_once get_template_directory() . '/inc/feedback-cf7.php';
+require_once get_template_directory() . '/inc/incident-report-cf7.php';

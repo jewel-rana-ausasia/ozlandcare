@@ -1626,7 +1626,7 @@
                     'template-parts/content',
                     'slider'
                 );
-            } else {
+            } elseif (! is_page_template('page-incident-report.php')) {
 
                 get_template_part(
                     'template-parts/content',
