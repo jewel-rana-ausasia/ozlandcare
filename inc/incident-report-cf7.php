@@ -76,15 +76,17 @@ function ozlandcare_incident_report_cf7_template()
     <div class="incident-field"><label for="injury_cause_other">Other cause</label>[text injury_cause_other id:injury_cause_other class:incident-input placeholder "Describe the cause if it is not listed above"]</div>
     <div class="incident-reportable">
         <div class="incident-reportable__title"><i class="fas fa-triangle-exclamation" aria-hidden="true"></i><strong>Immediately report any incident where a cause marked <span class="incident-ndis-chip">NDIS</span> above is ticked.</strong></div>
-        <p>The following incidents (including allegations) arising must be reported to the NDIS Commission:</p>
-        <ul>
-            <li>the death of an NDIS participant</li>
-            <li>serious injury of an NDIS participant</li>
-            <li>abuse or neglect of an NDIS participant</li>
-            <li>unlawful sexual or physical contact with, or assault of, an NDIS participant</li>
-            <li>sexual misconduct committed against, or in the presence of, an NDIS participant, including grooming of the NDIS participant for sexual activity</li>
-            <li>the unauthorised use of a restrictive practice in relation to an NDIS participant</li>
-        </ul>
+        <div class="incident-reportable__body">
+            <p>The following incidents (including allegations) arising must be reported to the NDIS Commission:</p>
+            <ul>
+                <li>the death of an NDIS participant</li>
+                <li>serious injury of an NDIS participant</li>
+                <li>abuse or neglect of an NDIS participant</li>
+                <li>unlawful sexual or physical contact with, or assault of, an NDIS participant</li>
+                <li>sexual misconduct committed against, or in the presence of, an NDIS participant, including grooming of the NDIS participant for sexual activity</li>
+                <li>the unauthorised use of a restrictive practice in relation to an NDIS participant</li>
+            </ul>
+        </div>
     </div>
 
     <div class="incident-body-map-card">
@@ -204,7 +206,7 @@ function ozlandcare_provision_incident_report_cf7_form()
 		return 0;
 	}
 
-	$schema_version = '12';
+	$schema_version = '13';
 	$forms = WPCF7_ContactForm::find(array('title' => 'Incident Report', 'posts_per_page' => 1));
 	$form = $forms ? $forms[0] : WPCF7_ContactForm::get_template(array('title' => 'Incident Report', 'locale' => get_locale()));
 
@@ -379,9 +381,16 @@ function ozlandcare_validate_incident_report_cf7_field($result, $tag)
 		$result->invalidate($tag, 'Enter a 10-digit Australian mobile number starting with 04.');
 	}
 
+	// The report date records when the report is lodged, so it must be today.
+	if ('report_date' === $name && $value !== current_time('Y-m-d')) {
+		$result->invalidate($tag, 'The report date must be today.');
+	}
+
 	return $result;
 }
 add_filter('wpcf7_validate_text', 'ozlandcare_validate_incident_report_cf7_field', 20, 2);
 add_filter('wpcf7_validate_text*', 'ozlandcare_validate_incident_report_cf7_field', 20, 2);
 add_filter('wpcf7_validate_tel', 'ozlandcare_validate_incident_report_cf7_field', 20, 2);
 add_filter('wpcf7_validate_tel*', 'ozlandcare_validate_incident_report_cf7_field', 20, 2);
+add_filter('wpcf7_validate_date', 'ozlandcare_validate_incident_report_cf7_field', 20, 2);
+add_filter('wpcf7_validate_date*', 'ozlandcare_validate_incident_report_cf7_field', 20, 2);
