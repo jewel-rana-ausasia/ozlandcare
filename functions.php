@@ -307,10 +307,25 @@ function ozlandcare_get_banner_image_data()
 	$banner_id = (int) get_post_meta(get_queried_object_id(), '_custom_banner_id', true);
 
 	if ($banner_id) {
+		// The original uploads can be close to 1 MB even when the generated
+		// 1536px version is only about 200 KB. A banner does not need the original
+		// file, so cap the responsive candidates to keep high-DPI screens from
+		// selecting it and delaying the page's largest visual element.
+		$image_size = '1536x1536';
+		$image_url = wp_get_attachment_image_url($banner_id, $image_size);
+		$srcset = wp_get_attachment_image_srcset($banner_id, $image_size);
+
+		if ($srcset) {
+			$candidates = array_filter(array_map('trim', explode(',', $srcset)), function ($candidate) {
+				return preg_match('/\s(\d+)w$/', $candidate, $matches) && (int) $matches[1] <= 1536;
+			});
+			$srcset = implode(', ', $candidates);
+		}
+
 		return array(
 			'id'     => $banner_id,
-			'url'    => wp_get_attachment_image_url($banner_id, 'full'),
-			'srcset' => wp_get_attachment_image_srcset($banner_id, 'full'),
+			'url'    => $image_url ?: wp_get_attachment_image_url($banner_id, 'full'),
+			'srcset' => $srcset,
 		);
 	}
 
@@ -336,6 +351,26 @@ function ozlandcare_get_banner_placeholder($attachment_id)
 		return '';
 	}
 
+	// Reading and base64-encoding the file on every page view is wasted work:
+	// the result only changes when the attachment is replaced. An empty string
+	// is cached too, so unusable attachments are not re-checked each request.
+	$cache_key = 'ozlandcare_banner_ph_' . $attachment_id;
+	$cached = get_transient($cache_key);
+	if (false !== $cached) {
+		return $cached;
+	}
+
+	$data_uri = ozlandcare_build_banner_placeholder($attachment_id);
+	set_transient($cache_key, $data_uri, WEEK_IN_SECONDS);
+
+	return $data_uri;
+}
+
+/**
+ * Read the medium file for an attachment and return it as a data URI.
+ */
+function ozlandcare_build_banner_placeholder($attachment_id)
+{
 	$medium = image_get_intermediate_size($attachment_id, 'medium');
 	$original_path = get_attached_file($attachment_id);
 
@@ -358,6 +393,16 @@ function ozlandcare_get_banner_placeholder($attachment_id)
 
 	return 'data:' . $mime_type . ';base64,' . base64_encode($image_bytes);
 }
+
+/**
+ * Drop a cached placeholder when its attachment is regenerated or deleted.
+ */
+function ozlandcare_flush_banner_placeholder_cache($attachment_id)
+{
+	delete_transient('ozlandcare_banner_ph_' . (int) $attachment_id);
+}
+add_action('delete_attachment', 'ozlandcare_flush_banner_placeholder_cache');
+add_action('edit_attachment', 'ozlandcare_flush_banner_placeholder_cache');
 
 /**
  * Output the above-the-fold image preload before render-blocking third-party
@@ -391,6 +436,230 @@ function ozlandcare_output_critical_image_preload()
 		echo ' imagesrcset="' . esc_attr($banner['srcset']) . '" imagesizes="100vw"';
 	}
 	echo ' fetchpriority="high">' . "\n";
+}
+
+/**
+ * Print the banner's critical CSS in <head>, before the Tailwind CDN script.
+ *
+ * Tailwind is loaded from cdn.tailwindcss.com, which builds its stylesheet in
+ * JavaScript after the markup is parsed. Until that happens the banner's
+ * utility classes do not exist, so the image paints at its intrinsic size and
+ * then snaps into the banner box once Tailwind's CSS is injected - the flash
+ * ("blink") that this stylesheet removes. The rules below duplicate the exact
+ * values of the utilities used by template-parts/content-banner.php, so the
+ * first paint is already final and Tailwind's later CSS changes nothing.
+ */
+function ozlandcare_output_critical_banner_css()
+{
+	static $css_output = false;
+
+	if ($css_output) {
+		return;
+	}
+	$css_output = true;
+?>
+	<style id="ozlandcare-banner-critical">
+		.content-banner-shell {
+			position: relative;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			overflow: hidden;
+			min-height: 200px;
+			background-color: #000;
+			/*
+			 * Keep the central subject in the right-side visual area so the
+			 * left-aligned page title does not cover faces when the banner crops.
+			 */
+			background-position: 40% center;
+			background-repeat: no-repeat;
+			background-size: cover;
+		}
+
+		.content-banner-image {
+			position: absolute;
+			inset: 0;
+			display: block;
+			width: 100%;
+			height: 100%;
+			object-fit: cover;
+			object-position: 40% center;
+		}
+
+		.content-banner-overlay {
+			position: absolute;
+			inset: 0;
+			background-color: rgba(1, 34, 34, 0.3);
+		}
+
+		.content-banner-inner {
+			position: relative;
+			z-index: 10;
+			width: 100%;
+			margin-left: auto;
+			margin-right: auto;
+			padding-left: 1.5rem;
+			padding-right: 1.5rem;
+			text-align: left;
+		}
+
+		.content-banner-copy {
+			display: flex;
+			flex-direction: column;
+			align-items: flex-start;
+			max-width: 58%;
+			margin-right: auto;
+		}
+
+		.content-banner-title {
+			margin: 0 0 0.5rem;
+			color: #fff;
+			font-size: 1.25rem;
+			font-weight: 900;
+			letter-spacing: -0.05em;
+			line-height: 1.1;
+			text-align: left;
+			mix-blend-mode: plus-lighter;
+		}
+
+		.content-banner-logo {
+			position: absolute;
+			top: 50%;
+			right: 8%;
+			transform: translateY(-50%) translateX(100%);
+			opacity: 0;
+			z-index: 50;
+			animation: ozlandcareBannerLogoIn 2s ease-out 0.8s forwards;
+			max-width: 300px;
+			width: min(250px, 20vw);
+		}
+
+		.content-banner-logo img {
+			display: block;
+			width: 100%;
+			height: auto;
+		}
+
+		@keyframes ozlandcareBannerLogoIn {
+			from {
+				transform: translateY(-50%) translateX(120%);
+				opacity: 0;
+			}
+
+			to {
+				transform: translateY(-50%) translateX(0);
+				opacity: 1;
+			}
+		}
+
+		@media (min-width: 640px) {
+			.content-banner-inner {
+				max-width: 640px;
+				padding-left: 2.5rem;
+				padding-right: 2.5rem;
+			}
+
+			.content-banner-copy {
+				max-width: 52%;
+			}
+
+			.content-banner-title {
+				font-size: 2.25rem;
+				line-height: 1.2;
+			}
+		}
+
+		@media (min-width: 768px) {
+			.content-banner-shell {
+				min-height: 300px;
+			}
+
+			.content-banner-inner {
+				max-width: 768px;
+			}
+
+			.content-banner-title {
+				font-size: 3rem;
+			}
+		}
+
+		@media (min-width: 1024px) {
+			.content-banner-shell {
+				min-height: 400px;
+			}
+
+			.content-banner-inner {
+				max-width: 1024px;
+				padding-left: 5rem;
+				padding-right: 5rem;
+			}
+
+			.content-banner-copy {
+				max-width: 42%;
+			}
+
+			.content-banner-title {
+				font-size: 3.75rem;
+			}
+		}
+
+		@media (min-width: 1280px) {
+			.content-banner-shell {
+				min-height: 450px;
+			}
+
+			.content-banner-inner {
+				max-width: 1280px;
+			}
+		}
+
+		@media (min-width: 1536px) {
+			.content-banner-inner {
+				max-width: 1536px;
+			}
+		}
+
+		@media (max-width: 1024px) {
+			.content-banner-logo {
+				top: 70%;
+				right: 8%;
+				transform: translate(50%, -50%) translateX(100%);
+				width: 180px;
+				max-width: 55vw;
+				animation-name: ozlandcareBannerLogoInNarrow;
+			}
+
+			@keyframes ozlandcareBannerLogoInNarrow {
+				from {
+					transform: translate(50%, -50%) translateX(120%);
+					opacity: 0;
+				}
+
+				to {
+					transform: translate(50%, -50%) translateX(0);
+					opacity: 1;
+				}
+			}
+		}
+
+		@media (max-width: 640px) {
+			.content-banner-logo {
+				top: 78%;
+				right: 4%;
+				width: 90px;
+				max-width: 28vw;
+			}
+		}
+
+		@media (prefers-reduced-motion: reduce) {
+			.content-banner-logo {
+				animation: none;
+				opacity: 1;
+				transform: translateY(-50%);
+			}
+		}
+	</style>
+<?php
 }
 
 require_once get_template_directory() . '/inc/referral-cf7.php';

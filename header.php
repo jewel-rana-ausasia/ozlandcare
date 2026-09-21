@@ -14,6 +14,7 @@
     <link rel="profile" href="https://gmpg.org/xfn/11">
 
     <?php ozlandcare_output_critical_image_preload(); ?>
+    <?php ozlandcare_output_critical_banner_css(); ?>
 
     <script src="https://cdn.tailwindcss.com"></script>
 

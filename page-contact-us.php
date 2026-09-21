@@ -247,7 +247,8 @@ get_header();
 
     .contact-cf7-shell .oz-contact-textarea {
         width: 100%;
-        min-height: 132px;
+        height: 175px;
+        min-height: 175px;
         box-sizing: border-box;
         padding: 1rem 1.5rem;
         border: 1px solid #e2e8f0;
