@@ -14,7 +14,17 @@
     <link rel="profile" href="https://gmpg.org/xfn/11">
 
     <?php ozlandcare_output_critical_image_preload(); ?>
-    <?php ozlandcare_output_critical_banner_css(); ?>
+    <?php
+    // Critical CSS for whatever sits above the fold, printed before the Tailwind
+    // CDN script so the first paint is already correct. See inc/critical-css.php.
+    ozlandcare_output_critical_layout_css();
+
+    if (is_front_page() || is_home()) {
+        ozlandcare_output_critical_hero_css();
+    } else {
+        ozlandcare_output_critical_banner_css();
+    }
+    ?>
 
     <script src="https://cdn.tailwindcss.com"></script>
 
@@ -1657,8 +1667,16 @@
 
             function adjustPadding() {
 
-                body.style.paddingTop =
-                    header.offsetHeight + 'px';
+                // Update the variable rather than body.style.paddingTop, so the
+                // hero (whose height is calc(100dvh - var(--site-header-height)))
+                // and the body padding always agree. inc/critical-css.php seeds
+                // the variable with the measured height for each breakpoint, so
+                // this only ever makes a small correction - it no longer shifts
+                // the page down from zero once the script runs.
+                document.documentElement.style.setProperty(
+                    '--site-header-height',
+                    header.offsetHeight + 'px'
+                );
 
             }
 
