@@ -15,13 +15,11 @@ function ozlandcare_incident_report_cf7_template()
 {
 	$template = <<<'CF7'
 <div class="incident-progress" aria-label="Form progress">
-    <div class="incident-progress__bar"><span></span></div>
-    <div class="incident-progress__copy"><strong>Section <span data-current-step>1</span> of 6</strong><span data-step-name>Report details</span></div>
-</div>
-
-<div class="incident-alert" role="note">
-    <i class="fas fa-circle-info" aria-hidden="true"></i>
-    <p>Complete this form for <strong>all incidents and accidents</strong> where an injury has or could have resulted. If anyone is in immediate danger, call <strong>000</strong> before completing this report.</p>
+    <ol class="incident-stepper" data-incident-stepper></ol>
+    <div class="incident-progress__meter">
+        <div class="incident-progress__bar"><span></span></div>
+        <p class="incident-progress__copy"><strong>Section <span data-current-step>1</span> of 6</strong><span data-step-name>Report details</span></p>
+    </div>
 </div>
 
 <section class="incident-step is-active" data-step="1" data-title="Report details">
@@ -42,17 +40,17 @@ function ozlandcare_incident_report_cf7_template()
             <div class="incident-field"><label for="person_first_name">First name <em>*</em></label>[text* person_first_name id:person_first_name class:incident-input placeholder "e.g. Sarah"]</div>
             <div class="incident-field"><label for="person_dob">Date of birth</label>[date person_dob id:person_dob class:incident-input]</div>
             <div class="incident-field incident-span-2"><label for="person_address">Home address</label>[text person_address id:person_address class:incident-input placeholder "Street, suburb, state and postcode"]</div>
-            <div class="incident-field"><label for="person_phone">Phone</label>[tel person_phone id:person_phone class:incident-input placeholder "e.g. 0400 000 000"]</div>
+            <div class="incident-field"><label for="person_phone">Phone</label>[tel person_phone id:person_phone class:incident-input placeholder "e.g. 0412345678"]</div>
         </div>
         <div class="incident-field"><span class="incident-label">Gender</span>[radio person_gender use_label_element class:incident-options "Male" "Female" "Other / Prefer not to say"]</div>
     </div>
     <div class="incident-subsection"><h3>Witness details (if any)</h3>
         <div class="incident-grid incident-grid--3">
             <div class="incident-field"><label for="witness_1_name">Witness 1 name</label>[text witness_1_name id:witness_1_name class:incident-input placeholder "Full name of witness"]</div>
-            <div class="incident-field"><label for="witness_1_phone">Phone</label>[tel witness_1_phone id:witness_1_phone class:incident-input placeholder "e.g. 0400 000 000"]</div>
+            <div class="incident-field"><label for="witness_1_phone">Phone</label>[tel witness_1_phone id:witness_1_phone class:incident-input placeholder "e.g. 0412345678"]</div>
             <div class="incident-field"><label for="witness_1_address">Address</label>[text witness_1_address id:witness_1_address class:incident-input placeholder "Street, suburb, state and postcode"]</div>
             <div class="incident-field"><label for="witness_2_name">Witness 2 name</label>[text witness_2_name id:witness_2_name class:incident-input placeholder "Full name of witness"]</div>
-            <div class="incident-field"><label for="witness_2_phone">Phone</label>[tel witness_2_phone id:witness_2_phone class:incident-input placeholder "e.g. 0400 000 000"]</div>
+            <div class="incident-field"><label for="witness_2_phone">Phone</label>[tel witness_2_phone id:witness_2_phone class:incident-input placeholder "e.g. 0412345678"]</div>
             <div class="incident-field"><label for="witness_2_address">Address</label>[text witness_2_address id:witness_2_address class:incident-input placeholder "Street, suburb, state and postcode"]</div>
         </div>
     </div>
@@ -188,8 +186,8 @@ function ozlandcare_incident_report_cf7_template()
 
 <div class="incident-actions">
     <button type="button" class="incident-button incident-button--back" data-incident-back><i class="fas fa-arrow-left" aria-hidden="true"></i><span>Back</span></button>
-    <button type="button" class="incident-button incident-button--next" data-incident-next><span>Continue</span><i class="fas fa-arrow-right" aria-hidden="true"></i></button>
-    <button type="submit" class="incident-submit" data-incident-submit hidden><span>Submit incident report</span><i class="fas fa-arrow-right" aria-hidden="true"></i></button>
+    <button type="button" class="incident-button incident-button--next" data-incident-next><span>Continue</span></button>
+    <button type="submit" class="incident-submit" data-incident-submit hidden><span>Submit incident report</span></button>
 </div>
 CF7;
 
@@ -206,7 +204,7 @@ function ozlandcare_provision_incident_report_cf7_form()
 		return 0;
 	}
 
-	$schema_version = '10';
+	$schema_version = '12';
 	$forms = WPCF7_ContactForm::find(array('title' => 'Incident Report', 'posts_per_page' => 1));
 	$form = $forms ? $forms[0] : WPCF7_ContactForm::get_template(array('title' => 'Incident Report', 'locale' => get_locale()));
 
@@ -347,3 +345,43 @@ function ozlandcare_provision_incident_report_page_and_menu()
 	update_option('ozlandcare_incident_page_menu_version', '2', false);
 }
 add_action('init', 'ozlandcare_provision_incident_report_page_and_menu', 40);
+
+/**
+ * Server-side validation for the Incident Report form.
+ *
+ * Mirrors the rules used by the Referral form so both forms accept names and
+ * mobile numbers in the same shape.
+ */
+function ozlandcare_validate_incident_report_cf7_field($result, $tag)
+{
+	$contact_form = WPCF7_ContactForm::get_current();
+	if (! $contact_form || 'Incident Report' !== $contact_form->title()) {
+		return $result;
+	}
+
+	$name = $tag->name;
+	$value = isset($_POST[$name]) && is_scalar($_POST[$name])
+		? trim(wp_unslash($_POST[$name]))
+		: '';
+
+	$single_name = '/^[\p{L}\p{M}]+(?:[\'\x{2019}-][\p{L}\p{M}]+)*$/u';
+
+	if ('person_first_name' === $name && $value && ! preg_match($single_name, $value)) {
+		$result->invalidate($tag, 'Enter one first name without spaces.');
+	}
+
+	if ('person_surname' === $name && $value && ! preg_match($single_name, $value)) {
+		$result->invalidate($tag, 'Enter one surname without spaces.');
+	}
+
+	$phone_fields = array('person_phone', 'witness_1_phone', 'witness_2_phone');
+	if (in_array($name, $phone_fields, true) && $value && ! preg_match('/^04\d{8}$/', $value)) {
+		$result->invalidate($tag, 'Enter a 10-digit Australian mobile number starting with 04.');
+	}
+
+	return $result;
+}
+add_filter('wpcf7_validate_text', 'ozlandcare_validate_incident_report_cf7_field', 20, 2);
+add_filter('wpcf7_validate_text*', 'ozlandcare_validate_incident_report_cf7_field', 20, 2);
+add_filter('wpcf7_validate_tel', 'ozlandcare_validate_incident_report_cf7_field', 20, 2);
+add_filter('wpcf7_validate_tel*', 'ozlandcare_validate_incident_report_cf7_field', 20, 2);
