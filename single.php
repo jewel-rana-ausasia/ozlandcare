@@ -108,30 +108,123 @@ get_header(); ?>
 		color: #0f172a;
 		font-weight: 500;
 	}
+
+	/*
+	 * Mobile + tablet only (<=1024px); desktop keeps the values above and the
+	 * Tailwind utilities in the markup. Two-class selectors outrank Tailwind.
+	 */
+	@media (max-width: 1024px) {
+		.single-post-page .service-content h1 {
+			font-size: clamp(1.875rem, 1.2rem + 2.6vw, 2.75rem);
+		}
+
+		.single-post-page .service-content h2 {
+			font-size: clamp(1.5rem, 1.15rem + 1.4vw, 2rem);
+		}
+
+		.single-post-page .service-content h3 {
+			font-size: clamp(1.25rem, 1.1rem + 0.6vw, 1.5rem);
+		}
+
+		/* Long links and wide embeds must not push the page sideways. */
+		.single-post-page .service-content {
+			overflow-wrap: anywhere;
+		}
+
+		.single-post-page .service-content table {
+			display: block;
+			max-width: 100%;
+			overflow-x: auto;
+		}
+
+		.single-post-page .service-content iframe,
+		.single-post-page .service-content video {
+			max-width: 100%;
+		}
+
+		.single-post-page .single-post-title {
+			font-size: clamp(1.75rem, 1.2rem + 2.2vw, 2.25rem);
+		}
+	}
+
+	/* Below lg the sidebar stacks under the article. */
+	@media (max-width: 1023.98px) {
+		.single-post-page .single-post-grid {
+			gap: 3.5rem;
+		}
+
+		.single-post-page .single-post-meta {
+			margin-bottom: 2rem;
+		}
+
+		.single-post-page .single-post-tags-wrap {
+			margin-top: 2.5rem;
+		}
+
+		/* Many tags wrap onto new lines instead of overflowing. */
+		.single-post-page .single-post-tags {
+			flex-wrap: wrap;
+			gap: 0.5rem;
+		}
+
+		.single-post-page .single-post-tags > * {
+			margin-left: 0 !important;
+		}
+
+		/* Stacked, a sticky sidebar would just slide over the article. */
+		.single-post-page .single-post-aside {
+			position: static;
+		}
+	}
+
+	/* Tablet: show the three popular posts side by side, not one huge column. */
+	@media (min-width: 768px) and (max-width: 1023.98px) {
+		.single-post-page .single-popular-list {
+			display: grid;
+			grid-template-columns: repeat(3, minmax(0, 1fr));
+			gap: 1.5rem;
+		}
+
+		.single-post-page .single-popular-list > * {
+			margin-top: 0 !important;
+		}
+	}
+
+	@media (max-width: 639.98px) {
+		.single-post-page .single-post-hero {
+			border-radius: 1.25rem;
+			aspect-ratio: 4 / 3;
+		}
+
+		.single-post-page .single-support-card {
+			padding: 1.5rem;
+			border-radius: 1.5rem;
+		}
+	}
 </style>
 
-<main id="primary" class="site-main py-12 lg:py-20 bg-white">
+<main id="primary" class="single-post-page site-main py-12 lg:py-20 bg-white">
 	<div class="max-w-7xl mx-auto px-6 lg:px-8">
 
 		<?php while (have_posts()) : the_post(); ?>
 
 
 
-			<div class="grid grid-cols-1 lg:grid-cols-12 gap-20 items-start">
+			<div class="single-post-grid grid grid-cols-1 lg:grid-cols-12 gap-20 items-start">
 
 
 				<!-- MAIN CONTENT -->
 				<div class="lg:col-span-8">
 					<!-- FEATURE IMAGE -->
-					<header class="relative w-full rounded-[2rem] overflow-hidden aspect-[14/9] mb-8 shadow-2xl">
+					<header class="single-post-hero relative w-full rounded-[2rem] overflow-hidden aspect-[14/9] mb-8 shadow-2xl">
 						<?php if (has_post_thumbnail()) : ?>
 							<img src="<?php the_post_thumbnail_url('full'); ?>" class="w-full h-full object-cover" alt="<?php the_title(); ?>">
 						<?php endif; ?>
 					</header>
 
 					<!-- TITLE -->
-					<div class="flex flex-wrap items-center justify-between py-6 mb-12 border-b border-slate-100 gap-6">
-						<h1 class="text-3xl md:text-4xl font-semibold text-slate-900 max-w-3xl leading-tight">
+					<div class="single-post-meta flex flex-wrap items-center justify-between py-6 mb-12 border-b border-slate-100 gap-6">
+						<h1 class="single-post-title text-3xl md:text-4xl font-semibold text-slate-900 max-w-3xl leading-tight">
 							<?php the_title(); ?>
 						</h1>
 					</div>
@@ -140,8 +233,8 @@ get_header(); ?>
 					</div>
 
 					<!-- TAGS -->
-					<div class="mt-16 pt-8 border-t border-slate-100">
-						<div class="flex items-center space-x-3">
+					<div class="single-post-tags-wrap mt-16 pt-8 border-t border-slate-100">
+						<div class="single-post-tags flex items-center space-x-3">
 							<span class="text-xs font-black text-slate-900 uppercase">Tags:</span>
 							<?php the_tags(
 								'<span class="px-3 py-1 bg-slate-50 text-slate-400 text-[10px] font-bold rounded-lg border border-slate-100">',
@@ -153,13 +246,13 @@ get_header(); ?>
 				</div>
 
 				<!-- SIDEBAR -->
-				<aside class="lg:col-span-4 sticky top-12 space-y-10">
+				<aside class="single-post-aside lg:col-span-4 sticky top-12 space-y-10">
 					<h3 class="text-2xl font-black text-slate-900 mb-8 flex items-center">
 						Popular <span class="text-blue ml-2">Posts</span>
 						<span class="flex-grow h-px bg-slate-100 ml-4"></span>
 					</h3>
 
-					<div class="space-y-10">
+					<div class="single-popular-list space-y-10">
 						<?php
 						$popular_query = new WP_Query(array(
 							'post_type' => 'post',
@@ -205,7 +298,7 @@ get_header(); ?>
 					</div>
 
 					<!-- CALL NOW CTA -->
-					<div class="mt-12 bg-slate-900 rounded-[2rem] p-8 text-white relative overflow-hidden group">
+					<div class="single-support-card mt-12 bg-slate-900 rounded-[2rem] p-8 text-white relative overflow-hidden group">
 
 						<div class="absolute -top-10 -right-10 w-32 h-32 bg-sky-600/20 rounded-full blur-3xl"></div>
 

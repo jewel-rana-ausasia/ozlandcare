@@ -71,6 +71,53 @@ get_header();
     .incident-body-map-card{margin:1.5rem 0;padding:1.15rem;border:1px solid #dce5ef;border-radius:20px;background:linear-gradient(145deg,#fff,#f6f8fc);box-shadow:0 14px 35px rgba(21,43,71,.07)}.incident-body-map-heading{display:flex;align-items:center;justify-content:space-between;gap:1rem;padding:.2rem .25rem 1rem}.incident-body-map-heading span{color:var(--purple);font-size:.65rem;font-weight:850;letter-spacing:.12em;text-transform:uppercase}.incident-body-map-heading h3{margin:.15rem 0 .25rem;font-size:1.15rem;font-weight:850}.incident-body-map-heading p{margin:0;color:#68798d;font-size:.76rem;line-height:1.5}.incident-body-map-count{display:flex;min-width:78px;flex-direction:column;align-items:center;padding:.65rem;border:1px solid #dbe4ee;border-radius:14px;background:#fff}.incident-body-map-count strong{color:var(--purple);font-size:1.35rem;line-height:1}.incident-body-map-count span{margin-top:.25rem;color:#7b899a;font-size:.58rem;letter-spacing:.06em}.incident-body-map-stage{position:relative;overflow:hidden;aspect-ratio:3/2;border:1px solid #253c5d;border-radius:16px;background:#07111f;cursor:crosshair;touch-action:manipulation;user-select:none}.incident-body-map-stage:focus-visible{outline:3px solid rgba(8,117,189,.35);outline-offset:3px}.incident-body-map-stage img{display:block;width:100%;height:100%;object-fit:cover;pointer-events:none}.incident-body-map-markers{position:absolute;inset:0}.incident-body-marker{position:absolute;display:grid;place-items:center;width:30px;height:30px;border:3px solid #fff;border-radius:50%;background:#e11d48;color:#fff;font-size:.68rem;font-weight:900;line-height:1;box-shadow:0 0 0 5px rgba(225,29,72,.23),0 7px 15px rgba(0,0,0,.3);transform:translate(-50%,-50%);cursor:pointer;animation:bodyMarkerIn .25s cubic-bezier(.2,.8,.2,1.2)}.incident-body-marker:hover{background:#be123c;transform:translate(-50%,-50%) scale(1.12)}@keyframes bodyMarkerIn{from{opacity:0;transform:translate(-50%,-50%) scale(.35)}to{opacity:1;transform:translate(-50%,-50%) scale(1)}}.incident-body-map-view{position:absolute;bottom:.75rem;padding:.35rem .65rem;border:1px solid rgba(255,255,255,.18);border-radius:99px;background:rgba(8,19,34,.75);color:#fff;font-size:.62rem;font-weight:850;letter-spacing:.12em;text-transform:uppercase;pointer-events:none;backdrop-filter:blur(8px)}.incident-body-map-view--front{left:25%;transform:translateX(-50%)}.incident-body-map-view--back{left:75%;transform:translateX(-50%)}.incident-body-map-toolbar{display:flex;align-items:center;justify-content:space-between;gap:1rem;padding:.85rem .15rem .65rem}.incident-body-map-actions{display:flex;gap:.5rem}.incident-body-map-actions button{display:inline-flex;align-items:center;gap:.4rem;padding:.55rem .75rem;border:1px solid #dbe3ed;border-radius:10px;background:#fff;color:#42566e;font-size:.68rem;font-weight:800;cursor:pointer;transition:.18s}.incident-body-map-actions button:not(:disabled):hover{border-color:var(--blue);color:var(--blue)}.incident-body-map-actions button:disabled{opacity:.4;cursor:not-allowed}.incident-body-map-toolbar p{display:flex;gap:.4rem;align-items:center;margin:0;color:#7b899a;font-size:.68rem}.incident-body-map-toolbar p i{color:var(--blue)}.incident-body-map-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.45rem;margin:0;padding:0;list-style:none}.incident-body-map-list li{padding:.55rem .7rem;border-radius:9px;background:#edf3f8;color:#3f5269;font-size:.69rem;font-weight:700}.incident-body-map-list li:not(.is-empty):before{content:counter(list-item);display:inline-grid;place-items:center;width:18px;height:18px;margin-right:.45rem;border-radius:50%;background:#e11d48;color:#fff;font-size:.58rem}.incident-body-map-list .is-empty{grid-column:1/-1;color:#8794a4;font-weight:600;text-align:center}
     @media(max-width:1023px){.incident-form-card{padding:2rem}.incident-stepper__label{display:none}.incident-stepper{margin-bottom:1.35rem}.incident-progress__copy [data-step-name]{display:inline}.incident-progress__copy [data-step-name]:before{content:"·";margin-right:.55rem;color:#c3cdd9}.incident-options{grid-template-columns:repeat(2,minmax(0,1fr))}.incident-options--compact{grid-template-columns:repeat(3,minmax(0,1fr))}}
     @media(max-width:767px){.incident-form-area{margin-top:0;padding:4rem 0 4.5rem}.incident-intro{margin-bottom:2rem}.incident-shell{border-radius:20px}.incident-form-card{padding:1.35rem}.incident-stepper{display:none}.incident-progress{margin-bottom:1.8rem}.incident-progress__meter{flex-direction:column;align-items:stretch;gap:.7rem}.incident-progress__copy{justify-content:space-between}.incident-actions{flex-wrap:wrap;gap:.7rem;margin-top:1.6rem}.incident-button,.incident-submit{padding:.9rem 1.5rem}.incident-submit{flex:1 1 100%}.incident-grid--2,.incident-grid--3,.incident-options,.incident-investigation-grid{grid-template-columns:1fr}.incident-options--compact{grid-template-columns:repeat(3,minmax(0,1fr))}.incident-span-2{grid-column:auto}.incident-section-heading h2{font-size:1.3rem}.incident-section-heading>span{width:40px;height:40px}.incident-progress__copy{font-size:.68rem}.incident-body-map-heading{align-items:flex-start}.incident-body-map-toolbar{align-items:flex-start;flex-direction:column}.incident-body-map-list{grid-template-columns:1fr}.incident-body-map-count{min-width:65px}.incident-body-marker{width:26px;height:26px}}
+
+    /*
+     * Mobile + tablet only (<=1024px); desktop is unchanged.
+     * iOS Safari zooms the page when a field under 16px is focused, so form
+     * fields use 16px here. Empty date inputs on iOS also collapse to no
+     * height; give them the same box as the text fields.
+     */
+    @media (max-width: 1024px) {
+        .incident-intro h2 {
+            font-size: clamp(1.875rem, 1.2rem + 2.6vw, 2.75rem);
+        }
+
+        .incident-intro p {
+            font-size: clamp(1rem, 0.94rem + 0.3vw, 1.125rem);
+        }
+
+        .incident-page .incident-form-card .incident-input {
+            font-size: 16px;
+        }
+
+        .incident-page .incident-form-card input[type="date"].incident-input {
+            -webkit-appearance: none;
+            appearance: none;
+            min-height: 50px;
+            text-align: left;
+        }
+
+        .incident-page .incident-form-card input[type="date"].incident-input::-webkit-date-and-time-value {
+            text-align: left;
+        }
+    }
+
+    /* Small phones: nested panels left too little room for the fields. */
+    @media (max-width: 479.98px) {
+        .incident-page .incident-form-card {
+            padding: 1.1rem;
+        }
+
+        .incident-page .incident-subsection {
+            padding: 1rem;
+            border-radius: 14px;
+        }
+
+        .incident-page .incident-section-heading h2 {
+            font-size: 1.15rem;
+        }
+    }
 </style>
 
 <script>

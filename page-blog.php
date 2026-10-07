@@ -4,21 +4,57 @@ Template Name: Blog Page
 */
 get_header(); ?>
 
-<section class="py-24 bg-slate-50/40 overflow-hidden">
+<style>
+    /*
+     * Mobile + tablet only (<=1024px); desktop keeps the Tailwind values in the
+     * markup. Two-class selectors outrank Tailwind utilities.
+     */
+    @media (max-width: 1024px) {
+        .blog-page.blog-page {
+            padding-top: clamp(3rem, 2rem + 4vw, 5rem);
+            padding-bottom: clamp(3rem, 2rem + 4vw, 5rem);
+        }
+
+        .blog-page .blog-head {
+            margin-bottom: clamp(2rem, 1.5rem + 2vw, 3rem);
+        }
+
+        .blog-page .blog-title {
+            font-size: clamp(1.875rem, 1.2rem + 2.6vw, 2.75rem);
+            line-height: 1.15;
+        }
+
+        .blog-page .blog-grid {
+            gap: clamp(1.25rem, 0.9rem + 1.4vw, 2rem);
+        }
+    }
+
+    @media (max-width: 639.98px) {
+        .blog-page .blog-card-body {
+            padding: 1.5rem;
+        }
+
+        .blog-page .blog-card-media {
+            height: 13rem;
+        }
+    }
+</style>
+
+<section class="blog-page py-24 bg-slate-50/40 overflow-hidden">
     <div class="max-w-7xl mx-auto px-6 lg:px-8">
 
         <!-- Header Section -->
-        <div class="flex flex-col md:flex-row md:items-end justify-between mb-16 pb-6 border-b border-slate-200/60 gap-6">
+        <div class="blog-head flex flex-col md:flex-row md:items-end justify-between mb-16 pb-6 border-b border-slate-200/60 gap-6">
             <div class="max-w-3xl">
                 <p class="text-xs font-bold uppercase tracking-widest text-primary mb-3">Insights & Community</p>
-                <h1 class="text-4xl md:text-5xl font-semibold tracking-tight text-slate-900 leading-tight">
+                <h1 class="blog-title text-4xl md:text-5xl font-semibold tracking-tight text-slate-900 leading-tight">
                     Latest Blogs from <span class="text-primary font-bold">Ozland Care</span>
                 </h1>
             </div>
         </div>
 
         <!-- Premium Card Grid -->
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div class="blog-grid grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
 
             <?php
             $args = array(
@@ -35,7 +71,7 @@ get_header(); ?>
                     <article class="group flex flex-col bg-white rounded-2xl overflow-hidden border border-slate-200/60 shadow-[0_2px_8px_-3px_rgba(0,0,0,0.05)] hover:shadow-[0_20px_40px_-15px_rgba(0,0,0,0.08)] hover:border-slate-300/80 transition-all duration-500 relative">
 
                         <!-- Image Container -->
-                        <div class="relative h-60 overflow-hidden bg-slate-100">
+                        <div class="blog-card-media relative h-60 overflow-hidden bg-slate-100">
                             <?php if (has_post_thumbnail()) : ?>
                                 <img src="<?php the_post_thumbnail_url('medium_large'); ?>"
                                     alt="<?php the_title_attribute(); ?>"
@@ -60,7 +96,7 @@ get_header(); ?>
                         </div>
 
                         <!-- Card Body Content -->
-                        <div class="p-7 flex flex-col flex-grow">
+                        <div class="blog-card-body p-7 flex flex-col flex-grow">
 
                             <!-- Metadata Grid Row -->
                             <div class="flex items-center space-x-2.5 mb-4 text-slate-400 text-[11px] font-semibold uppercase tracking-wider">

@@ -47,9 +47,50 @@ get_header();
     .premium-accordion[open] .plus-icon {
         transform: rotate(45deg);
     }
+
+    /*
+     * Mobile + tablet only (<=1024px); desktop keeps the Tailwind values in the
+     * markup. Two-class selectors outrank Tailwind utilities, and clamp() scales
+     * type smoothly from a 320px phone to a 1024px tablet.
+     */
+    @media (max-width: 1024px) {
+        .ndis-info-page .ndis-hero-title {
+            font-size: clamp(2.25rem, 1rem + 5vw, 4rem);
+            line-height: 1;
+            margin-bottom: clamp(1.5rem, 1rem + 2vw, 2.5rem);
+        }
+
+        .ndis-info-page .ndis-hero-lead {
+            font-size: clamp(1.0625rem, 0.95rem + 0.55vw, 1.375rem);
+            line-height: 1.65;
+            padding-left: clamp(1rem, 0.6rem + 1.6vw, 2rem);
+        }
+
+        .ndis-info-page .ndis-h2 {
+            font-size: clamp(1.75rem, 1.1rem + 2.6vw, 2.75rem);
+            line-height: 1.2;
+        }
+
+        .ndis-info-page .ndis-section {
+            padding-top: clamp(3rem, 2rem + 4vw, 4.5rem);
+            padding-bottom: clamp(3rem, 2rem + 4vw, 4.5rem);
+        }
+
+        .ndis-info-page .ndis-section--faq {
+            padding-top: clamp(2.5rem, 1.75rem + 3vw, 4rem);
+        }
+
+        .ndis-info-page .ndis-faq-head {
+            margin-bottom: clamp(2rem, 1.5rem + 2vw, 3rem);
+        }
+
+        .ndis-info-page .ndis-faq-grid {
+            gap: clamp(1.5rem, 1rem + 2vw, 2.5rem);
+        }
+    }
 </style>
 
-<div class="bg-[#fcfdff] font-display text-[#1a1a1a] antialiased">
+<div class="ndis-info-page bg-[#fcfdff] font-display text-[#1a1a1a] antialiased">
 
     <header class="relative pt-10 pb-14 lg:pt-20 lg:pb-20 overflow-hidden">
         <div class="absolute top-0 right-0 w-1/2 h-full bg-slate-50 -skew-x-12 translate-x-1/4 z-0"></div>
@@ -62,10 +103,10 @@ get_header();
                         <span class="h-px w-10 bg-primary"></span>
                         <span class="text-xs font-black uppercase tracking-[0.3em] text-primary">Trusted NDIS Support Australia</span>
                     </div>
-                    <h2 class="text-4xl md:text-6xl lg:text-7xl font-black leading-[0.9] mb-12 text-balance tracking-tighter">
+                    <h2 class="ndis-hero-title text-4xl md:text-6xl lg:text-7xl font-black leading-[0.9] mb-12 text-balance tracking-tighter">
                         NDIS <span class="italic font-serif font-medium text-primary">Information</span>
                     </h2>
-                    <p class="text-xl lg:text-2xl text-slate-950 font-light leading-relaxed max-w-5xl border-l-4 border-blue pl-8">
+                    <p class="ndis-hero-lead text-xl lg:text-2xl text-slate-950 font-light leading-relaxed max-w-5xl border-l-4 border-blue pl-8">
                         Navigating the National Disability Insurance Scheme (NDIS) can feel complex. At Ozland Care, we’re here to simplify the process and support you every step of the way. Our goal is to help you access the right services so you can live more independently, confidently, and comfortably.
                     </p>
                 </div>
@@ -73,10 +114,10 @@ get_header();
         </div>
     </header>
 
-    <section class="py-20">
+    <section class="ndis-section py-20">
         <div class="container mx-auto px-6 max-w-7xl">
 
-            <h2 class="text-4xl lg:text-5xl font-extrabold mb-6 leading-tight text-slate-900">
+            <h2 class="ndis-h2 text-4xl lg:text-5xl font-extrabold mb-6 leading-tight text-slate-900">
                 Understanding the NDIS and <br />
                 <span class="text-blue">How Ozland Care Supports You</span>
             </h2>
@@ -118,19 +159,19 @@ get_header();
     </section>
 
 
-    <section class="py-12 lg:py-20 bg-white">
+    <section class="ndis-section ndis-section--faq py-12 lg:py-20 bg-white">
         <div class="container mx-auto px-6 max-w-6xl">
 
-            <div class="text-center mb-16">
+            <div class="ndis-faq-head text-center mb-16">
                 <span class="text-primary font-black uppercase tracking-[0.5em] text-[10px] mb-4 block">
                     Knowledge Base
                 </span>
-                <h2 class="text-4xl lg:text-5xl font-black tracking-tight text-blue">
+                <h2 class="ndis-h2 text-4xl lg:text-5xl font-black tracking-tight text-blue">
                     Frequently Asked Questions About the NDIS
                 </h2>
             </div>
 
-            <div class="grid md:grid-cols-2 gap-12 text-slate-950 lg:text-lg">
+            <div class="ndis-faq-grid grid md:grid-cols-2 gap-12 text-slate-950 lg:text-lg">
 
                 <!-- LEFT COLUMN -->
                 <div class="space-y-6">

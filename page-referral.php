@@ -310,6 +310,53 @@ get_header();
             grid-template-columns: repeat(4, minmax(0, 1fr));
         }
     }
+
+    /*
+     * Mobile + tablet only (<=1024px); desktop is unchanged.
+     */
+    @media (max-width: 1024px) {
+        .referral-page-intro h1 {
+            font-size: clamp(1.875rem, 1.2rem + 2.6vw, 2.75rem);
+        }
+
+        .referral-page-intro p {
+            font-size: clamp(1rem, 0.94rem + 0.3vw, 1.125rem);
+        }
+
+        /*
+         * iOS Safari renders an empty date input with no height and lets it
+         * overflow its column; give it the same box as the text fields.
+         */
+        .referral-form-shell input[type="date"].referral-input {
+            -webkit-appearance: none;
+            appearance: none;
+            display: block;
+            min-height: 3.25rem;
+            text-align: left;
+        }
+
+        .referral-form-shell input[type="date"].referral-input::-webkit-date-and-time-value {
+            text-align: left;
+        }
+    }
+
+    /* Small tablets: four referral-type buttons are too narrow below 768px. */
+    @media (min-width: 640px) and (max-width: 767.98px) {
+        .referral-form-shell .referral-choice-group {
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+    }
+
+    @media (max-width: 639px) {
+        .referral-page-intro {
+            padding-top: 3rem;
+        }
+
+        /* Full-width submit is easier to tap than a right-aligned button. */
+        .referral-form-shell .referral-submit {
+            width: 100%;
+        }
+    }
 </style>
 
 <script>

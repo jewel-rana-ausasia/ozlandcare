@@ -222,6 +222,16 @@ function ozlandcare_output_critical_banner_css()
 			}
 		}
 
+		/*
+		 * Tablets 768-1023px (iPad mini/Air): a little taller than the 300px
+		 * md height. The element selector outranks Tailwind's md:min-h-[300px].
+		 */
+		@media (min-width: 768px) and (max-width: 1023.98px) {
+			section.content-banner-shell {
+				min-height: 325px;
+			}
+		}
+
 		@media (max-width: 640px) {
 			.content-banner-logo {
 				right: 1rem;
