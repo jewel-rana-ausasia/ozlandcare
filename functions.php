@@ -421,8 +421,8 @@ function ozlandcare_output_critical_image_preload()
 		$desktop_image = get_template_directory_uri() . '/assets/images/slider/slide-image-1.jpg';
 		$mobile_image = get_template_directory_uri() . '/assets/images/slider/mobile-slide-1.jpg';
 
-		echo '<link rel="preload" as="image" href="' . esc_url($desktop_image) . '" media="(min-width: 1025px)" fetchpriority="high">' . "\n";
-		echo '<link rel="preload" as="image" href="' . esc_url($mobile_image) . '" media="(max-width: 1024px)" fetchpriority="high">' . "\n";
+		echo '<link rel="preload" as="image" href="' . esc_url($desktop_image) . '" media="(min-width: 1025px) and (orientation: landscape), (min-width: 1367px)" fetchpriority="high">' . "\n";
+		echo '<link rel="preload" as="image" href="' . esc_url($mobile_image) . '" media="(max-width: 1024px), (max-width: 1366px) and (orientation: portrait)" fetchpriority="high">' . "\n";
 		return;
 	}
 

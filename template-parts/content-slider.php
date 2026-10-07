@@ -50,7 +50,7 @@ $slides = [
     <div class="hero-slider-media absolute inset-0 z-0">
         <picture>
             <source
-                media="(min-width:1025px)"
+                media="(min-width:1025px) and (orientation:landscape), (min-width:1367px)"
                 srcset="<?= esc_url($slides[0]['image']); ?>">
             <img
                 src="<?= esc_url($slides[0]['mobile_image']); ?>"
@@ -112,13 +112,13 @@ $slides = [
 
     <div class="hero-slider-nav absolute bottom-10 right-6 lg:left-auto lg:right-20 z-40 flex flex-row lg:flex-col items-center gap-10">
         <div class="flex flex-col items-center gap-4">
-            <span class="text-[10px] font-bold text-white/30 uppercase tracking-[0.3em] rotate-0 lg:-rotate-90 origin-center mb-0 lg:mb-12">Scroll</span>
-            <div class="w-px h-20 bg-white/10 relative overflow-hidden hidden lg:block">
+            <span class="hero-slider-scroll text-[10px] font-bold text-white/30 uppercase tracking-[0.3em] rotate-0 lg:-rotate-90 origin-center mb-0 lg:mb-12">Scroll</span>
+            <div class="hero-slider-progress w-px h-20 bg-white/10 relative overflow-hidden hidden lg:block">
                 <div id="progressFill" class="absolute top-0 left-0 w-full bg-primary h-0 transition-all"></div>
             </div>
         </div>
 
-        <div class="flex lg:flex-col gap-4">
+        <div class="hero-slider-arrows flex lg:flex-col gap-4">
             <button id="prevSlide" class="hero-nav-btn w-10 h-10 lg:w-14 lg:h-14 flex items-center justify-center rounded-full border border-white/10 text-white backdrop-blur-xl hover:bg-blue hover:border-blue transition-all duration-500 group">
                 <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24" class="group-hover:-translate-x-1 transition-transform">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M15 19l-7-7 7-7" />

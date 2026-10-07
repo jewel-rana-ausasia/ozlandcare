@@ -369,7 +369,9 @@ function ozlandcare_output_critical_hero_css()
 			background-size: cover;
 		}
 
-		@media (min-width: 1025px) {
+		/* Same switch as the <picture> source: portrait tablets keep the portrait photo. */
+		@media (min-width: 1025px) and (orientation: landscape),
+		(min-width: 1367px) {
 			.hero-slider-shell {
 				background-image: url("<?php echo esc_attr($desktop_preview); ?>");
 			}
@@ -698,37 +700,132 @@ function ozlandcare_output_critical_hero_css()
 			}
 		}
 
-		/* Mobile + Tablet */
+		/*
+		 * Mobile + Tablet: anchor the badge bottom-right, just above the slider
+		 * controls, and slide it in horizontally only. The old
+		 * translate(50%, ...) pushed half of the badge past the right edge,
+		 * where the shell's overflow:hidden cropped it.
+		 */
 		@media (max-width: 1024px) {
 			.slider-logo {
-				top: 75%;
-				right: 10%;
-				transform: translate(50%, -50%) translateX(100%);
-				width: 180px;
-				max-width: 55vw;
+				top: auto;
+				right: 1.5rem;
+				bottom: 6.5rem;
+				transform: translateX(120%);
+				width: min(160px, 18vw, 22vh);
+				min-width: 72px;
+				max-width: none;
 				animation-name: slideInFromRightNarrow;
 			}
+		}
 
-			@keyframes slideInFromRightNarrow {
-				from {
-					transform: translate(50%, -50%) translateX(120%);
-					opacity: 0;
-				}
+		/*
+		 * Top level rather than inside a media query, so the portrait-tablet
+		 * block below (wider than 1024px) can use it too.
+		 */
+		@keyframes slideInFromRightNarrow {
+			from {
+				transform: translateX(120%);
+				opacity: 0;
+			}
 
-				to {
-					transform: translate(50%, -50%) translateX(0);
-					opacity: 1;
-				}
+			to {
+				transform: translateX(0);
+				opacity: 1;
+			}
+		}
+
+		/*
+		 * Portrait tablets 1024-1366px wide (iPad Pro, iPad Pro 13"): use the
+		 * same layout as iPad mini instead of the desktop one. Tailwind's lg:
+		 * utilities match here too, so each selector carries two classes to
+		 * outrank them. Landscape and desktop screens never match this block.
+		 */
+		@media (min-width: 1024px) and (max-width: 1366px) and (orientation: portrait) {
+			.hero-slider-shell .hero-slide-inner {
+				max-width: none;
+				padding-left: 2.5rem;
+				padding-right: 2.5rem;
+			}
+
+			.hero-slider-shell .hero-slide-title {
+				font-size: 3.5rem;
+			}
+
+			.hero-slider-shell .hero-slide-desc-row {
+				flex-direction: column;
+			}
+
+			.hero-slider-shell .hero-slider-nav {
+				left: auto;
+				right: 2.5rem;
+				bottom: 2.5rem;
+				flex-direction: row;
+			}
+
+			.hero-slider-nav .hero-slider-scroll {
+				margin-bottom: 0;
+				transform: none;
+			}
+
+			.hero-slider-nav .hero-slider-progress {
+				display: none;
+			}
+
+			.hero-slider-nav .hero-slider-arrows {
+				flex-direction: row;
+			}
+
+			.hero-slider-nav .hero-nav-btn {
+				width: 2.5rem;
+				height: 2.5rem;
+			}
+
+			.hero-slider-shell .slider-logo {
+				top: auto;
+				right: 2.5rem;
+				bottom: 8.5rem;
+				transform: translateX(120%);
+				width: min(200px, 22vh);
+				max-width: none;
+				animation-name: slideInFromRightNarrow;
+			}
+		}
+
+		/*
+		 * Tablets 641-1023px (iPad mini/Air, Surface Pro): let the copy use the
+		 * full width instead of the centred 640/768px container, which left a
+		 * wide empty gutter either side. Two classes outrank Tailwind's container.
+		 */
+		@media (min-width: 641px) and (max-width: 1023.98px) {
+			.hero-slider-shell .hero-slide-inner {
+				max-width: none;
+				padding-left: 1.5rem;
+				padding-right: 1.5rem;
+			}
+
+			.hero-slider-shell .slider-logo {
+				bottom: 8rem;
+				width: min(190px, 22vw, 22vh);
+			}
+		}
+
+		/* iPad landscape at exactly 1024px: the controls are a vertical column on the right. */
+		@media (min-width: 1024px) and (max-width: 1024px) and (orientation: landscape) {
+			.slider-logo {
+				right: 10.5rem;
+				bottom: 2.5rem;
+				width: min(130px, 22vh);
 			}
 		}
 
 		/* Mobile */
 		@media (max-width: 640px) {
 			.slider-logo {
-				top: 78%;
-				right: 4%;
-				width: 100px;
-				max-width: 28vw;
+				right: 1.5rem;
+				bottom: 6rem;
+				width: min(110px, 28vw, 20vh);
+				min-width: 64px;
 			}
 		}
 
@@ -746,6 +843,18 @@ function ozlandcare_output_critical_hero_css()
 
 			.slider-logo {
 				transform: translateY(-50%);
+			}
+
+			@media (max-width: 1024px) {
+				.slider-logo {
+					transform: none;
+				}
+			}
+
+			@media (min-width: 1024px) and (max-width: 1366px) and (orientation: portrait) {
+				.hero-slider-shell .slider-logo {
+					transform: none;
+				}
 			}
 		}
 	</style>
