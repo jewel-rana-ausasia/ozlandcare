@@ -902,8 +902,13 @@
          * Tablet improvements.
          */
         @media (min-width: 768px) and (max-width: 1535px) {
+            /*
+             * Match the header bar's container (px-4, capped at 1280px) so the
+             * menu lines up with the logo instead of sitting in a narrow
+             * centred column with wide empty gutters.
+             */
             #mobile-menu .mobile-menu-inner {
-                max-width: 760px;
+                max-width: none;
                 margin-left: auto;
                 margin-right: auto;
             }
@@ -922,6 +927,30 @@
             .mobile-services-view-all {
                 grid-column: 1 / -1;
             }
+        }
+
+        @media (min-width: 1280px) and (max-width: 1535px) {
+            #mobile-menu .mobile-menu-inner {
+                max-width: 1280px;
+            }
+        }
+
+        /*
+         * Below 1280px Tailwind's .container snaps to 640/768/1024px and
+         * centres, so between those steps the logo and menu button sat inside
+         * wide empty gutters. Let the header bars run full width there instead,
+         * and give the slide-down menu the same 1rem gutter as the header so
+         * the menu links line up with the logo. Desktop (1280px+) is unchanged.
+         */
+        @media (max-width: 1279.98px) {
+            #masthead .container {
+                max-width: none;
+            }
+        }
+
+        #mobile-menu .mobile-menu-inner {
+            padding-left: 1rem;
+            padding-right: 1rem;
         }
 
         /*
