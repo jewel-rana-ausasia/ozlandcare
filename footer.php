@@ -7,7 +7,7 @@
 ?>
 
 <footer class="bg-blue text-white relative overflow-hidden border-t border-slate-800">
-	<div class="container mx-auto max-w-7xl px-6 lg:px-10 xl:px-0 relative z-10">
+	<div class="container mx-auto max-w-7xl 2xl:max-w-screen-2xl px-6 lg:px-10 xl:px-4 relative z-10">
 
 		<!-- Main footer content -->
 		<div class="py-16 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10 lg:gap-8">

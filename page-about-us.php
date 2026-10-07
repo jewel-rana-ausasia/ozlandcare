@@ -103,12 +103,122 @@ get_header();
     html {
         scroll-behavior: smooth;
     }
+
+    /*
+     * Mobile + tablet only (<=1024px). Desktop keeps the Tailwind values in
+     * the markup. Every selector carries two classes so it outranks Tailwind's
+     * single-class utilities; type uses clamp() so it scales smoothly between
+     * a 320px phone and a 1024px tablet instead of jumping at breakpoints.
+     */
+    @media (max-width: 1024px) {
+        .about-page-section .about-h2 {
+            font-size: clamp(1.875rem, 1.2rem + 2.6vw, 2.75rem);
+            line-height: 1.15;
+        }
+
+        .about-page-section .about-h3 {
+            font-size: clamp(1.25rem, 1.1rem + 0.6vw, 1.5rem);
+            margin-bottom: 0.875rem;
+        }
+
+        .about-page-section .about-h4 {
+            font-size: clamp(1.125rem, 1rem + 0.4vw, 1.25rem);
+            margin-bottom: 0.625rem;
+        }
+
+        .about-page-section .about-lead {
+            font-size: clamp(1rem, 0.94rem + 0.3vw, 1.125rem);
+            line-height: 1.7;
+        }
+
+        .about-page-section .about-story-title {
+            margin-bottom: 1.25rem;
+        }
+
+        .about-page-section .about-heading {
+            margin-bottom: 2.5rem;
+        }
+
+        .about-page-section .about-mission-text {
+            margin-bottom: 0;
+        }
+
+        .about-page-section .about-mission-icon {
+            margin-bottom: 1.5rem;
+        }
+
+        .about-page-section .about-value-icon {
+            margin-bottom: 1.5rem;
+        }
+
+        .about-page-section .about-testimonial-card {
+            padding: 1.75rem;
+        }
+    }
+
+    /* Mobile + tablet below the lg breakpoint, where the layouts stack. */
+    @media (max-width: 1023.98px) {
+
+        /* Tailwind's .container snaps to 640/768px and centres; run full width. */
+        .about-page-section .about-container {
+            max-width: none;
+        }
+
+        .about-page-section .about-story-grid {
+            gap: 2.5rem;
+        }
+
+        .about-page-section .about-mission-wrap,
+        .about-page-section .about-mission-card {
+            border-radius: 2rem;
+        }
+
+        .about-page-section .about-mission-card,
+        .about-page-section .about-value-card {
+            padding: 2rem;
+        }
+
+        .about-page-section .about-value-card {
+            border-radius: 1.75rem;
+        }
+    }
+
+    /*
+     * Tablet: a square full-width photo is taller than the screen, so use a
+     * landscape crop; and give the five value cards two columns (the last one
+     * spans both) instead of three narrow ones.
+     */
+    @media (min-width: 640px) and (max-width: 1023.98px) {
+        .about-page-section .about-story-img {
+            aspect-ratio: 4 / 3;
+        }
+
+        .about-page-section .about-values-grid {
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+
+        .about-page-section .about-values-grid > :last-child {
+            grid-column: 1 / -1;
+        }
+    }
+
+    @media (max-width: 639.98px) {
+
+        .about-page-section .about-mission-card,
+        .about-page-section .about-value-card {
+            padding: 1.5rem;
+        }
+
+        .about-page-section .about-testimonial-card {
+            padding: 1.5rem;
+        }
+    }
 </style>
 
 <!-- OUR STORY SECTION -->
-<section class="py-12 bg-white lg:py-24">
-    <div class="container mx-auto px-6">
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+<section class="about-page-section py-12 bg-white lg:py-24">
+    <div class="about-container container mx-auto px-6">
+        <div class="about-story-grid grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
 
             <!-- Image -->
             <div class="animate-slideInRight lg:order-2">
@@ -117,7 +227,7 @@ get_header();
                         alt="NDIS Disability Support Service in Australia"
                         width="712" height="590"
                         fetchpriority="high" decoding="async"
-                        class="w-full h-auto object-cover aspect-square lg:aspect-auto">
+                        class="about-story-img w-full h-auto object-cover aspect-square lg:aspect-auto">
                 </div>
             </div>
 
@@ -130,13 +240,14 @@ get_header();
                     </svg>
                 </div>
 
-                <h2 class="text-4xl lg:text-5xl font-bold text-[#0A1D37] mb-8 leading-tight">
+                <h2 class="about-h2 about-story-title text-4xl lg:text-5xl font-bold text-[#0A1D37] mb-8 leading-tight">
                     Who <span class="text-primary">We Are</span>
                 </h2>
 
-                <div class="space-y-3 text-slate-950 text-lg font-medium leading-relaxed max-w-2xl">
+                <div class="about-lead space-y-3 text-slate-950 text-lg font-medium leading-relaxed max-w-2xl">
                     <p>
                         Ozland Care provides disability and community services to plan-managed and self-managed Participants/ Clients, in the Greater Sydney area.
+                    </p>
                     <p>
                         We are a team of professionals, passionate about delivering high quality, compassionate and individualized care.
                     </p>
@@ -154,52 +265,52 @@ get_header();
 </section>
 
 <!-- MISSION & VISION SECTION -->
-<section class="relative py-10 md:py-20 bg-blue overflow-hidden">
+<section class="about-page-section relative py-10 md:py-20 bg-blue overflow-hidden">
     <div class="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none">
         <div class="absolute -top-48 -left-48 w-[30rem] h-[30rem] bg-[#0096c7]/10 rounded-full blur-[100px]"></div>
         <div class="absolute -bottom-48 -right-48 w-[30rem] h-[30rem] bg-[#0077b6]/10 rounded-full blur-[100px]"></div>
     </div>
 
     <div class="container max-w-7xl mx-auto px-6 relative z-10">
-        <div class="max-w-3xl mx-auto text-center mb-16">
-            <h2 class="text-4xl md:text-5xl font-extrabold text-white mb-6 leading-tight tracking-tight">
+        <div class="about-heading max-w-3xl mx-auto text-center mb-16">
+            <h2 class="about-h2 text-4xl md:text-5xl font-extrabold text-white mb-6 leading-tight tracking-tight">
                 Mission & Vision
             </h2>
             <div class="w-20 h-1 bg-primary mx-auto mb-6 rounded-full"></div>
-            <p class="text-white text-lg max-w-3xl mx-auto">
+            <p class="about-lead text-white text-lg max-w-3xl mx-auto">
                 At Ozland Care, we are committed to empowering every individual to live independently, confidently and with purpose.
             </p>
         </div>
 
         <div class="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-10">
-            <div class="group relative p-[1px] rounded-[2.5rem] hover:bg-gradient-to-b hover:from-[#0096c7] hover:to-transparent transition-all duration-700 shadow-2xl">
-                <div class="bg-white backdrop-blur-2xl rounded-[2.5rem] p-10 h-full flex flex-col items-start border border-white/5">
-                    <div class="mb-8 relative">
+            <div class="group relative p-[1px] rounded-[2.5rem] hover:bg-gradient-to-b hover:from-[#0096c7] hover:to-transparent transition-all duration-700 shadow-2xl about-mission-wrap">
+                <div class="about-mission-card bg-white backdrop-blur-2xl rounded-[2.5rem] p-10 h-full flex flex-col items-start border border-white/5">
+                    <div class="about-mission-icon mb-8 relative">
                         <div class="w-16 h-16 bg-[#0096c7]/10 rounded-2xl flex items-center justify-center transition-transform duration-500 group-hover:rotate-[12deg] border border-[#0096c7]/20">
                             <i class="fas fa-bullseye text-3xl text-primary"></i>
                         </div>
                         <div class="absolute -inset-4 bg-[#0096c7]/20 blur-2xl opacity-0 group-hover:opacity-100 transition-opacity"></div>
                     </div>
 
-                    <h3 class="text-2xl font-bold text-slate-900 mb-5">Our Mission</h3>
-                    <p class="text-slate-950 leading-relaxed text-lg mb-8">
+                    <h3 class="about-h3 text-2xl font-bold text-slate-900 mb-5">Our Mission</h3>
+                    <p class="about-lead about-mission-text text-slate-950 leading-relaxed text-lg mb-8">
                         Bring real and positive change to the way disability is perceived, by providing a person-centred, strength based and active support to individuals with disabilities, with the sole intention to improve the quality of their lives.
                     </p>
 
                 </div>
             </div>
 
-            <div class="group relative p-[1px] rounded-[2.5rem] bg-white/5 hover:bg-gradient-to-b hover:from-[#00b4d8] hover:to-transparent transition-all duration-700 shadow-2xl">
-                <div class="bg-white backdrop-blur-2xl rounded-[2.5rem] p-10 h-full flex flex-col items-start border border-white/5">
-                    <div class="mb-8 relative">
+            <div class="group relative p-[1px] rounded-[2.5rem] bg-white/5 hover:bg-gradient-to-b hover:from-[#00b4d8] hover:to-transparent transition-all duration-700 shadow-2xl about-mission-wrap">
+                <div class="about-mission-card bg-white backdrop-blur-2xl rounded-[2.5rem] p-10 h-full flex flex-col items-start border border-white/5">
+                    <div class="about-mission-icon mb-8 relative">
                         <div class="w-16 h-16 bg-[#00b4d8]/10 rounded-2xl flex items-center justify-center transition-transform duration-500 group-hover:-rotate-[12deg] border border-[#00b4d8]/20">
                             <i class="fas fa-lightbulb text-3xl text-primary"></i>
                         </div>
                         <div class="absolute -inset-4 bg-[#00b4d8]/20 blur-2xl opacity-0 group-hover:opacity-100 transition-opacity"></div>
                     </div>
 
-                    <h3 class="text-2xl font-bold text-slate-900 mb-5">Our Vision</h3>
-                    <p class="text-slate-950 leading-relaxed text-lg mb-8">
+                    <h3 class="about-h3 text-2xl font-bold text-slate-900 mb-5">Our Vision</h3>
+                    <p class="about-lead about-mission-text text-slate-950 leading-relaxed text-lg mb-8">
                         We strive to lead by example, deliver high quality, compassionate and individualized care, which will enhance independence, choice and control for our participants, their families and carers to the next level.
                     </p>
 
@@ -210,20 +321,20 @@ get_header();
 </section>
 
 <!-- CORE VALUES SECTION -->
-<section class="bg-white py-10 md:py-20 relative overflow-hidden">
+<section class="about-page-section bg-white py-10 md:py-20 relative overflow-hidden">
     <div class="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-gray-200 to-transparent"></div>
 
-    <div class="container mx-auto px-6">
-        <div class="flex flex-col items-center text-center justify-center mb-16">
+    <div class="about-container container mx-auto px-6">
+        <div class="about-heading flex flex-col items-center text-center justify-center mb-16">
             <div class="max-w-2xl">
                 <h2 class="text-primary font-bold tracking-[0.2em] uppercase text-sm mb-4">Our Foundation</h2>
-                <h3 class="text-4xl md:text-5xl font-black text-gray-900 leading-tight">
+                <h3 class="about-h2 text-4xl md:text-5xl font-black text-gray-900 leading-tight">
                     Our Core Values
                 </h3>
             </div>
         </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-3 xl:grid-cols-5 gap-5">
+        <div class="about-values-grid grid grid-cols-1 md:grid-cols-3 xl:grid-cols-5 gap-5">
 
             <?php
             $values = [
@@ -256,7 +367,7 @@ get_header();
             ?>
 
             <?php foreach ($values as $i => $v): ?>
-                <div class="group relative bg-gray-50 rounded-[2rem] p-10 transition-all duration-500 hover:bg-white hover:shadow-[0_30px_60px_-15px_rgba(13,148,136,0.15)] overflow-hidden shadow-md">
+                <div class="about-value-card group relative bg-gray-50 rounded-[2rem] p-10 transition-all duration-500 hover:bg-white hover:shadow-[0_30px_60px_-15px_rgba(13,148,136,0.15)] overflow-hidden shadow-md">
 
                     <!-- Background Icon -->
                     <div class="absolute -top-6 -right-6 text-primary/5 group-hover:text-primary/10 transition-colors">
@@ -264,12 +375,12 @@ get_header();
                     </div>
 
                     <!-- Main Icon -->
-                    <div class="w-14 h-14 bg-white rounded-2xl flex items-center justify-center mb-10 shadow-sm group-hover:shadow-primary/10 group-hover:bg-primary transition-all duration-300">
+                    <div class="about-value-icon w-14 h-14 bg-white rounded-2xl flex items-center justify-center mb-10 shadow-sm group-hover:shadow-primary/10 group-hover:bg-primary transition-all duration-300">
                         <i class="<?= $v['icon'] ?> text-primary group-hover:text-white text-2xl"></i>
                     </div>
 
                     <!-- Title -->
-                    <h4 class="text-xl font-bold text-gray-900 mb-4">
+                    <h4 class="about-h4 text-xl font-bold text-gray-900 mb-4">
                         <?= esc_html($v['title']) ?>
                     </h4>
 
@@ -365,7 +476,7 @@ $testimonials = [
     }
 </style>
 
-<section class="relative py-10 lg:py-20 bg-white overflow-hidden">
+<section class="about-page-section relative py-10 lg:py-20 bg-white overflow-hidden">
     <div class="absolute inset-0 z-0 pointer-events-none">
         <div class="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full opacity-[0.03]" style="background-image: radial-gradient(#000 1px, transparent 1px); background-size: 40px 40px;"></div>
         <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-[#F3E8FA] rounded-full blur-[120px]"></div>
@@ -373,10 +484,10 @@ $testimonials = [
 
     <div class="relative z-10 container max-w-7xl mx-auto px-6 xl:px-0">
         <div class="text-center mb-5">
-            <h2 class="text-4xl lg:text-5xl font-bold text-slate-900 mb-6 tracking-tight">
+            <h2 class="about-h2 text-4xl lg:text-5xl font-bold text-slate-900 mb-6 tracking-tight">
                 What Do Our <span class="italic font-serif text-[#6F2C91]">Client's Say?</span>
             </h2>
-            <p class="text-slate-950 text-lg max-w-3xl mx-auto leading-relaxed">
+            <p class="about-lead text-slate-950 text-lg max-w-3xl mx-auto leading-relaxed">
                 Real stories from participants and families whose lives have been transformed by our care.
             </p>
         </div>
@@ -385,7 +496,7 @@ $testimonials = [
             <div class="swiper-wrapper">
                 <?php foreach ($testimonials as $t): ?>
                     <div class="swiper-slide">
-                        <div class="group relative flex flex-col flex-1 h-full p-8 lg:p-10 rounded-2xl bg-primary transition-all duration-500 hover:-translate-y-2">
+                        <div class="about-testimonial-card group relative flex flex-col flex-1 h-full p-8 lg:p-10 rounded-2xl bg-primary transition-all duration-500 hover:-translate-y-2">
 
                             <div class="mb-6">
                                 <svg class="w-10 h-10 text-blue opacity-90" fill="currentColor" viewBox="0 0 24 24">
