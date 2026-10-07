@@ -194,35 +194,39 @@ function ozlandcare_output_critical_banner_css()
 			}
 		}
 
+		/*
+		 * Mobile + Tablet: keep the badge vertically centred and fully inside
+		 * the banner's right edge. The old translate(50%, ...) pushed half of
+		 * it past the edge, where the shell's overflow:hidden cropped it.
+		 */
 		@media (max-width: 1024px) {
 			.content-banner-logo {
-				top: 70%;
-				right: 8%;
-				transform: translate(50%, -50%) translateX(100%);
-				width: 180px;
-				max-width: 55vw;
-				animation-name: ozlandcareBannerLogoInNarrow;
+				top: 50%;
+				right: 1.5rem;
+				transform: translateY(-50%) translateX(120%);
+				width: min(170px, 18vw);
+				min-width: 90px;
+				max-width: none;
+				animation-name: ozlandcareBannerLogoIn;
 			}
+		}
 
-			@keyframes ozlandcareBannerLogoInNarrow {
-				from {
-					transform: translate(50%, -50%) translateX(120%);
-					opacity: 0;
-				}
-
-				to {
-					transform: translate(50%, -50%) translateX(0);
-					opacity: 1;
-				}
+		/*
+		 * Below 1024px Tailwind's .container snaps to 640/768px and centres,
+		 * leaving wide empty gutters on in-between widths; let the title row
+		 * run full width and keep its own px-6/px-10 gutter.
+		 */
+		@media (max-width: 1023.98px) {
+			.content-banner-shell .content-banner-inner {
+				max-width: none;
 			}
 		}
 
 		@media (max-width: 640px) {
 			.content-banner-logo {
-				top: 78%;
-				right: 4%;
-				width: 90px;
-				max-width: 28vw;
+				right: 1rem;
+				width: min(96px, 26vw);
+				min-width: 72px;
 			}
 		}
 

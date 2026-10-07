@@ -9,6 +9,20 @@ get_header();
 ?>
 
 <style>
+    /*
+     * Below 1280px Tailwind's .container snaps to 640/768/1024px and centres,
+     * so on in-between widths (Surface Pro 10 portrait is 960px) every section
+     * sat inside ~100px empty gutters on top of its own padding. Let the
+     * homepage containers run full width there; each keeps its own px-* gutter.
+     * The id outranks Tailwind's .container and max-w-* utilities. Desktop
+     * (1280px+) is unchanged.
+     */
+    @media (max-width: 1279.98px) {
+        #page .container {
+            max-width: none;
+        }
+    }
+
     .assessment-stage {
         isolation: isolate;
         background:
@@ -981,7 +995,7 @@ $values = [
 <section class="py-10 lg:py-20 bg-white relative overflow-hidden">
     <div class="absolute top-0 right-0 w-1/2 h-full bg-slate-50/50 -skew-x-12 translate-x-1/4 pointer-events-none"></div>
 
-    <div class="container mx-auto px-6 relative z-10">
+    <div class="container mx-auto max-w-7xl px-6 lg:px-10 xl:px-0 relative z-10">
         <div class="flex flex-col lg:flex-row gap-12 lg:gap-20 items-start">
 
             <div class="w-full lg:w-1/2">
@@ -1034,7 +1048,7 @@ $values = [
         <div class="absolute bottom-0 right-1/4 w-96 h-96 bg-slate-100 rounded-full blur-[100px] opacity-60"></div>
     </div>
 
-    <div class="relative z-10 container mx-auto px-6 lg:px-10">
+    <div class="relative z-10 container mx-auto max-w-7xl px-6 lg:px-10 xl:px-0">
 
         <div class="text-center mb-10">
             <h2 class="text-4xl lg:text-5xl font-bold text-[#0f172a] mb-6 tracking-tight">Our Values</h2>
@@ -1076,7 +1090,7 @@ $values = [
             ?>
 
             <?php foreach ($values as $i => $v): ?>
-                <div class="group relative bg-gray-50 rounded-[2rem] p-10 transition-all duration-500 hover:bg-white hover:shadow-[0_30px_60px_-15px_rgba(13,148,136,0.15)] overflow-hidden shadow-md">
+                <div class="group relative bg-gray-50 rounded-[2rem] p-10 2xl:p-7 transition-all duration-500 hover:bg-white hover:shadow-[0_30px_60px_-15px_rgba(13,148,136,0.15)] overflow-hidden shadow-md">
 
                     <!-- Background Icon -->
                     <div class="absolute -top-6 -right-6 text-primary/5 group-hover:text-primary/10 transition-colors">
