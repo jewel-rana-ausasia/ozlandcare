@@ -439,6 +439,7 @@ function ozlandcare_output_critical_image_preload()
 }
 
 require_once get_template_directory() . '/inc/critical-css.php';
+require_once get_template_directory() . '/inc/site-contact.php';
 require_once get_template_directory() . '/inc/referral-cf7.php';
 require_once get_template_directory() . '/inc/contact-cf7.php';
 require_once get_template_directory() . '/inc/feedback-cf7.php';

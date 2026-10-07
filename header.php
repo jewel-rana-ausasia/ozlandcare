@@ -1007,32 +1007,28 @@
                     <div class="flex items-center gap-4 md:gap-6">
                         <div class="flex items-center space-x-2 group cursor-pointer">
                             <i class="fa-solid fa-envelope group-hover:opacity-100"></i>
-                            <a href="mailto:admin@ozlandcare.com.au" class="text-white font-semibold hover:text-blue transition-colors">
-                                admin@ozlandcare.com.au
+                            <a href="<?php echo esc_url(ozlandcare_email_href()); ?>" class="text-white font-semibold hover:text-blue transition-colors">
+                                <?php echo esc_html(ozlandcare_email()); ?>
                             </a>
                         </div>
 
                         <div class="flex items-center space-x-2 group cursor-pointer">
                             <i class="fa-solid fa-phone group-hover:opacity-100"></i>
-                            <a href="tel:1300951223" class="text-white font-semibold hover:text-blue transition-colors">
-                                1300 951 223
+                            <a href="<?php echo esc_url(ozlandcare_phone_href()); ?>" class="text-white font-semibold hover:text-blue transition-colors">
+                                <?php echo esc_html(ozlandcare_phone()); ?>
                             </a>
                         </div>
                     </div>
 
-                    <div class="flex items-center space-x-3">
-                        <span class="hidden sm:inline-block text-[11px] text-white uppercase font-semibold tracking-widest">
-                            Follow Us
-                        </span>
+                    <?php if (ozlandcare_social_links()) : ?>
+                        <div class="flex items-center space-x-3">
+                            <span class="hidden sm:inline-block text-[11px] text-white uppercase font-semibold tracking-widest">
+                                Follow Us
+                            </span>
 
-                        <a href="#" aria-label="Facebook" class="w-6 h-6 flex items-center justify-center rounded-full bg-[#1877F2] hover:bg-[#166FE5] transition-all border border-[#1877F2]">
-                            <i class="fab fa-facebook-f text-xs font-semibold"></i>
-                        </a>
-
-                        <a href="#" aria-label="Instagram" class="w-6 h-6 flex items-center justify-center rounded-full bg-[#E4405F] hover:bg-[#D93250] transition-all border border-[#E4405F]">
-                            <i class="fab fa-instagram text-xs font-semibold"></i>
-                        </a>
-                    </div>
+                            <?php ozlandcare_render_social_links('w-6 h-6', 'text-xs font-semibold'); ?>
+                        </div>
+                    <?php endif; ?>
 
                 </div>
             </div>

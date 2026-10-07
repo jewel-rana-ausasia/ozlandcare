@@ -261,7 +261,7 @@
 
                         <div class="space-y-8 mb-12">
                             <!-- Phone -->
-                            <a href="tel:1300951223" class="flex items-center gap-6 group">
+                            <a href="<?php echo esc_url(ozlandcare_phone_href()); ?>" class="flex items-center gap-6 group">
                                 <div class="w-14 h-14 rounded-2xl bg-slate-50 flex items-center justify-center group-hover:bg-blue transition-all duration-300">
                                     <svg class="w-6 h-6 text-primary group-hover:text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path>
@@ -269,12 +269,12 @@
                                 </div>
                                 <div>
                                     <span class="block text-[0.6rem] uppercase tracking-widest text-slate-400 font-bold mb-1">Phone</span>
-                                    <span class="text-xl font-bold text-slate-900 group-hover:text-blue">1300 951 223</span>
+                                    <span class="text-xl font-bold text-slate-900 group-hover:text-blue"><?php echo esc_html(ozlandcare_phone()); ?></span>
                                 </div>
                             </a>
 
                             <!-- Email -->
-                            <a href="mailto:admin@ozlandcare.com.au" class="flex items-center gap-6 group">
+                            <a href="<?php echo esc_url(ozlandcare_email_href()); ?>" class="flex items-center gap-6 group">
                                 <div class="w-14 h-14 rounded-2xl bg-slate-50 flex items-center justify-center group-hover:bg-blue transition-all duration-300">
                                     <svg class="w-6 h-6 text-primary group-hover:text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
@@ -282,7 +282,7 @@
                                 </div>
                                 <div>
                                     <span class="block text-[0.6rem] uppercase tracking-widest text-slate-400 font-bold mb-1">Email</span>
-                                    <span class="text-lg font-bold text-slate-900 group-hover:text-blue">admin@ozlandcare.com.au</span>
+                                    <span class="text-lg font-bold text-slate-900 group-hover:text-blue"><?php echo esc_html(ozlandcare_email()); ?></span>
                                 </div>
                             </a>
                         </div>

@@ -63,14 +63,14 @@ get_header();
                     <div class="flex-grow">
                         <h3 class="text-xs font-black uppercase tracking-[0.4em] text-teal-800/40 mb-3">Location</h3>
                         <address class="not-italic text-sm text-base text-slate-950 font-semibold leading-relaxed space-y-2">
-                            <p>Suite 101, Level 14, 3 Parramatta Square</p>
-                            <p>153 Macquarie St, Parramatta NSW 2150</p>
-                            <p>PO Box 1001, Green Valley NSW 2168</p>
+                            <?php foreach (ozlandcare_address_lines() as $ozl_address_line) : ?>
+                                <p><?php echo esc_html($ozl_address_line); ?></p>
+                            <?php endforeach; ?>
                         </address>
                     </div>
 
                     <div class="mt-5">
-                        <a href="https://share.google/x057P0vkYzs1N8xva" target="_blank" rel="noopener" class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-primary text-white group-hover:w-full group-hover:rounded-xl group-hover:bg-primaryDark transition-all duration-500 overflow-hidden">
+                        <a href="<?php echo esc_url(ozlandcare_contact('map_url')); ?>" target="_blank" rel="noopener" class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-primary text-white group-hover:w-full group-hover:rounded-xl group-hover:bg-primaryDark transition-all duration-500 overflow-hidden">
                             <span class="hidden group-hover:block text-xs font-bold tracking-widest mr-2 opacity-0 group-hover:opacity-100 transition-opacity">DIRECTIONS</span>
                             <i class="fas fa-arrow-right text-xs"></i>
                         </a>
@@ -92,11 +92,11 @@ get_header();
                     <div class="flex-grow">
                         <h3 class="text-xs font-black uppercase tracking-[0.4em] text-teal-800/40 mb-3 block">Connect</h3>
                         <h4 class="text-2xl font-bold text-slate-800 mb-4 tracking-tight">Email Support</h4>
-                        <a href="mailto:admin@ozlandcare.com.au" class="lg:text-lg text-primary font-bold group-hover:text-primaryDark transition-colors">admin@ozlandcare.com.au</a>
+                        <a href="<?php echo esc_url(ozlandcare_email_href()); ?>" class="lg:text-lg text-primary font-bold group-hover:text-primaryDark transition-colors"><?php echo esc_html(ozlandcare_email()); ?></a>
                     </div>
 
                     <div class="mt-5">
-                        <a href="mailto:admin@ozlandcare.com.au" class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-primary text-white group-hover:w-full group-hover:rounded-xl group-hover:bg-primaryDark transition-all duration-500 overflow-hidden">
+                        <a href="<?php echo esc_url(ozlandcare_email_href()); ?>" class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-primary text-white group-hover:w-full group-hover:rounded-xl group-hover:bg-primaryDark transition-all duration-500 overflow-hidden">
                             <span class="hidden group-hover:block text-xs font-bold tracking-widest mr-2 opacity-0 group-hover:opacity-100 transition-opacity">SEND MAIL</span>
                             <i class="fas fa-arrow-right text-xs"></i>
                         </a>
@@ -118,11 +118,11 @@ get_header();
                     <div class="flex-grow">
                         <h3 class="text-xs font-black uppercase tracking-[0.4em] text-teal-800/40 mb-3 block">Hotline</h3>
                         <h4 class="text-2xl font-bold text-slate-800 mb-4 tracking-tight">Call Anytime</h4>
-                        <a href="tel:1300951223" class="block text-lg text-primary font-black group-hover:text-primaryDark">1300 951 223</a>
+                        <a href="<?php echo esc_url(ozlandcare_phone_href()); ?>" class="block text-lg text-primary font-black group-hover:text-primaryDark"><?php echo esc_html(ozlandcare_phone()); ?></a>
                     </div>
 
                     <div class="mt-5">
-                        <a href="tel:0416247317" class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-primary text-white group-hover:w-full group-hover:rounded-xl group-hover:bg-primaryDark transition-all duration-500 overflow-hidden">
+                        <a href="<?php echo esc_url(ozlandcare_phone_href()); ?>" class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-primary text-white group-hover:w-full group-hover:rounded-xl group-hover:bg-primaryDark transition-all duration-500 overflow-hidden">
                             <span class="hidden group-hover:block text-xs font-bold tracking-widest mr-2 opacity-0 group-hover:opacity-100 transition-opacity">CALL NOW</span>
                             <i class="fas fa-arrow-right text-xs"></i>
                         </a>
@@ -172,7 +172,7 @@ get_header();
 
                                 <div>
                                     <p class="text-white text-xs uppercase tracking-widest mb-1">Call Us</p>
-                                    <a href="tel:1300951223" class="text-base font-bold transition-colors block">1300 951 223</a>
+                                    <a href="<?php echo esc_url(ozlandcare_phone_href()); ?>" class="text-base font-bold transition-colors block"><?php echo esc_html(ozlandcare_phone()); ?></a>
                                 </div>
                             </div>
 
@@ -183,7 +183,7 @@ get_header();
 
                                 <div>
                                     <p class="text-white text-xs uppercase tracking-widest mb-1">Email Us</p>
-                                    <a href="mailto:admin@ozlandcare.com.au" class="text-lg font-bold transition-colors block break-all">admin@ozlandcare.com.au</a>
+                                    <a href="<?php echo esc_url(ozlandcare_email_href()); ?>" class="text-lg font-bold transition-colors block break-all"><?php echo esc_html(ozlandcare_email()); ?></a>
                                 </div>
                             </div>
 
@@ -194,7 +194,7 @@ get_header();
 
                                 <div>
                                     <p class="text-white text-xs uppercase tracking-widest mb-1">VISIT US (By appointments only)</p>
-                                    <a href="https://share.google/x057P0vkYzs1N8xva" target="_blank" rel="noopener" class="text-base font-bold transition-colors duration-300">Suite 101, Level 14, 3 Parramatta Square, 153 Macquarie St, Parramatta, NSW 2150 PO Box 1001, Green Valley NSW 2168</a>
+                                    <a href="<?php echo esc_url(ozlandcare_contact('map_url')); ?>" target="_blank" rel="noopener" class="text-base font-bold transition-colors duration-300"><?php echo esc_html(implode(', ', ozlandcare_address_lines())); ?></a>
                                 </div>
                             </div>
 
@@ -221,7 +221,7 @@ get_header();
         <link rel="preconnect" href="https://khms0.googleapis.com" crossorigin>
 
         <div class="w-full h-96 md:h-[550px] rounded-2xl overflow-hidden shadow-xl bg-[#e8e6e1]">
-            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3932.088083646574!2d151.0051514!3d-33.8157505!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6b12952eab3543f3%3A0x4861d417509fc72c!2sOzland%20Care!5e1!3m2!1sen!2sbd!4v1772598650253!5m2!1sen!2sbd" width="100%" height="100%" style="border:0;display:block;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Ozland Care office location"></iframe>
+            <iframe src="<?php echo esc_url(ozlandcare_contact('map_embed_url')); ?>" width="100%" height="100%" style="border:0;display:block;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Ozland Care office location"></iframe>
         </div>
     </section>
 

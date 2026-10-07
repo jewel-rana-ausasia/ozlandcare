@@ -309,7 +309,7 @@ get_header(); ?>
 						</p>
 
 						<div class="relative z-10">
-							<a href="tel:1300951223"
+							<a href="<?php echo esc_url(ozlandcare_phone_href()); ?>"
 								class="w-full inline-flex items-center justify-center bg-blue text-white font-black text-xs uppercase tracking-widest py-4 rounded-xl hover:bg-sky-500 transition-all shadow-lg shadow-sky-900/50">
 
 								Call Now

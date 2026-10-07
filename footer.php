@@ -36,19 +36,12 @@
 					<?php bloginfo('description'); ?>
 				</p>
 
-				<!-- Social icons -->
-				<div class="flex items-center gap-3 pt-2">
-
-					<!-- Facebook -->
-					<a href="#" aria-label="Facebook" class="w-8 h-8 flex items-center justify-center rounded-full bg-[#1877F2] hover:bg-[#166FE5] transition-all border border-[#1877F2]">
-						<i class="fab fa-facebook-f text-sm"></i>
-					</a>
-					<!-- Instagram -->
-					<a href="#" aria-label="Instagram" class="w-8 h-8 flex items-center justify-center rounded-full bg-[#E4405F] hover:bg-[#D93250] transition-all border border-[#E4405F]">
-						<i class="fab fa-instagram text-sm"></i>
-					</a>
-
-				</div>
+				<!-- Social icons (Appearance > Customize > Contact & Social) -->
+				<?php if (ozlandcare_social_links()) : ?>
+					<div class="flex items-center gap-3 pt-2">
+						<?php ozlandcare_render_social_links('w-8 h-8', 'text-sm'); ?>
+					</div>
+				<?php endif; ?>
 
 			</div>
 
@@ -122,9 +115,7 @@
 							<i class="fas fa-location-dot text-sm"></i>
 						</span>
 						<p class="hover:text-white/80 transition duration-300">
-							Suite 101, Level 14, 3 Parramatta Square,<br>
-							153 Macquarie St, Parramatta, NSW 2150<br>
-							PO Box 1001, Green Valley NSW 2168
+							<?php echo ozlandcare_address_html(); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- each line is escaped. ?>
 						</p>
 					</div>
 
@@ -133,9 +124,9 @@
 						<span class="text-white w-8 h-8 flex items-center justify-center rounded-full bg-white/10 hover:bg-primary transition-all border border-white/10">
 							<i class="fas fa-phone text-sm"></i>
 						</span>
-						<a href="tel:1300951223"
+						<a href="<?php echo esc_url(ozlandcare_phone_href()); ?>"
 							class="hover:text-white/80 transition duration-300">
-							1300 951 223
+							<?php echo esc_html(ozlandcare_phone()); ?>
 						</a>
 					</div>
 
@@ -144,21 +135,23 @@
 						<span class="text-white w-8 h-8 flex items-center justify-center rounded-full bg-white/10 hover:bg-primary transition-all border border-white/10">
 							<i class="fas fa-envelope text-sm"></i>
 						</span>
-						<a href="mailto:admin@ozlandcare.com.au"
+						<a href="<?php echo esc_url(ozlandcare_email_href()); ?>"
 							class="hover:text-white/80 transition duration-300">
-							admin@ozlandcare.com.au
+							<?php echo esc_html(ozlandcare_email()); ?>
 						</a>
 					</div>
 
 					<!-- ABN -->
-					<div class="flex items-center gap-3">
-						<span class="text-white w-8 h-8 flex items-center justify-center rounded-full bg-white/10 hover:bg-primary transition-all border border-white/10">
-							<i class="fas fa-id-card text-xs"></i>
-						</span>
-						<p>
-							ABN: <span class="hover:text-white/80 transition duration-300">12 345 678 901</span>
-						</p>
-					</div>
+					<?php if (ozlandcare_contact('abn')) : ?>
+						<div class="flex items-center gap-3">
+							<span class="text-white w-8 h-8 flex items-center justify-center rounded-full bg-white/10 hover:bg-primary transition-all border border-white/10">
+								<i class="fas fa-id-card text-xs"></i>
+							</span>
+							<p>
+								ABN: <span class="hover:text-white/80 transition duration-300"><?php echo esc_html(ozlandcare_contact('abn')); ?></span>
+							</p>
+						</div>
+					<?php endif; ?>
 
 				</div>
 			</div>
