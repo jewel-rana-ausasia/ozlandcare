@@ -64,6 +64,50 @@ $service_image   = function_exists('get_field') ? get_field('service_hero_image'
         border-radius: 40px 100px 40px 40px;
     }
 
+    /*
+     * Intro photo on tablets only; phones and desktop keep the Tailwind
+     * aspect classes. Two classes outrank sm:/lg:aspect-[...] on the element.
+     *
+     * Stacked tablets (iPad mini 768, iPad Air 820, Surface Pro 912): the
+     * full-width 4:3 photo was 540-650px tall. Set the height directly (not
+     * aspect-ratio + max-height, which shrinks the width once capped) so the
+     * photo stays full width and simply gets shorter.
+     */
+    @media (min-width: 641px) and (max-width: 1023.98px) {
+        .service-details-content .service-intro-media {
+            aspect-ratio: auto;
+            height: clamp(25rem, 63vw, 34rem);
+            /* Slightly wider than the text: reach 12px into each side gutter. */
+            margin-left: -0.75rem;
+            margin-right: -0.75rem;
+        }
+
+        /* Intro text spans the same width as the full-width photo below it. */
+        .service-details-content .service-intro-copy,
+        .service-details-content .support-intro-copy {
+            max-width: none;
+        }
+    }
+
+    /*
+     * Phones + tablets: crop the intro photo from the top so heads and faces
+     * stay in frame. The img also has scale-105, so grow it from the top edge
+     * too or the zoom would still trim the top.
+     */
+    @media (max-width: 1024px) {
+        .service-details-content .service-intro-media img {
+            object-position: top;
+            transform-origin: top;
+        }
+    }
+
+    /* iPad Pro portrait (1024): beside the text, a 3:2 frame instead of a square. */
+    @media (min-width: 1024px) and (max-width: 1024px) {
+        .service-details-content .service-intro-media {
+            aspect-ratio: 3 / 2;
+        }
+    }
+
     /* Custom Numbering for Process Section */
     .step-number {
         -webkit-text-stroke: 1px rgba(0, 102, 102, 0.2);
@@ -267,13 +311,13 @@ $service_image   = function_exists('get_field') ? get_field('service_hero_image'
             <div class="grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
 
                 <!-- Text Content -->
-                <div class="lg:col-span-6 order-2 lg:order-1 reveal">
+                <div class="lg:col-span-6 order-1 lg:order-1 reveal">
                     <h1 class="font-serif text-3xl lg:text-5xl text-slate-900 leading-[1.1] mb-8">
                         <?php echo $service_title ? wp_kses_post($service_title) : 'Navigating Your <span class="italic text-[#006666]">Next Chapter</span> with Confidence.'; ?>
                     </h1>
 
                     <!-- Force text color slate-900 -->
-                    <div class="max-w-2xl space-y-6 text-base text-slate-950 font-normal leading-relaxed">
+                    <div class="service-intro-copy max-w-2xl space-y-6 text-base text-slate-950 font-normal leading-relaxed">
                         <?php
                         if ($service_details) {
                             echo wp_kses_post($service_details);
@@ -295,10 +339,10 @@ $service_image   = function_exists('get_field') ? get_field('service_hero_image'
                 </div>
 
                 <!-- Image Content -->
-                <div class="lg:col-span-6 order-1 lg:order-2 reveal" style="transition-delay: 0.2s">
+                <div class="lg:col-span-6 order-2 lg:order-2 reveal" style="transition-delay: 0.2s">
                     <div class="relative">
                         <div class="absolute -top-10 -right-10 w-64 h-64 bg-teal-50 rounded-full mix-blend-multiply filter blur-3xl opacity-70"></div>
-                        <div class="image-mask overflow-hidden shadow-[0_32px_64px_-16px_rgba(0,0,0,0.2)] aspect-[16/10] sm:aspect-[4/3] lg:aspect-[1/1] relative">
+                        <div class="service-intro-media image-mask overflow-hidden shadow-[0_32px_64px_-16px_rgba(0,0,0,0.2)] aspect-[16/10] sm:aspect-[4/3] lg:aspect-[1/1] relative">
                             <?php
                             if ($service_image) :
                                 $service_image_url = esc_url($service_image['url']);

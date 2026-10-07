@@ -8,7 +8,7 @@
                 <!-- Left Info Panel -->
                 <div class="relative bg-primary p-6 text-white sm:p-8 md:p-10 lg:w-1/2 lg:p-20">
                     <div class="relative z-10">
-                        <span class="mb-4 block text-[0.55rem] font-bold uppercase tracking-[0.25em] text-white sm:mb-5 sm:text-[0.6rem] sm:tracking-[0.3em] lg:mb-6 lg:text-[0.65rem]">Partnering in your journey</span>
+                        <span class="mb-4 block text-[0.6875rem] font-bold uppercase tracking-[0.25em] text-white sm:mb-5 sm:text-[0.6875rem] sm:tracking-[0.3em] lg:mb-6 lg:text-[0.65rem]">Partnering in your journey</span>
                         <h3 class="mb-5 font-serif text-3xl leading-tight sm:mb-6 sm:text-4xl lg:mb-8 lg:text-5xl">
                             Get in Touch <br />
                             <span class="text-blue">with Ozland Care</span>
@@ -28,7 +28,7 @@
 
                 <!-- Right Contact Panel -->
                 <div class="flex flex-col justify-center bg-white p-6 sm:p-8 md:p-10 lg:w-1/2 lg:p-20">
-                    <div class="max-w-md mx-auto w-full">
+                    <div class="max-w-none lg:max-w-md mx-auto w-full">
                         <h4 class="mb-4 text-xl font-bold text-slate-900 sm:mb-5 lg:mb-6 lg:text-2xl">Connect with our Team</h4>
                         <p class="mb-7 text-sm leading-relaxed text-slate-950 sm:mb-8 lg:mb-10 lg:text-base">
                             Our dedicated Customer Experience Team is ready to help you explore how our services meet your unique needs.
@@ -43,7 +43,7 @@
                                     </svg>
                                 </div>
                                 <div class="min-w-0">
-                                    <span class="mb-1 block text-[0.55rem] font-bold uppercase tracking-widest text-slate-400 lg:text-[0.6rem]">Mobile</span>
+                                    <span class="mb-1 block text-[0.6875rem] font-bold uppercase tracking-widest text-slate-400 lg:text-[0.6rem]">Mobile</span>
                                     <span class="text-base font-bold text-slate-900 sm:text-lg lg:text-xl">1300 951 223</span>
                                 </div>
                             </a>
@@ -56,7 +56,7 @@
                                     </svg>
                                 </div>
                                 <div class="min-w-0">
-                                    <span class="mb-1 block text-[0.55rem] font-bold uppercase tracking-widest text-slate-400 lg:text-[0.6rem]">Email</span>
+                                    <span class="mb-1 block text-[0.6875rem] font-bold uppercase tracking-widest text-slate-400 lg:text-[0.6rem]">Email</span>
                                     <span class="break-all text-sm font-bold text-slate-900 sm:text-base lg:text-lg">admin@ozlandcare.com.au</span>
                                 </div>
                             </a>

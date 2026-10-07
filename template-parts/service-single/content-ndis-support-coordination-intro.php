@@ -118,7 +118,7 @@ $support_intro_html = $has_support_coordination_layout
     <div class="container mx-auto px-6 max-w-7xl">
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
 
-            <div class="lg:col-span-6 order-2 lg:order-1 reveal">
+            <div class="lg:col-span-6 order-1 lg:order-1 reveal">
                 <h1 class="font-serif text-3xl lg:text-5xl text-slate-900 leading-[1.1] mb-8">
                     <?php echo $service_title ? wp_kses_post($service_title) : 'Support Coordination'; ?>
                 </h1>
@@ -127,10 +127,10 @@ $support_intro_html = $has_support_coordination_layout
                 </div>
             </div>
 
-            <div class="lg:col-span-6 order-1 lg:order-2 reveal" style="transition-delay: 0.2s">
+            <div class="lg:col-span-6 order-2 lg:order-2 reveal" style="transition-delay: 0.2s">
                 <div class="relative">
                     <div class="absolute -top-10 -right-10 w-64 h-64 bg-primary/10 rounded-full mix-blend-multiply filter blur-3xl opacity-70"></div>
-                    <div class="image-mask overflow-hidden shadow-[0_32px_64px_-16px_rgba(0,0,0,0.2)] aspect-[16/10] sm:aspect-[3/2] lg:aspect-[4/3] relative">
+                    <div class="service-intro-media image-mask overflow-hidden shadow-[0_32px_64px_-16px_rgba(0,0,0,0.2)] aspect-[16/10] sm:aspect-[3/2] lg:aspect-[4/3] relative">
                         <?php if ($service_image) : ?>
                             <img
                                 src="<?php echo esc_url($service_image['url']); ?>"

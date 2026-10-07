@@ -11,14 +11,47 @@ get_header();
 <main id="primary" class="site-main bg-slate-50">
 
     <!-- Info Cards Section -->
-    <section class="relative w-full mx-auto px-4 py-24 bg-slate-50/50 overflow-hidden">
+    <style>
+    /*
+     * Mobile + tablet only (<1024px); desktop keeps the Tailwind values.
+     * The three info cards use p-8 / p-10 / p-10, which left the Location
+     * card's content out of line with the other two once they stack.
+     */
+    @media (max-width: 1023.98px) {
+        .contact-info-section.contact-info-section {
+            padding-top: clamp(3rem, 2rem + 4vw, 4.5rem);
+            padding-bottom: clamp(3rem, 2rem + 4vw, 4.5rem);
+        }
+
+        .contact-info-grid .contact-info-card {
+            padding: 1.75rem;
+        }
+
+        .contact-info-section .contact-info-grid {
+            gap: 1.25rem;
+        }
+    }
+
+    /* Tablet: Location across the top, Email and Phone side by side. */
+    @media (min-width: 640px) and (max-width: 1023.98px) {
+        .contact-info-section .contact-info-grid {
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+
+        .contact-info-grid > :first-child {
+            grid-column: 1 / -1;
+        }
+    }
+</style>
+
+<section class="contact-info-section relative w-full mx-auto px-4 py-24 bg-slate-50/50 overflow-hidden">
         <div class="absolute top-0 right-0 w-1/2 h-full bg-slate-50/50 -skew-x-12 translate-x-1/4 pointer-events-none"></div>
 
-        <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-3 gap-8 items-stretch relative z-10">
+        <div class="contact-info-grid max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-3 gap-8 items-stretch relative z-10">
 
             <!-- Card 1 -->
             <div class="group relative flex h-full">
-                <div class="relative w-full backdrop-blur-xl bg-white/40 rounded-3xl p-8 border border-primary/10 shadow-[0_8px_32px_0_rgba(13,148,136,0.05)] transition-all duration-500 hover:bg-white/60 hover:shadow-[0_30px_60px_rgba(15,23,42,0.05)] hover:border-primary/20 flex flex-col overflow-hidden">
+                <div class="contact-info-card relative w-full backdrop-blur-xl bg-white/40 rounded-3xl p-8 border border-primary/10 shadow-[0_8px_32px_0_rgba(13,148,136,0.05)] transition-all duration-500 hover:bg-white/60 hover:shadow-[0_30px_60px_rgba(15,23,42,0.05)] hover:border-primary/20 flex flex-col overflow-hidden">
                     <div class="absolute top-0 -inset-full h-full w-1/2 z-5 block transform -skew-x-12 bg-gradient-to-r from-transparent via-white/40 to-transparent group-hover:animate-[shine_1.5s_ease-in-out] pointer-events-none"></div>
 
                     <div class="mb-5">
@@ -47,7 +80,7 @@ get_header();
 
             <!-- Card 2 -->
             <div class="group relative flex h-full">
-                <div class="relative w-full backdrop-blur-xl bg-white/40 rounded-3xl p-10 border border-primary/10 shadow-[0_8px_32px_0_rgba(13,148,136,0.05)] transition-all duration-500 hover:bg-white/60 hover:shadow-[0_30px_60px_rgba(15,23,42,0.05)] hover:border-primary/20 flex flex-col overflow-hidden">
+                <div class="contact-info-card relative w-full backdrop-blur-xl bg-white/40 rounded-3xl p-10 border border-primary/10 shadow-[0_8px_32px_0_rgba(13,148,136,0.05)] transition-all duration-500 hover:bg-white/60 hover:shadow-[0_30px_60px_rgba(15,23,42,0.05)] hover:border-primary/20 flex flex-col overflow-hidden">
                     <div class="absolute top-0 -inset-full h-full w-1/2 z-5 block transform -skew-x-12 bg-gradient-to-r from-transparent via-white/40 to-transparent group-hover:animate-[shine_1.5s_ease-in-out] pointer-events-none"></div>
 
                     <div class="mb-5">
@@ -73,7 +106,7 @@ get_header();
 
             <!-- Card 3 -->
             <div class="group relative flex h-full">
-                <div class="relative w-full backdrop-blur-xl bg-white/40 rounded-3xl p-10 border border-primary/10 shadow-[0_8px_32px_0_rgba(13,148,136,0.05)] transition-all duration-500 hover:bg-white/60 hover:shadow-[0_30px_60px_rgba(15,23,42,0.05)] hover:border-primary/20 flex flex-col overflow-hidden">
+                <div class="contact-info-card relative w-full backdrop-blur-xl bg-white/40 rounded-3xl p-10 border border-primary/10 shadow-[0_8px_32px_0_rgba(13,148,136,0.05)] transition-all duration-500 hover:bg-white/60 hover:shadow-[0_30px_60px_rgba(15,23,42,0.05)] hover:border-primary/20 flex flex-col overflow-hidden">
                     <div class="absolute top-0 -inset-full h-full w-1/2 z-5 block transform -skew-x-12 bg-gradient-to-r from-transparent via-white/40 to-transparent group-hover:animate-[shine_1.5s_ease-in-out] pointer-events-none"></div>
 
                     <div class="mb-5">

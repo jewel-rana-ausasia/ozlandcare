@@ -380,6 +380,20 @@ get_header();
         .feedback-rating-hint {
             margin-left: 0;
         }
+
+        /*
+         * The shell drops its side padding here so the panels can run edge
+         * to edge; the submit row and response message need their own inset.
+         */
+        .feedback-actions {
+            padding-left: 1rem;
+            padding-right: 1rem;
+        }
+
+        .feedback-form-shell .wpcf7-response-output {
+            margin-left: 1rem !important;
+            margin-right: 1rem !important;
+        }
     }
 </style>
 

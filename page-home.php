@@ -23,6 +23,13 @@ get_header();
         }
     }
 
+    /* Tablet: five value cards in two columns - let the fifth span both. */
+    @media (min-width: 640px) and (max-width: 1023.98px) {
+        .home-values-grid > :last-child {
+            grid-column: 1 / -1;
+        }
+    }
+
     .assessment-stage {
         isolation: isolate;
         background:
@@ -1057,7 +1064,7 @@ $values = [
             </p>
         </div>
 
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-5 gap-5">
+        <div class="home-values-grid grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-5 gap-5">
 
             <?php
             $values = [

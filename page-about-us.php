@@ -168,6 +168,15 @@ get_header();
             gap: 2.5rem;
         }
 
+        /* Text first, photo second once the two columns stack. */
+        .about-story-grid .about-story-content {
+            order: 1;
+        }
+
+        .about-story-grid .about-story-media {
+            order: 2;
+        }
+
         .about-page-section .about-mission-wrap,
         .about-page-section .about-mission-card {
             border-radius: 2rem;
@@ -221,7 +230,7 @@ get_header();
         <div class="about-story-grid grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
 
             <!-- Image -->
-            <div class="animate-slideInRight lg:order-2">
+            <div class="about-story-media animate-slideInRight lg:order-2">
                 <div class="rounded-[2rem] overflow-hidden shadow-sm">
                     <img src="<?php echo get_template_directory_uri(); ?>/assets/images/about-us-main.jpg"
                         alt="NDIS Disability Support Service in Australia"
@@ -232,7 +241,7 @@ get_header();
             </div>
 
             <!-- Content -->
-            <div class="animate-slideInLeft lg:order-1">
+            <div class="about-story-content animate-slideInLeft lg:order-1">
                 <div class="flex items-center gap-2 mb-4">
                     <span class="text-primary font-semibold text-lg">About Us</span>
                     <svg class="w-4 h-4 text-primary transform -rotate-45" fill="none" stroke="currentColor" viewBox="0 0 24 24">

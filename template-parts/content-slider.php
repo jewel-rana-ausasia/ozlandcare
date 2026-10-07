@@ -80,7 +80,7 @@ $slides = [
                     <?php if (!empty($slide['subtitle'])): ?>
                         <div class="hero-slide-eyebrow slide-meta mb-6 flex items-center gap-4">
                             <span class="hero-slide-rule h-px w-8 md:w-12 bg-white/80"></span>
-                            <span class="hero-slide-eyebrow-text text-shadow-soft text-white tracking-[0.2em] uppercase text-[9px] md:text-xs"><?= $slide['subtitle'] ?></span>
+                            <span class="hero-slide-eyebrow-text text-shadow-soft text-white tracking-[0.2em] uppercase text-[10px] md:text-xs"><?= $slide['subtitle'] ?></span>
                         </div>
                     <?php endif; ?>
 
@@ -96,12 +96,12 @@ $slides = [
 
                     <div class="hero-slide-actions slide-meta flex flex-wrap gap-4 md:gap-6 items-center">
                         <a href="<?php echo esc_url(home_url('/about-us')); ?>"
-                            class="hero-btn group relative overflow-hidden px-4 py-2 sm:px-6 sm:py-3 md:px-10 md:py-5 border border-white/10 bg-primary text-white font-bold text-[8px] md:text-[10px] uppercase tracking-[0.3em] rounded-full transition-all hover:bg-blue hover:shadow-[0_0_30px_rgba(var(--primary-rgb),0.4)]">
+                            class="hero-btn group relative overflow-hidden px-4 py-2 sm:px-6 sm:py-3 md:px-10 md:py-5 border border-white/10 bg-primary text-white font-bold text-[10px] md:text-[10px] uppercase tracking-[0.3em] rounded-full transition-all hover:bg-blue hover:shadow-[0_0_30px_rgba(var(--primary-rgb),0.4)]">
                             <span class="relative z-10"><?= $slide['cta_primary'] ?></span>
                         </a>
 
                         <a href="<?php echo esc_url(home_url('/contact-us')); ?>"
-                            class="hero-btn px-4 py-2 sm:px-6 sm:py-3 md:px-10 md:py-5 border border-white/10 text-white font-bold text-[8px] md:text-[10px] uppercase tracking-[0.3em] rounded-full bg-primary hover:bg-blue backdrop-blur-md transition-all duration-500">
+                            class="hero-btn px-4 py-2 sm:px-6 sm:py-3 md:px-10 md:py-5 border border-white/10 text-white font-bold text-[10px] md:text-[10px] uppercase tracking-[0.3em] rounded-full bg-primary hover:bg-blue backdrop-blur-md transition-all duration-500">
                             <?= $slide['cta_secondary'] ?>
                         </a>
                     </div>

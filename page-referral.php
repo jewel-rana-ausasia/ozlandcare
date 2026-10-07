@@ -352,9 +352,20 @@ get_header();
             padding-top: 3rem;
         }
 
-        /* Full-width submit is easier to tap than a right-aligned button. */
+        /*
+         * Full-width submit is easier to tap than a right-aligned button. The
+         * shell has no side padding on phones (the panels run edge to edge),
+         * so the button and response message keep their own 1rem inset.
+         */
         .referral-form-shell .referral-submit {
-            width: 100%;
+            width: calc(100% - 2rem);
+            margin-left: 1rem;
+            margin-right: 1rem;
+        }
+
+        .referral-form-shell .wpcf7-response-output {
+            margin-left: 1rem !important;
+            margin-right: 1rem !important;
         }
     }
 </style>

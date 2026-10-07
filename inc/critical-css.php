@@ -245,6 +245,23 @@ function ozlandcare_output_critical_banner_css()
 		}
 
 		/*
+		 * Blog posts carry long titles (8+ words). At page-title size inside
+		 * the 42-58% column they broke onto 6-7 lines and filled the banner,
+		 * so on mobile + tablet give them a smaller fluid size and a wider
+		 * column that still stops short of the "We Deliver" badge.
+		 */
+		@media (max-width: 1024px) {
+			body.single .content-banner-shell .content-banner-title {
+				font-size: clamp(1.25rem, 0.85rem + 1.9vw, 2.5rem);
+				line-height: 1.2;
+			}
+
+			body.single .content-banner-shell .content-banner-copy {
+				max-width: 65%;
+			}
+		}
+
+		/*
 		 * Tablets 768-1023px (iPad mini/Air): a little taller than the 300px
 		 * md height. The element selector outranks Tailwind's md:min-h-[300px].
 		 */
@@ -355,6 +372,22 @@ function ozlandcare_output_critical_layout_css()
 
 		body {
 			padding-top: var(--site-header-height);
+		}
+
+		/*
+		 * Phones + tablets: never allow sideways scrolling. Slide-in
+		 * animations (e.g. About Us's translateX(50px) photo) briefly poke past
+		 * the right edge while the page loads; mobile browsers then widen the
+		 * layout viewport and the fixed header grows with it, so the whole
+		 * page could be nudged sideways. clip (unlike hidden) creates no
+		 * scroll container, so position: sticky keeps working.
+		 */
+		@media (max-width: 1024px) {
+
+			html,
+			body {
+				overflow-x: clip;
+			}
 		}
 	</style>
 <?php
@@ -537,7 +570,7 @@ function ozlandcare_output_critical_hero_css()
 
 		.hero-slide-eyebrow-text {
 			color: #fff;
-			font-size: 9px;
+			font-size: 10px;
 			letter-spacing: 0.2em;
 			text-transform: uppercase;
 		}
@@ -583,7 +616,7 @@ function ozlandcare_output_critical_hero_css()
 			border-radius: 9999px;
 			background-color: #5f2a7d;
 			color: #fff;
-			font-size: 8px;
+			font-size: 10px;
 			font-weight: 700;
 			letter-spacing: 0.3em;
 			text-transform: uppercase;

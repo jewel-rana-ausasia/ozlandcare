@@ -587,8 +587,21 @@
            MOBILE + TABLET NAVIGATION
         ========================================================== */
 
+        /*
+         * The menu drops down OVER the page instead of growing the header.
+         * It used to sit in normal flow inside the fixed header, so opening it
+         * made the header taller; the scripts that sync --site-header-height
+         * then pushed the body padding and the hero down by the menu's height.
+         * Absolutely positioned against #masthead (position: fixed), it hangs
+         * from the header's bottom edge and the header keeps its height.
+         */
         #mobile-menu {
-            max-height: calc(100vh - 72px);
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+            max-height: calc(100vh - var(--site-header-height));
+            max-height: calc(100dvh - var(--site-header-height));
             overflow-y: auto;
             overscroll-behavior: contain;
         }
