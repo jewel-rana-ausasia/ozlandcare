@@ -223,6 +223,28 @@ function ozlandcare_output_critical_banner_css()
 		}
 
 		/*
+		 * Slightly larger page titles on mobile + tablet. Two classes outrank
+		 * Tailwind's text-xl / sm:text-4xl / md:text-5xl on the <h1>.
+		 */
+		@media (max-width: 639.98px) {
+			.content-banner-shell .content-banner-title {
+				font-size: 1.5rem;
+			}
+		}
+
+		@media (min-width: 640px) and (max-width: 767.98px) {
+			.content-banner-shell .content-banner-title {
+				font-size: 2.5rem;
+			}
+		}
+
+		@media (min-width: 768px) and (max-width: 1023.98px) {
+			.content-banner-shell .content-banner-title {
+				font-size: 3.25rem;
+			}
+		}
+
+		/*
 		 * Tablets 768-1023px (iPad mini/Air): a little taller than the 300px
 		 * md height. The element selector outranks Tailwind's md:min-h-[300px].
 		 */
@@ -702,9 +724,19 @@ function ozlandcare_output_critical_hero_css()
 			}
 		}
 
+		/*
+		 * Desktop: line the slide copy up with the header bar, which uses the
+		 * same 1280px / 1536px container with a 1rem gutter. Two classes
+		 * outrank Tailwind's lg:px-20 on the element.
+		 */
 		@media (min-width: 1280px) {
 			.hero-slide-inner {
 				max-width: 1280px;
+			}
+
+			.hero-slider-shell .hero-slide-inner {
+				padding-left: 1rem;
+				padding-right: 1rem;
 			}
 		}
 

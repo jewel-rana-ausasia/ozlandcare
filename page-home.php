@@ -995,7 +995,7 @@ $values = [
 <section class="py-10 lg:py-20 bg-white relative overflow-hidden">
     <div class="absolute top-0 right-0 w-1/2 h-full bg-slate-50/50 -skew-x-12 translate-x-1/4 pointer-events-none"></div>
 
-    <div class="container mx-auto max-w-7xl px-6 lg:px-10 xl:px-0 relative z-10">
+    <div class="container mx-auto max-w-7xl 2xl:max-w-screen-2xl px-6 lg:px-10 xl:px-4 relative z-10">
         <div class="flex flex-col lg:flex-row gap-12 lg:gap-20 items-start">
 
             <div class="w-full lg:w-1/2">
@@ -1048,7 +1048,7 @@ $values = [
         <div class="absolute bottom-0 right-1/4 w-96 h-96 bg-slate-100 rounded-full blur-[100px] opacity-60"></div>
     </div>
 
-    <div class="relative z-10 container mx-auto max-w-7xl px-6 lg:px-10 xl:px-0">
+    <div class="relative z-10 container mx-auto max-w-7xl 2xl:max-w-screen-2xl px-6 lg:px-10 xl:px-4">
 
         <div class="text-center mb-10">
             <h2 class="text-4xl lg:text-5xl font-bold text-[#0f172a] mb-6 tracking-tight">Our Values</h2>
@@ -1090,7 +1090,7 @@ $values = [
             ?>
 
             <?php foreach ($values as $i => $v): ?>
-                <div class="group relative bg-gray-50 rounded-[2rem] p-10 2xl:p-7 transition-all duration-500 hover:bg-white hover:shadow-[0_30px_60px_-15px_rgba(13,148,136,0.15)] overflow-hidden shadow-md">
+                <div class="group relative bg-gray-50 rounded-[2rem] p-10 transition-all duration-500 hover:bg-white hover:shadow-[0_30px_60px_-15px_rgba(13,148,136,0.15)] overflow-hidden shadow-md">
 
                     <!-- Background Icon -->
                     <div class="absolute -top-6 -right-6 text-primary/5 group-hover:text-primary/10 transition-colors">
