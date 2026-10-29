@@ -7,6 +7,8 @@
 get_header();
 ?>
 
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;1,300&display=swap" rel="stylesheet">
+
 <style>
     /* Premium Typography */
     .font-display {
@@ -24,6 +26,12 @@ get_header();
         backdrop-filter: blur(20px);
         border: 1px solid rgba(255, 255, 255, 1);
         box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.03);
+    }
+
+    /* Fade the skewed hero panel out so it doesn't end in a hard edge */
+    .ndis-hero-panel {
+        -webkit-mask-image: linear-gradient(to bottom, #000 55%, transparent);
+        mask-image: linear-gradient(to bottom, #000 55%, transparent);
     }
 
     .border-gradient {
@@ -92,8 +100,8 @@ get_header();
 
 <div class="ndis-info-page bg-[#fcfdff] font-display text-[#1a1a1a] antialiased">
 
-    <header class="relative pt-10 pb-14 lg:pt-20 lg:pb-20 overflow-hidden">
-        <div class="absolute top-0 right-0 w-1/2 h-full bg-slate-50 -skew-x-12 translate-x-1/4 z-0"></div>
+    <header class="relative pt-10 pb-8 lg:pt-20 lg:pb-8 overflow-hidden">
+        <div class="ndis-hero-panel absolute top-0 right-0 w-1/2 h-full bg-slate-50 -skew-x-12 translate-x-1/4 z-0"></div>
         <div class="absolute top-1/2 left-10 w-64 h-64 bg-brand-primary opacity-[0.03] blur-[120px] rounded-full"></div>
 
         <div class="container mx-auto px-6 max-w-7xl relative z-10">
@@ -114,7 +122,7 @@ get_header();
         </div>
     </header>
 
-    <section class="ndis-section py-20">
+    <section class="ndis-section pt-8 pb-20 lg:pt-10">
         <div class="container mx-auto px-6 max-w-7xl">
 
             <h2 class="ndis-h2 text-4xl lg:text-5xl font-extrabold mb-6 leading-tight text-slate-900">
@@ -122,7 +130,7 @@ get_header();
                 <span class="text-blue">How Ozland Care Supports You</span>
             </h2>
 
-            <p class="text-slate-950 text-lg leading-relaxed mb-8">
+            <p class="text-slate-950 text-lg font-light leading-relaxed mb-8">
                 We make your NDIS journey easier to understand and manage, helping you move towards a more independent and fulfilling life.
             </p>
 
@@ -135,7 +143,7 @@ get_header();
                 </span>
             </div>
 
-            <div class="space-y-6 text-slate-950 lg:text-lg">
+            <div class="space-y-6 text-slate-950 font-light lg:text-lg">
 
                 <p>
                     If you're new to the NDIS (National Disability Insurance Scheme), it’s an Australian Government initiative designed to support people living with disability to live more independently and take part in everyday life.
@@ -171,7 +179,7 @@ get_header();
                 </h2>
             </div>
 
-            <div class="ndis-faq-grid grid md:grid-cols-2 gap-12 text-slate-950 lg:text-lg">
+            <div class="ndis-faq-grid grid md:grid-cols-2 gap-12 text-slate-950 font-light lg:text-lg">
 
                 <!-- LEFT COLUMN -->
                 <div class="space-y-6">
@@ -209,14 +217,8 @@ get_header();
                             The NDIS can be confusing at first, especially when it comes to understanding funding categories and how to use your plan effectively.
                         </p>
 
-                        <p class="mb-3">
-                            At Ozland Care, we aim to make the process simple, clear, and stress-free.
-                        </p>
-
-                        <h4 class="font-semibold mb-2">Clear, Practical Guidance</h4>
-
                         <p>
-                            We explain your NDIS plan in straightforward language, helping you understand what supports are available and how to make the most of them.
+                            At Ozland Care, we aim to make the process simple, clear, and stress-free.
                         </p>
                     </div>
 
@@ -224,6 +226,14 @@ get_header();
 
                 <!-- RIGHT COLUMN -->
                 <div class="space-y-6">
+
+                    <div>
+                        <h3 class="font-bold text-lg mb-3">Clear, Practical Guidance</h3>
+
+                        <p>
+                            We explain your NDIS plan in straightforward language, helping you understand what supports are available and how to make the most of them.
+                        </p>
+                    </div>
 
                     <div>
                         <h3 class="font-bold text-lg mb-3">How do I start receiving NDIS supports?</h3>

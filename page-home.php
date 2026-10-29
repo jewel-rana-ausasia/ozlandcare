@@ -811,7 +811,7 @@ get_header();
             if (!value) {
                 input.classList.add('input-error');
                 input.focus();
-                alert("Please fill out all mandatory details.");
+                input.reportValidity();
                 return false;
             }
 
@@ -902,7 +902,7 @@ get_header();
             if (!input.value.trim()) {
                 input.classList.add('input-error');
                 input.focus();
-                alert(`Please enter your ${label}.`);
+                input.reportValidity();
                 return;
             }
         }
@@ -964,7 +964,7 @@ get_header();
         // Optional: auto-hide after few seconds
         setTimeout(() => {
             successMessage.classList.add('hidden');
-        }, 6000);
+        }, 5000);
     }
 
     updateForm();

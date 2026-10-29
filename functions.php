@@ -444,3 +444,76 @@ require_once get_template_directory() . '/inc/referral-cf7.php';
 require_once get_template_directory() . '/inc/contact-cf7.php';
 require_once get_template_directory() . '/inc/feedback-cf7.php';
 require_once get_template_directory() . '/inc/incident-report-cf7.php';
+
+/**
+ * One wording for every compulsory field on the site.
+ */
+define('OZLANDCARE_REQUIRED_MESSAGE', 'Please complete this field.');
+
+/**
+ * Contact Form 7: covers both the live (SWV) tips and the server response.
+ */
+function ozlandcare_cf7_required_message($message, $status)
+{
+	return 'invalid_required' === $status ? OZLANDCARE_REQUIRED_MESSAGE : $message;
+}
+add_filter('wpcf7_display_message', 'ozlandcare_cf7_required_message', 20, 2);
+
+/**
+ * Native browser bubbles: replace "Please fill out/in this field." on any
+ * empty required field, and clear it again as soon as the user responds.
+ */
+function ozlandcare_required_message_script()
+{
+?>
+	<script>
+		(function() {
+			const message = <?php echo wp_json_encode(OZLANDCARE_REQUIRED_MESSAGE); ?>;
+
+			document.addEventListener('invalid', event => {
+				const field = event.target;
+				if (field.validity && field.validity.valueMissing && !field.validity.customError) {
+					field.setCustomValidity(message);
+				}
+			}, true);
+
+			const clear = event => {
+				const field = event.target;
+				if (!field.setCustomValidity || field.validationMessage !== message) {
+					return;
+				}
+				// Radio buttons share one requirement, so clear the whole group.
+				const group = field.type === 'radio' && field.name && field.form ?
+					field.form.querySelectorAll('input[type="radio"][name="' + CSS.escape(field.name) + '"]') :
+					[field];
+				group.forEach(item => item.setCustomValidity(''));
+			};
+
+			document.addEventListener('input', clear, true);
+			document.addEventListener('change', clear, true);
+
+			// Contact Form 7: hide the "Thank you…" message a few seconds after
+			// a successful send, matching the Self-Assessment form.
+			document.addEventListener('wpcf7mailsent', event => {
+				const form = event.target.matches('form') ? event.target : event.target.querySelector('form');
+				if (!form) {
+					return;
+				}
+				clearTimeout(form.ozlandcareSentTimer);
+				form.ozlandcareSentTimer = setTimeout(() => {
+					if (form.getAttribute('data-status') !== 'sent') {
+						return;
+					}
+					form.classList.replace('sent', 'init');
+					form.setAttribute('data-status', 'init');
+					const response = form.querySelector('.wpcf7-response-output');
+					if (response) {
+						response.textContent = '';
+					}
+				}, 5000);
+			});
+		})();
+	</script>
+<?php
+}
+add_action('wp_footer', 'ozlandcare_required_message_script', 5);
