@@ -68,7 +68,7 @@ function ozlandcare_provision_contact_cf7_form()
 		return 0;
 	}
 
-	$schema_version = '2';
+	$schema_version = '3';
 	$contact_forms = WPCF7_ContactForm::find(array(
 		'title'          => 'Contact Us',
 		'posts_per_page' => 1,
@@ -96,8 +96,14 @@ function ozlandcare_provision_contact_cf7_form()
 		);
 	}
 
+	$messages = isset($properties['messages']) && is_array($properties['messages'])
+		? $properties['messages']
+		: array();
+	$messages['mail_sent_ok'] = 'Thank you for your enquiry. A member of our team will be in touch soon.';
+
 	$properties['form'] = ozlandcare_contact_cf7_template();
 	$properties['mail'] = $mail;
+	$properties['messages'] = $messages;
 	$contact_form->set_properties($properties);
 	$form_id = (int) $contact_form->save();
 

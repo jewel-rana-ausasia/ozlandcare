@@ -519,6 +519,30 @@ get_header();
             firstNameInput.classList.remove('input-error');
             surnameInput.classList.remove('input-error');
 
+            // Empty compulsory fields get the same message used across the site.
+            const requiredInputs = [
+                firstNameInput,
+                surnameInput,
+                phoneInput,
+                emailInput,
+                document.getElementById('contactSubject'),
+                document.getElementById('contactMessage')
+            ].filter(Boolean);
+
+            for (const input of requiredInputs) {
+                if (!input.value.trim()) {
+                    event.preventDefault();
+                    event.stopImmediatePropagation();
+
+                    input.setCustomValidity('Please complete this field.');
+                    input.classList.add('input-error');
+                    input.reportValidity();
+                    input.focus();
+
+                    return;
+                }
+            }
+
             if (!singleNameRegex.test(firstName)) {
                 event.preventDefault();
                 event.stopImmediatePropagation();

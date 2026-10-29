@@ -492,19 +492,21 @@ function ozlandcare_required_message_script()
 			document.addEventListener('input', clear, true);
 			document.addEventListener('change', clear, true);
 
-			// Contact Form 7: hide the "Thank you…" message a few seconds after
-			// a successful send, matching the Self-Assessment form.
-			document.addEventListener('wpcf7mailsent', event => {
+			// Contact Form 7: hide the success or error message 5 seconds after
+			// any submission, matching the Self-Assessment form.
+			document.addEventListener('wpcf7submit', event => {
 				const form = event.target.matches('form') ? event.target : event.target.querySelector('form');
 				if (!form) {
 					return;
 				}
 				clearTimeout(form.ozlandcareSentTimer);
 				form.ozlandcareSentTimer = setTimeout(() => {
-					if (form.getAttribute('data-status') !== 'sent') {
+					const status = form.getAttribute('data-status');
+					if (!status || status === 'init' || status === 'submitting') {
 						return;
 					}
-					form.classList.replace('sent', 'init');
+					form.classList.remove(status);
+					form.classList.add('init');
 					form.setAttribute('data-status', 'init');
 					const response = form.querySelector('.wpcf7-response-output');
 					if (response) {
