@@ -423,18 +423,12 @@ $service_image   = function_exists('get_field') ? get_field('service_hero_image'
     if (is_page('assistance-with-social-and-community-participation')) {
 
         get_template_part('template-parts/service-single/content', 'assistance-social-community-participation');
-    } elseif (is_page('daily-personal-care')) {
-        // Looks for: wp-content/themes/your-theme/template-parts/service-single/content-assist-care.php
-        get_template_part('template-parts/service-single/content', 'daily-personal-care');
     } elseif (is_page('ndis-support-coordination')) {
         // Looks for: wp-content/themes/your-theme/template-parts/service-single/content-assist-care.php
         get_template_part('template-parts/service-single/content', 'ndis-support-coordination');
     } elseif (is_page('assist-personal-activities')) {
         // Looks for: wp-content/themes/your-theme/template-parts/service-single/content-assist-care.php
         get_template_part('template-parts/service-single/content', 'assist-care');
-    } elseif (is_page('participation-in-community-social-civic-activities')) {
-
-        get_template_part('template-parts/service-single/content', 'community-social');
     } elseif (is_page('assist-life-stages-transition-and-support')) {
 
         get_template_part('template-parts/service-single/content', 'assist-lifestage');
