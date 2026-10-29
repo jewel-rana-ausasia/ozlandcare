@@ -8,11 +8,10 @@
  * is preloaded from <head> by ozlandcare_output_critical_image_preload().
  *
  * Every layout-critical style lives in ozlandcare_output_critical_banner_css()
- * (printed in <head> before the Tailwind CDN script). Tailwind is built in the
- * browser by JavaScript, so its utilities are not available at first paint -
- * relying on them here made the image render unstyled and then snap into the
- * banner box. The Tailwind classes are kept only as documentation of the
- * intended values; the plain CSS classes are what actually positions things.
+ * (printed inline in <head>), so the banner paints correctly before the
+ * Tailwind stylesheet has loaded. The Tailwind classes are kept only as
+ * documentation of the intended values; the plain CSS classes are what
+ * actually positions things.
  */
 
 $banner = ozlandcare_get_banner_image_data();

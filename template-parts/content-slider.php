@@ -6,11 +6,10 @@
  * The first slide's photo is preloaded from <head> by
  * ozlandcare_output_critical_image_preload(), and every layout-critical style
  * lives in ozlandcare_output_critical_hero_css() (inc/critical-css.php), which
- * prints before the Tailwind CDN script. Tailwind is built in the browser by
- * JavaScript, so its utilities do not exist at first paint - relying on them
- * here made the photo, the stacked slides and the controls render in normal
- * flow and then snap into position. The Tailwind classes are kept as a record
- * of the intended values; the plain CSS classes are what position things.
+ * prints inline before the Tailwind stylesheet so the photo, the stacked slides
+ * and the controls paint in position straight away. The Tailwind classes are
+ * kept as a record of the intended values; the plain CSS classes are what
+ * position things.
  */
 
 // Keeping your content exactly as provided
@@ -45,7 +44,7 @@ $slides = [
 ];
 ?>
 
-<section class="hero-slider-shell relative flex items-center overflow-hidden grain">
+<section class="hero-slider-shell relative flex items-center overflow-hidden">
 
     <div class="hero-slider-media absolute inset-0 z-0">
         <picture>

@@ -36,6 +36,7 @@
     "map": false
   },
   "scripts": {
+    "build:tailwind": "npx --yes tailwindcss@3.4.17 -c tailwind.config.js -i tailwind/input.css -o assets/css/tailwind.min.css --minify",
     "watch": "node-sass sass/ -o ./ --source-map true --output-style expanded --indent-type tab --indent-width 1 -w",
     "compile:css": "node-sass sass/ -o ./ && stylelint '*.css' --fix || true && stylelint '*.css' --fix",
     "compile:rtl": "rtlcss style.css style-rtl.css",

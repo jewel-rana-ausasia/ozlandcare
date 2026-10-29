@@ -3,26 +3,20 @@
 /**
  * Critical CSS for the above-the-fold sections.
  *
- * Tailwind is loaded from cdn.tailwindcss.com, which builds its stylesheet in
- * JavaScript after the markup is parsed. Until that happens none of the utility
- * classes exist, so the hero and banner paint unstyled and then snap into place
- * once Tailwind injects its CSS - the flash ("blink") these stylesheets remove.
- * Every rule here duplicates the exact value of the utility it stands in for, so
- * the first paint is already final and Tailwind's later CSS changes nothing.
+ * The compiled Tailwind stylesheet is linked at the end of <head>. These inline
+ * rules let the hero and banner paint in their final layout without waiting for
+ * that file. Every rule here duplicates the exact value of the utility it stands
+ * in for, so the first paint is already final and Tailwind's CSS changes nothing.
  *
  * @package ozlandcare
  */
 
 /**
- * Print the banner's critical CSS in <head>, before the Tailwind CDN script.
+ * Print the banner's critical CSS in <head>, before the Tailwind stylesheet.
  *
- * Tailwind is loaded from cdn.tailwindcss.com, which builds its stylesheet in
- * JavaScript after the markup is parsed. Until that happens the banner's
- * utility classes do not exist, so the image paints at its intrinsic size and
- * then snaps into the banner box once Tailwind's CSS is injected - the flash
- * ("blink") that this stylesheet removes. The rules below duplicate the exact
- * values of the utilities used by template-parts/content-banner.php, so the
- * first paint is already final and Tailwind's later CSS changes nothing.
+ * The rules below duplicate the exact values of the utilities used by
+ * template-parts/content-banner.php, so the first paint is already final and
+ * Tailwind's CSS changes nothing.
  */
 function ozlandcare_output_critical_banner_css()
 {
@@ -104,7 +98,7 @@ function ozlandcare_output_critical_banner_css()
 			transform: translateY(-50%) translateX(100%);
 			opacity: 0;
 			z-index: 50;
-			animation: ozlandcareBannerLogoIn 2s ease-out 0.8s forwards;
+			animation: ozlandcareBannerLogoIn 0.7s ease-out 0.15s forwards;
 			max-width: 300px;
 			width: min(250px, 20vw);
 		}
@@ -481,19 +475,6 @@ function ozlandcare_output_critical_hero_css()
 				linear-gradient(to right, rgba(5, 5, 5, 0.5) 0%, transparent 70%);
 		}
 
-		/* Grain Effect for Depth */
-		.grain::after {
-			content: "";
-			position: absolute;
-			inset: 0;
-			width: 100%;
-			height: 100%;
-			background-image: url("https://upload.wikimedia.org/wikipedia/commons/7/76/1k_Stop_Sign_Full_Grain.png");
-			opacity: 0.03;
-			pointer-events: none;
-			z-index: 5;
-		}
-
 		/* Professional Text Shadow */
 		.text-shadow-strong {
 			text-shadow:
@@ -654,7 +635,7 @@ function ozlandcare_output_critical_hero_css()
 			transform: translateY(-50%) translateX(100%);
 			opacity: 0;
 			z-index: 50;
-			animation: slideInFromRight 2s ease-out 0.8s forwards;
+			animation: slideInFromRight 0.7s ease-out 0.15s forwards;
 			max-width: 300px;
 			width: min(250px, 20vw);
 		}

@@ -15,8 +15,8 @@
 
     <?php ozlandcare_output_critical_image_preload(); ?>
     <?php
-    // Critical CSS for whatever sits above the fold, printed before the Tailwind
-    // CDN script so the first paint is already correct. See inc/critical-css.php.
+    // Critical CSS for whatever sits above the fold, printed first so the first
+    // paint is already correct. See inc/critical-css.php.
     ozlandcare_output_critical_layout_css();
 
     if (is_front_page() || is_home()) {
@@ -27,32 +27,16 @@
     }
     ?>
 
-    <script src="https://cdn.tailwindcss.com"></script>
-
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Plus+Jakarta+Sans:ital,wght@0,200;0,800;1,200;1,800&display=swap" rel="stylesheet">
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
-
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        primary: '#5f2a7d',
-                        primaryDark: '#4a2062',
-                        secondary: '#40b450',
-                        secondarySoft: '#d9f2b1',
-                        blue: '#0a74bb',
-                    },
-                    fontFamily: {
-                        sans: ['Plus Jakarta Sans', 'Inter', 'sans-serif'],
-                    }
-                }
-            }
-        }
-    </script>
+    <!-- Icon font is not needed for first paint, so it loads without blocking render. -->
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" media="print" onload="this.media='all'" />
+    <noscript>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+    </noscript>
 
     <style>
         /* ===== HEADER FIXED SYSTEM ===== */
@@ -1028,6 +1012,13 @@
     </style>
 
     <?php wp_head(); ?>
+
+    <?php
+    // Compiled Tailwind (npm run build:tailwind). Printed last in <head>, where
+    // the old CDN script injected its styles, so the cascade order is unchanged.
+    $tailwind_css = '/assets/css/tailwind.min.css';
+    ?>
+    <link rel="stylesheet" href="<?php echo esc_url(get_template_directory_uri() . $tailwind_css . '?ver=' . filemtime(get_template_directory() . $tailwind_css)); ?>">
 </head>
 
 <body <?php body_class('bg-gray-50'); ?>>

@@ -144,10 +144,12 @@ add_action('widgets_init', 'ozlandcare_widgets_init');
  */
 function ozlandcare_scripts()
 {
-	wp_enqueue_style('ozlandcare-style', get_stylesheet_uri(), array(), _S_VERSION);
+	// Versioned by file time so browsers can cache them long-term (see
+	// wp-content/.htaccess) and still pick up every edit straight away.
+	wp_enqueue_style('ozlandcare-style', get_stylesheet_uri(), array(), filemtime(get_stylesheet_directory() . '/style.css'));
 	wp_style_add_data('ozlandcare-style', 'rtl', 'replace');
 
-	wp_enqueue_script('ozlandcare-navigation', get_template_directory_uri() . '/js/navigation.js', array(), _S_VERSION, true);
+	wp_enqueue_script('ozlandcare-navigation', get_template_directory_uri() . '/js/navigation.js', array(), filemtime(get_template_directory() . '/js/navigation.js'), true);
 
 	if (is_singular() && comments_open() && get_option('thread_comments')) {
 		wp_enqueue_script('comment-reply');
@@ -439,6 +441,7 @@ function ozlandcare_output_critical_image_preload()
 }
 
 require_once get_template_directory() . '/inc/critical-css.php';
+require_once get_template_directory() . '/inc/webp.php';
 require_once get_template_directory() . '/inc/site-contact.php';
 require_once get_template_directory() . '/inc/referral-cf7.php';
 require_once get_template_directory() . '/inc/contact-cf7.php';

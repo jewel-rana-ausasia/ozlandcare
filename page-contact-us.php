@@ -62,7 +62,7 @@ get_header();
 
                     <div class="flex-grow">
                         <h3 class="text-xs font-black uppercase tracking-[0.4em] text-teal-800/40 mb-3">Location</h3>
-                        <address class="not-italic text-sm text-base text-slate-950 font-semibold leading-relaxed space-y-2">
+                        <address class="not-italic text-base text-slate-950 font-semibold leading-relaxed space-y-2">
                             <?php foreach (ozlandcare_address_lines() as $ozl_address_line) : ?>
                                 <p><?php echo esc_html($ozl_address_line); ?></p>
                             <?php endforeach; ?>
