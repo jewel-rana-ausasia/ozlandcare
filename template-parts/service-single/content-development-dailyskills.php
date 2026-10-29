@@ -36,6 +36,14 @@
                 </div>
             <?php endforeach; ?>
         </div>
+
+        <div class="mt-16 p-10 rounded-[2.5rem] bg-primary text-white reveal">
+            <div class="max-w-4xl mx-auto text-center">
+                <p class="text-lg leading-relaxed mb-0">
+                    We work closely with you so the skills you build match your NDIS plan and your daily routine. Whether that means <strong class="!text-white">learning practical skills in real-life settings, working at your own pace, or choosing which skills to focus on</strong>, the focus stays on strengthening your independence and confidence, alongside you and your family.
+                </p>
+            </div>
+        </div>
     </div>
 </section>
 

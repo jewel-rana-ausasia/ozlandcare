@@ -583,6 +583,41 @@
             transform: translateX(3px);
         }
 
+        /*
+         * View All Services reveals the services past the first 7
+         * inside the dropdown. The list scrolls if it outgrows the screen.
+         */
+        .premium-service-link.is-extra,
+        .mobile-service-link.is-extra {
+            display: none;
+        }
+
+        .is-expanded .premium-service-link.is-extra,
+        .is-expanded .mobile-service-link.is-extra {
+            display: flex;
+        }
+
+        .premium-services-menu.is-expanded .premium-services-list {
+            max-height: calc(100vh - var(--site-header-height, 100px) - 60px);
+            overflow-y: auto;
+            overscroll-behavior: contain;
+        }
+
+        button.premium-services-view-all,
+        button.mobile-services-view-all {
+            border: 0;
+            cursor: pointer;
+            text-align: left;
+        }
+
+        .premium-services-view-all[data-services-toggle]:hover i {
+            transform: none;
+        }
+
+        .is-expanded [data-services-toggle] i {
+            transform: rotate(180deg) !important;
+        }
+
 
         /* ==========================================================
            MOBILE + TABLET NAVIGATION
@@ -1130,13 +1165,13 @@
 
 
                                 /*
-                                 * Show ONLY the first 7 service pages.
+                                 * The first 7 services show by default;
+                                 * the rest are revealed by View All Services.
                                  */
-                                $visible_service_pages = array_slice(
-                                    $service_pages,
-                                    0,
-                                    7
-                                );
+                                $visible_limit = 7;
+
+                                $has_extra_services =
+                                    count($service_pages) > $visible_limit;
 
 
                                 $submenu = '<div class="premium-services-menu">';
@@ -1160,7 +1195,7 @@
                                 $submenu .= '<div class="premium-services-list">';
 
 
-                                foreach ($visible_service_pages as $service_page) {
+                                foreach ($service_pages as $service_index => $service_page) {
 
                                     $service_title = get_the_title(
                                         $service_page->ID
@@ -1265,6 +1300,10 @@
                                         ? ' is-current'
                                         : '';
 
+                                    if ($service_index >= $visible_limit) {
+                                        $current_class .= ' is-extra';
+                                    }
+
 
                                     $submenu .= '<a href="' .
                                         esc_url(
@@ -1307,21 +1346,36 @@
 
 
                                 /*
-                                 * View All Services.
+                                 * View All Services expands the list in place
+                                 * when there are more services to show.
                                  */
-                                $submenu .= '<a href="' .
-                                    esc_url(
-                                        home_url('/our-services/')
-                                    ) .
-                                    '" class="premium-services-view-all">';
+                                if ($has_extra_services) {
 
-                                $submenu .= '<span>';
-                                $submenu .= 'View All Services';
-                                $submenu .= '</span>';
+                                    $submenu .= '<button type="button" class="premium-services-view-all" data-services-toggle aria-expanded="false">';
 
-                                $submenu .= '<i class="fa-solid fa-arrow-right" aria-hidden="true"></i>';
+                                    $submenu .= '<span data-services-toggle-label>';
+                                    $submenu .= 'View All Services';
+                                    $submenu .= '</span>';
 
-                                $submenu .= '</a>';
+                                    $submenu .= '<i class="fa-solid fa-chevron-down" aria-hidden="true"></i>';
+
+                                    $submenu .= '</button>';
+                                } else {
+
+                                    $submenu .= '<a href="' .
+                                        esc_url(
+                                            home_url('/our-services/')
+                                        ) .
+                                        '" class="premium-services-view-all">';
+
+                                    $submenu .= '<span>';
+                                    $submenu .= 'View All Services';
+                                    $submenu .= '</span>';
+
+                                    $submenu .= '<i class="fa-solid fa-arrow-right" aria-hidden="true"></i>';
+
+                                    $submenu .= '</a>';
+                                }
 
 
                                 $submenu .= '</div>';
@@ -1465,13 +1519,12 @@
 
                         <?php
                         /*
-                         * Prepare the same first 7 services for mobile/tablet.
+                         * Same services for mobile/tablet: first 7 shown,
+                         * the rest revealed by View All Services.
                          */
-                        $mobile_service_pages = array_slice(
-                            $service_pages,
-                            0,
-                            7
-                        );
+                        $mobile_service_pages = $service_pages;
+
+                        $mobile_visible_limit = 7;
                         ?>
 
 
@@ -1492,7 +1545,7 @@
 
                                     <div class="mobile-services-list">
 
-                                        <?php foreach ($mobile_service_pages as $service_page) : ?>
+                                        <?php foreach ($mobile_service_pages as $service_index => $service_page) : ?>
 
                                             <?php
 
@@ -1599,6 +1652,10 @@
                                                 ? ' is-current'
                                                 : '';
 
+                                            if ($service_index >= $mobile_visible_limit) {
+                                                $mobile_current_class .= ' is-extra';
+                                            }
+
                                             ?>
 
                                             <a
@@ -1628,20 +1685,43 @@
                                         <?php endforeach; ?>
 
 
-                                        <a
-                                            href="<?php echo esc_url(home_url('/our-services/')); ?>"
-                                            class="mobile-services-view-all">
+                                        <?php if (count($mobile_service_pages) > $mobile_visible_limit) : ?>
 
-                                            <span>
-                                                View All Services
-                                            </span>
+                                            <button
+                                                type="button"
+                                                class="mobile-services-view-all"
+                                                data-services-toggle
+                                                aria-expanded="false">
 
-                                            <i
-                                                class="fa-solid fa-arrow-right"
-                                                aria-hidden="true">
-                                            </i>
+                                                <span data-services-toggle-label>
+                                                    View All Services
+                                                </span>
 
-                                        </a>
+                                                <i
+                                                    class="fa-solid fa-chevron-down"
+                                                    aria-hidden="true">
+                                                </i>
+
+                                            </button>
+
+                                        <?php else : ?>
+
+                                            <a
+                                                href="<?php echo esc_url(home_url('/our-services/')); ?>"
+                                                class="mobile-services-view-all">
+
+                                                <span>
+                                                    View All Services
+                                                </span>
+
+                                                <i
+                                                    class="fa-solid fa-arrow-right"
+                                                    aria-hidden="true">
+                                                </i>
+
+                                            </a>
+
+                                        <?php endif; ?>
 
                                     </div>
 
@@ -2094,6 +2174,65 @@
                 }
 
             }
+
+
+            /* ==========================================
+               VIEW ALL SERVICES (EXPAND IN PLACE)
+            ========================================== */
+
+            document.addEventListener(
+                'click',
+                function(event) {
+
+                    const viewAllToggle =
+                        event.target.closest(
+                            '[data-services-toggle]'
+                        );
+
+                    if (!viewAllToggle) {
+                        return;
+                    }
+
+                    event.preventDefault();
+
+                    event.stopPropagation();
+
+
+                    const servicesPanel =
+                        viewAllToggle.closest(
+                            '.premium-services-menu, .mobile-services-panel'
+                        );
+
+                    if (!servicesPanel) {
+                        return;
+                    }
+
+
+                    const isExpanded =
+                        servicesPanel.classList.toggle(
+                            'is-expanded'
+                        );
+
+                    viewAllToggle.setAttribute(
+                        'aria-expanded',
+                        isExpanded ? 'true' : 'false'
+                    );
+
+
+                    const toggleLabel =
+                        viewAllToggle.querySelector(
+                            '[data-services-toggle-label]'
+                        );
+
+                    if (toggleLabel) {
+                        toggleLabel.textContent =
+                            isExpanded
+                            ? 'Show Fewer Services'
+                            : 'View All Services';
+                    }
+
+                }
+            );
 
 
             /* ==========================================

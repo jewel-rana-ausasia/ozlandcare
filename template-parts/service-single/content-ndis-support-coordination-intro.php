@@ -115,31 +115,32 @@ $support_intro_html = $has_support_coordination_layout
 </style>
 
 <section class="relative py-24 lg:py-32">
-    <div class="container mx-auto px-6 max-w-7xl">
-        <div class="grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
+    <!-- Same layout as the shared service hero in page-service-details.php -->
+    <div class="service-intro-container container mx-auto px-6 lg:px-4">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-20 xl:gap-32 items-center">
 
             <div class="lg:col-span-6 order-1 lg:order-1 reveal">
                 <h1 class="font-serif text-3xl lg:text-5xl text-slate-900 leading-[1.1] mb-8">
                     <?php echo $service_title ? wp_kses_post($service_title) : 'Support Coordination'; ?>
                 </h1>
-                <div class="support-intro-copy max-w-2xl text-base text-slate-700 font-normal leading-relaxed">
+                <div class="support-intro-copy max-w-2xl lg:max-w-none text-base text-slate-950 font-normal leading-relaxed">
                     <?php echo wp_kses_post($support_intro_html); ?>
                 </div>
             </div>
 
             <div class="lg:col-span-6 order-2 lg:order-2 reveal" style="transition-delay: 0.2s">
                 <div class="relative">
-                    <div class="absolute -top-10 -right-10 w-64 h-64 bg-primary/10 rounded-full mix-blend-multiply filter blur-3xl opacity-70"></div>
-                    <div class="service-intro-media image-mask overflow-hidden shadow-[0_32px_64px_-16px_rgba(0,0,0,0.2)] aspect-[16/10] sm:aspect-[3/2] lg:aspect-[4/3] relative">
+                    <div class="absolute -top-10 -right-10 w-64 h-64 bg-teal-50 rounded-full mix-blend-multiply filter blur-3xl opacity-70"></div>
+                    <div class="service-intro-media image-mask overflow-hidden shadow-[0_32px_64px_-16px_rgba(0,0,0,0.2)] aspect-[16/10] sm:aspect-[4/3] lg:aspect-[3/2] relative">
                         <?php if ($service_image) : ?>
                             <img
                                 src="<?php echo esc_url($service_image['url']); ?>"
-                                class="w-full h-full object-cover"
+                                class="w-full h-full object-cover object-top origin-top scale-105 hover:scale-100 transition-transform duration-1000"
                                 alt="<?php echo esc_attr($service_image['alt'] ?? 'Support Coordination'); ?>">
                         <?php else : ?>
                             <img
                                 src="<?php echo esc_url(get_template_directory_uri() . '/assets/images/default-hero.jpg'); ?>"
-                                class="w-full h-full object-cover"
+                                class="w-full h-full object-cover object-top origin-top scale-105 hover:scale-100 transition-transform duration-1000"
                                 alt="Support Coordination">
                         <?php endif; ?>
                     </div>

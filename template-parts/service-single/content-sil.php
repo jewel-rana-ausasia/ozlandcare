@@ -36,6 +36,14 @@
                 </div>
             <?php endforeach; ?>
         </div>
+
+        <div class="mt-16 p-10 rounded-[2.5rem] bg-primary text-white reveal">
+            <div class="max-w-4xl mx-auto text-center">
+                <p class="text-lg leading-relaxed mb-0">
+                    We work closely with you so the support you receive matches your NDIS plan and the way you want to live at home. Whether that means <strong class="!text-white">help with meal preparation, cleaning and laundry, personal care, or settling into shared living</strong>, the focus stays on building your independence in a home that feels safe and comfortable, alongside you and your family.
+                </p>
+            </div>
+        </div>
     </div>
 </section>
 

@@ -17,6 +17,13 @@ $service_details = function_exists('get_field') ? get_field('service_details') :
 $service_image   = function_exists('get_field') ? get_field('service_hero_image') : '';
 ?>
 
+<!--
+    header.php loads Plus Jakarta Sans at 200 and 800 only, so body copy
+    (weight 400) fell back to ExtraLight and read thin and faint. Load the
+    regular weights for the service pages so text renders at its real weight.
+-->
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap" rel="stylesheet">
+
 
 
 <style>
@@ -108,6 +115,16 @@ $service_image   = function_exists('get_field') ? get_field('service_hero_image'
         }
     }
 
+    /*
+     * The header runs full width below 1280px (see header.php), so the
+     * intro section does too, keeping its edges in line with the header.
+     */
+    @media (max-width: 1279.98px) {
+        .service-intro-container {
+            max-width: none;
+        }
+    }
+
     /* Custom Numbering for Process Section */
     .step-number {
         -webkit-text-stroke: 1px rgba(0, 102, 102, 0.2);
@@ -123,16 +140,19 @@ $service_image   = function_exists('get_field') ? get_field('service_hero_image'
     .service-details-content p,
     .service-details-content li {
         color: #1e293b !important;
+        font-weight: 400;
+        line-height: 1.75;
     }
 
     .service-details-content p strong,
     .service-details-content li strong {
         color: #0f172a;
+        font-weight: 700;
     }
 
     .service-details-content .bg-primary p,
     .service-details-content .bg-primary li {
-        color: rgba(255, 255, 255, 0.92) !important;
+        color: #ffffff !important;
     }
 
     /*
@@ -307,8 +327,9 @@ $service_image   = function_exists('get_field') ? get_field('service_hero_image'
         <?php get_template_part('template-parts/service-single/content', 'ndis-support-coordination-intro'); ?>
     <?php else : ?>
     <section class="relative py-24 lg:py-32">
-        <div class="container mx-auto px-6 max-w-7xl">
-            <div class="grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
+        <!-- Same width as the header bar (container + px-4) -->
+        <div class="service-intro-container container mx-auto px-6 lg:px-4">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-20 xl:gap-32 items-center">
 
                 <!-- Text Content -->
                 <div class="lg:col-span-6 order-1 lg:order-1 reveal">
@@ -317,7 +338,7 @@ $service_image   = function_exists('get_field') ? get_field('service_hero_image'
                     </h1>
 
                     <!-- Force text color slate-900 -->
-                    <div class="service-intro-copy max-w-2xl space-y-6 text-base text-slate-950 font-normal leading-relaxed">
+                    <div class="service-intro-copy max-w-2xl lg:max-w-none space-y-6 text-base text-slate-950 font-normal leading-relaxed">
                         <?php
                         if ($service_details) {
                             echo wp_kses_post($service_details);
@@ -342,7 +363,7 @@ $service_image   = function_exists('get_field') ? get_field('service_hero_image'
                 <div class="lg:col-span-6 order-2 lg:order-2 reveal" style="transition-delay: 0.2s">
                     <div class="relative">
                         <div class="absolute -top-10 -right-10 w-64 h-64 bg-teal-50 rounded-full mix-blend-multiply filter blur-3xl opacity-70"></div>
-                        <div class="service-intro-media image-mask overflow-hidden shadow-[0_32px_64px_-16px_rgba(0,0,0,0.2)] aspect-[16/10] sm:aspect-[4/3] lg:aspect-[1/1] relative">
+                        <div class="service-intro-media image-mask overflow-hidden shadow-[0_32px_64px_-16px_rgba(0,0,0,0.2)] aspect-[16/10] sm:aspect-[4/3] lg:aspect-[4/3] relative">
                             <?php
                             if ($service_image) :
                                 $service_image_url = esc_url($service_image['url']);

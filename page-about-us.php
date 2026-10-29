@@ -467,21 +467,7 @@ $testimonials = [
     }
 
     .testimonial-swiper {
-        padding: 40px 0 70px !important;
-    }
-
-    /* Custom Dot Styling */
-    .swiper-pagination-bullet {
-        background: #6F2C91;
-        opacity: 0.3;
-    }
-
-    .swiper-pagination-bullet-active {
-        background: #6F2C91 !important;
-        width: 24px !important;
-        /* Elongated active dot */
-        border-radius: 12px !important;
-        opacity: 1;
+        padding: 40px 0 20px !important;
     }
 </style>
 
@@ -536,7 +522,21 @@ $testimonials = [
                     </div>
                 <?php endforeach; ?>
             </div>
-            <div class="swiper-pagination"></div>
+        </div>
+
+        <!-- Arrows match the Our Services slider -->
+        <div class="flex justify-center items-center gap-4 mt-5">
+            <button type="button" aria-label="Previous testimonial" class="testimonial-prev p-4 rounded-full bg-slate-100 text-slate-800 hover:bg-blue hover:text-white transition-all duration-300 shadow-md group">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+                </svg>
+            </button>
+
+            <button type="button" aria-label="Next testimonial" class="testimonial-next p-4 rounded-full bg-slate-100 text-slate-800 hover:bg-blue hover:text-white transition-all duration-300 shadow-md group">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                </svg>
+            </button>
         </div>
     </div>
 </section>
@@ -555,9 +555,9 @@ $testimonials = [
                 delay: 5000,
                 disableOnInteraction: false,
             },
-            pagination: {
-                el: '.swiper-pagination',
-                clickable: true,
+            navigation: {
+                prevEl: '.testimonial-prev',
+                nextEl: '.testimonial-next',
             },
             breakpoints: {
                 768: {

@@ -36,6 +36,14 @@
                 </div>
             <?php endforeach; ?>
         </div>
+
+        <div class="mt-16 p-10 rounded-[2.5rem] bg-primary text-white reveal">
+            <div class="max-w-4xl mx-auto text-center">
+                <p class="text-lg leading-relaxed mb-0">
+                    We work closely with you so the activities you take part in match your NDIS plan and your interests. Whether that means <strong class="!text-white">trying new experiences, developing new skills, or building confidence in safe and inclusive settings</strong>, the focus stays on helping you enjoy being part of your community, alongside you and your family.
+                </p>
+            </div>
+        </div>
     </div>
 </section>
 

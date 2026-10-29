@@ -36,6 +36,14 @@
                 </div>
             <?php endforeach; ?>
         </div>
+
+        <div class="mt-16 p-10 rounded-[2.5rem] bg-primary text-white reveal">
+            <div class="max-w-4xl mx-auto text-center">
+                <p class="text-lg leading-relaxed mb-0">
+                    We work closely with you so your home modifications match your NDIS plan and the way you live day to day. Whether that means <strong class="!text-white">improving access around your home, making everyday spaces safer, or designing changes that suit your routines</strong>, the focus stays on a home that supports your comfort and independence, alongside you and your family.
+                </p>
+            </div>
+        </div>
     </div>
 </section>
 

@@ -42,13 +42,15 @@
             <?php endforeach; ?>
         </div>
 
-        <div class="py-8 space-y-6 text-slate-900">
-            <p>
-                Our experienced team is committed to ensuring you receive the right services to achieve your goals and make the most of your NDIS plan.
-            </p>
-            <p>
-                By choosing Ozland Care, you're selecting a trusted local provider who genuinely cares about your well-being. We work closely with you and your family to offer personalised support and make your NDIS journey as smooth as possible. Our approach is centred around to help you maintain control over your care, empowering you to manage your NDIS plan and work towards a more independent, fulfilling life.
-            </p>
+        <div class="mt-16 p-10 rounded-[2.5rem] bg-primary text-white reveal">
+            <div class="max-w-4xl mx-auto text-center space-y-4">
+                <p class="text-lg leading-relaxed mb-0">
+                    Our experienced team is committed to ensuring you receive the right services to achieve your goals and make the most of your NDIS plan.
+                </p>
+                <p class="text-lg leading-relaxed mb-0">
+                    By choosing Ozland Care, you're selecting a trusted local provider who genuinely cares about your well-being. We work closely with you and your family to offer <strong class="!text-white">personalised support and make your NDIS journey as smooth as possible</strong>. Our approach is centred on helping you maintain control over your care, empowering you to manage your NDIS plan and work towards a more independent, fulfilling life.
+                </p>
+            </div>
         </div>
     </div>
 </section>

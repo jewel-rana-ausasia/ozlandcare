@@ -103,14 +103,23 @@ $services = [
 </style>
 
 <section class="relative bg-white overflow-hidden">
-    <div class="absolute top-0 w-full h-[400px] bg-blue z-0"></div>
 
-    <div class="services-section-container container mx-auto px-6 xl:px-0 pt-20 pb-20 relative z-10">
+    <!-- White intro band separates the banner photo from the blue panel -->
+    <div class="container mx-auto px-6 xl:px-0 pt-16 lg:pt-20 pb-10 lg:pb-14 text-center">
+        <h2 class="text-4xl xl:text-5xl font-bold text-slate-900 mb-4 tracking-tight">
+            Explore Our <span class="italic font-serif text-[#6F2C91]">Services</span>
+        </h2>
+        <div class="w-20 h-1 bg-orange-400 mx-auto rounded-full mb-6"></div>
+        <p class="text-slate-950 text-lg max-w-3xl mx-auto leading-relaxed">
+            Select a service below to learn how we can support you to work towards your goals.
+        </p>
+    </div>
 
-        <div class="text-center mb-16">
-            <h2 class="text-4xl xl:text-5xl font-bold text-white mb-4 tracking-tight">Our Services</h2>
-            <div class="w-20 h-1 bg-orange-400 mx-auto rounded-full"></div>
-        </div>
+    <div class="relative">
+        <!-- Blue band behind the cards, same as the homepage Our Services -->
+        <div class="absolute top-0 w-full h-[400px] bg-blue z-0" aria-hidden="true"></div>
+
+    <div class="services-section-container container mx-auto px-6 xl:px-0 pt-10 lg:pt-14 pb-20 relative z-10">
 
         <div id="service-slider" class="flex overflow-x-auto no-scrollbar gap-5 pb-10 snap-x snap-mandatory">
             <?php foreach ($services as $service) : ?>
@@ -161,6 +170,7 @@ $services = [
                 </svg>
             </button>
         </div>
+    </div>
     </div>
 </section>
 
@@ -238,6 +248,40 @@ $services = [
     slider.addEventListener('mouseenter', stopAutoSlide);
     slider.addEventListener('mouseleave', startAutoSlide);
 </script>
+
+<!-- Faq Section -->
+<?php
+$faqs = [
+    [
+        'q' => 'What services do you offer?',
+        'a' => 'We offer Support Coordination, Supported Independent Living (SIL), Community Participation, Assist-Personal Activities, Innovative Community Participation, Development of Life Skills, Household Tasks, Assist-Travel/Transport, Group/Centre Activities, Specialised Driver Training and Home Modification.'
+    ],
+    [
+        'q' => 'Can I use more than one service?',
+        'a' => 'Yes. Many participants use a mix of supports that suit their goals. The services you can access depend on the supports funded in your NDIS plan.'
+    ],
+    [
+        'q' => 'How do I know which services my NDIS plan covers?',
+        'a' => 'Your NDIS plan sets out your funded supports and budgets. Speak with our team and we can go through your plan with you and explain which of our services may fit.'
+    ],
+    [
+        'q' => 'What is the difference between Support Coordination and SIL?',
+        'a' => 'Support Coordination helps you understand and use your NDIS plan and connect with providers. Supported Independent Living (SIL) is hands-on help with daily living tasks in a shared or individual home.'
+    ],
+    [
+        'q' => 'How do I get started with a service?',
+        'a' => 'Get in touch with our team or complete the referral form on our website. We will talk with you about your needs and goals and the next steps.'
+    ],
+];
+?>
+
+<?php
+get_template_part(
+    'template-parts/service-single/faq',
+    null,
+    ['faqs' => $faqs]
+);
+?>
 
 <!-- CTA Section -->
 <?php get_template_part('template-parts/content', 'cta'); ?>

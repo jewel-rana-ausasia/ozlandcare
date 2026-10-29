@@ -8,7 +8,23 @@
 get_header();
 ?>
 
+<!--
+    header.php loads Plus Jakarta Sans at 200 and 800 only, so body copy
+    (weight 400) fell back to ExtraLight and read thin and faint. Load the
+    regular weights here so homepage text renders at its real weight.
+-->
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,500&display=swap" rel="stylesheet">
+
 <style>
+    /*
+     * Homepage paragraphs one step lighter than regular (Light 300).
+     * :where() keeps this below Tailwind's font-* utilities, so paragraphs
+     * that set their own weight (font-medium, font-bold...) keep it.
+     */
+    :where(#content-anchor) p:not(footer p) {
+        font-weight: 300;
+    }
+
     /*
      * Below 1280px Tailwind's .container snaps to 640/768/1024px and centres,
      * so on in-between widths (Surface Pro 10 portrait is 960px) every section
@@ -315,7 +331,7 @@ get_header();
                 </div>
                 <div id="progressContainer" class="flex items-center gap-4">
                     <div class="text-left sm:text-right">
-                        <p class="text-[9px] font-black text-gray-400 uppercase tracking-wider">Current Progress</p>
+                        <p class="text-[9px] font-black text-slate-500 uppercase tracking-wider">Current Progress</p>
                         <span id="progressText" class="text-2xl font-black text-[#702d7e]">0%</span>
                     </div>
                     <div class="w-24 h-2.5 bg-slate-100 rounded-full overflow-hidden p-[2px] border border-slate-200/50">
@@ -444,7 +460,7 @@ get_header();
                         <div class="step-content hidden animate-fadeIn" data-step="6">
                             <p class="text-xs font-black text-rose-600 uppercase mb-3 tracking-widest">Question 6 of 7</p>
                             <h3 class="text-xl md:text-2xl font-bold mb-2 text-slate-900" data-dynamic-text='{"myself": "What kind of support are you looking for?", "child": "What kind of support is your child looking for?", "other": "What kind of support is the person looking for?"}'>What kind of support are you looking for? <span class="text-red-500">*</span></h3>
-                            <p class="text-xs font-bold text-gray-400 uppercase tracking-wider mb-5">Select all options that apply</p>
+                            <p class="text-xs font-bold text-slate-500 uppercase tracking-wider mb-5">Select all options that apply</p>
                             <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
                                 <label class="flex items-center p-3.5 bg-slate-50 rounded-xl border-2 border-transparent hover:border-primary/30 cursor-pointer transition-all has-[:checked]:border-primary has-[:checked]:bg-white shadow-sm">
                                     <input type="checkbox" name="support_categories" value="daily_living" class="w-4 h-4 rounded accent-primary checkbox-group">
@@ -523,7 +539,7 @@ get_header();
                                 <p id="dynamicResultText" class="text-base text-slate-700 font-bold leading-relaxed"></p>
                             </div>
 
-                            <h4 class="text-xs font-black text-gray-400 uppercase tracking-widest mb-4">Select an Action Plan Below</h4>
+                            <h4 class="text-xs font-black text-slate-500 uppercase tracking-widest mb-4">Select an Action Plan Below</h4>
                             <div id="ctaContainer" class="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-8">
                             </div>
 
@@ -554,7 +570,7 @@ get_header();
                     </div>
 
                     <div id="formControlActions" class="flex items-center justify-between mt-10 pt-6 border-t border-slate-100">
-                        <button type="button" id="prevBtn" class="invisible px-5 py-2.5 text-gray-400 font-black uppercase text-[11px] tracking-widest hover:text-slate-700 transition-all">
+                        <button type="button" id="prevBtn" class="invisible px-5 py-2.5 text-slate-500 font-black uppercase text-[11px] tracking-widest hover:text-slate-700 transition-all">
                             Back
                         </button>
                         <div class="flex gap-3">
@@ -1505,21 +1521,7 @@ $testimonials = [
     }
 
     .testimonial-swiper {
-        padding: 40px 0 70px !important;
-    }
-
-    /* Custom Dot Styling */
-    .swiper-pagination-bullet {
-        background: #6F2C91;
-        opacity: 0.3;
-    }
-
-    .swiper-pagination-bullet-active {
-        background: #6F2C91 !important;
-        width: 24px !important;
-        /* Elongated active dot */
-        border-radius: 12px !important;
-        opacity: 1;
+        padding: 40px 0 20px !important;
     }
 </style>
 
@@ -1574,7 +1576,21 @@ $testimonials = [
                     </div>
                 <?php endforeach; ?>
             </div>
-            <div class="swiper-pagination"></div>
+        </div>
+
+        <!-- Arrows match the Our Services slider -->
+        <div class="flex justify-center items-center gap-4 mt-5">
+            <button type="button" aria-label="Previous testimonial" class="testimonial-prev p-4 rounded-full bg-slate-100 text-slate-800 hover:bg-blue hover:text-white transition-all duration-300 shadow-md group">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+                </svg>
+            </button>
+
+            <button type="button" aria-label="Next testimonial" class="testimonial-next p-4 rounded-full bg-slate-100 text-slate-800 hover:bg-blue hover:text-white transition-all duration-300 shadow-md group">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                </svg>
+            </button>
         </div>
     </div>
 </section>
@@ -1593,9 +1609,9 @@ $testimonials = [
                 delay: 5000,
                 disableOnInteraction: false,
             },
-            pagination: {
-                el: '.swiper-pagination',
-                clickable: true,
+            navigation: {
+                prevEl: '.testimonial-prev',
+                nextEl: '.testimonial-next',
             },
             breakpoints: {
                 768: {
