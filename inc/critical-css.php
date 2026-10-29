@@ -285,37 +285,6 @@ function ozlandcare_output_critical_banner_css()
 }
 
 /**
- * Read a small theme image as a data URI, or return '' if it is missing.
- *
- * Used for the hero previews, which are a few KB each - small enough to inline
- * so the hero has something to paint with no extra request.
- */
-function ozlandcare_inline_theme_image($relative_path)
-{
-	static $cache = array();
-
-	if (isset($cache[$relative_path])) {
-		return $cache[$relative_path];
-	}
-
-	$path = get_template_directory() . '/' . ltrim($relative_path, '/');
-	$data_uri = '';
-
-	if (is_readable($path) && filesize($path) <= 32768) {
-		$bytes = file_get_contents($path);
-		if (false !== $bytes) {
-			$file_type = wp_check_filetype($path);
-			$mime_type = ! empty($file_type['type']) ? $file_type['type'] : 'image/jpeg';
-			$data_uri = 'data:' . $mime_type . ';base64,' . base64_encode($bytes);
-		}
-	}
-
-	$cache[$relative_path] = $data_uri;
-
-	return $data_uri;
-}
-
-/**
  * Publish the fixed header's height as a CSS variable, on every page.
  *
  * #masthead is position:fixed, so the page needs padding-top equal to its
@@ -385,6 +354,37 @@ function ozlandcare_output_critical_layout_css()
 		}
 	</style>
 <?php
+}
+
+/**
+ * Read a small theme image as a data URI, or return '' if it is missing.
+ *
+ * Used for the hero previews, which are a few KB each - small enough to inline
+ * so the hero has something to paint with no extra request.
+ */
+function ozlandcare_inline_theme_image($relative_path)
+{
+	static $cache = array();
+
+	if (isset($cache[$relative_path])) {
+		return $cache[$relative_path];
+	}
+
+	$path = get_template_directory() . '/' . ltrim($relative_path, '/');
+	$data_uri = '';
+
+	if (is_readable($path) && filesize($path) <= 32768) {
+		$bytes = file_get_contents($path);
+		if (false !== $bytes) {
+			$file_type = wp_check_filetype($path);
+			$mime_type = ! empty($file_type['type']) ? $file_type['type'] : 'image/jpeg';
+			$data_uri = 'data:' . $mime_type . ';base64,' . base64_encode($bytes);
+		}
+	}
+
+	$cache[$relative_path] = $data_uri;
+
+	return $data_uri;
 }
 
 /**
