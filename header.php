@@ -21,7 +21,8 @@
 
     if (is_front_page() || is_home()) {
         ozlandcare_output_critical_hero_css();
-    } else {
+    } elseif (! is_404()) {
+        // The 404 page has no banner, so it needs no banner CSS either.
         ozlandcare_output_critical_banner_css();
     }
     ?>
@@ -1675,8 +1676,10 @@
                     'template-parts/content',
                     'slider'
                 );
-            } else {
+            } elseif (! is_404()) {
 
+                // Every other page gets the inner-page banner; the 404 page does
+                // not, so its "Page Not Found" message sits directly under the header.
                 get_template_part(
                     'template-parts/content',
                     'banner'
