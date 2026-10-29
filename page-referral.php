@@ -226,11 +226,9 @@ get_header();
         accent-color: #5f2a7d;
     }
 
+    /* The browser bubble already shows the message; don't repeat it below the field */
     .referral-form-shell .wpcf7-not-valid-tip {
-        margin: 0.45rem 0 0 0.25rem;
-        color: #dc2626;
-        font-size: 0.75rem;
-        font-weight: 600;
+        display: none;
     }
 
     .referral-form-shell .wpcf7-response-output {
