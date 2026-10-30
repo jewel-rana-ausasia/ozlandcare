@@ -209,6 +209,19 @@ function ozlandcare_theme_setup()
 }
 add_action('after_setup_theme', 'ozlandcare_theme_setup');
 
+/**
+ * The header logo is capped at 40/56/80px tall (see header.php), about
+ * 180/250/356px wide. WordPress describes it as "100vw", so phones fetched a
+ * 1536px+ file and the header sat blank while it loaded. Describe the real
+ * width so each device picks the smallest sharp file.
+ */
+function ozlandcare_custom_logo_sizes($attributes)
+{
+	$attributes['sizes'] = '(min-width: 1024px) 356px, (min-width: 640px) 250px, 180px';
+	return $attributes;
+}
+add_filter('get_custom_logo_image_attributes', 'ozlandcare_custom_logo_sizes');
+
 
 function ozlandcare_add_menu_link_class($atts, $item, $args)
 {

@@ -256,6 +256,23 @@ function ozlandcare_output_critical_banner_css()
 		}
 
 		/*
+		 * Small laptops / landscape tablets 1024-1279px: the 1024px container
+		 * minus its 5rem gutters leaves the 42% title column about 360px wide,
+		 * so 60px titles such as "Assist-Personal Activities" broke onto three
+		 * lines. A wider column and a slightly smaller size keep them to two.
+		 * 1280px+ is unchanged.
+		 */
+		@media (min-width: 1024px) and (max-width: 1279.98px) {
+			.content-banner-shell .content-banner-copy {
+				max-width: 52%;
+			}
+
+			.content-banner-shell .content-banner-title {
+				font-size: 3.25rem;
+			}
+		}
+
+		/*
 		 * Tablets 768-1023px (iPad mini/Air): a little taller than the 300px
 		 * md height. The element selector outranks Tailwind's md:min-h-[300px].
 		 */

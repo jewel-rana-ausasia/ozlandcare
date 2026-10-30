@@ -984,6 +984,20 @@ get_header();
         .feedback-form-shell .feedback-submit {
             width: 100%;
         }
+
+        /*
+         * iOS Safari centres the date and can collapse or overflow the field;
+         * match the text fields, as on the Referral and Incident forms.
+         */
+        .feedback-form-shell input[type="date"].feedback-input {
+            -webkit-appearance: none;
+            appearance: none;
+            text-align: left;
+        }
+
+        .feedback-form-shell input[type="date"].feedback-input::-webkit-date-and-time-value {
+            text-align: left;
+        }
     }
 
     @media (max-width: 639px) {

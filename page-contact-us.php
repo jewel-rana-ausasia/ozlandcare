@@ -183,7 +183,7 @@ get_header();
 
                                 <div>
                                     <p class="text-white text-xs uppercase tracking-widest mb-1">Email Us</p>
-                                    <a href="<?php echo esc_url(ozlandcare_email_href()); ?>" class="text-lg font-bold transition-colors block break-all"><?php echo esc_html(ozlandcare_email()); ?></a>
+                                    <a href="<?php echo esc_url(ozlandcare_email_href()); ?>" class="text-lg font-bold transition-colors block"><?php echo str_replace('@', '@<wbr>', esc_html(ozlandcare_email())); ?></a>
                                 </div>
                             </div>
 
