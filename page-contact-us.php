@@ -205,7 +205,7 @@ get_header();
 
             <!-- Right Section: Contact Form 7 -->
             <div class="xl:w-3/5">
-                <div class="contact-cf7-shell bg-white rounded-3xl shadow-2xl shadow-slate-200/60 p-8 md:p-12 min-h-full border border-slate-50 overflow-hidden">
+                <div class="contact-cf7-shell bg-white rounded-3xl shadow-2xl shadow-slate-200/60 p-8 md:p-12 min-h-full border border-slate-50">
                     <?php echo do_shortcode('[contact-form-7 id="c3e0c15" title="Contact Us"]'); ?>
                 </div>
             </div>
@@ -234,6 +234,7 @@ get_header();
         width: 100%;
         height: 100%;
         box-sizing: border-box;
+        overflow: visible;
     }
 
     .contact-cf7-shell .wpcf7 {
@@ -263,6 +264,7 @@ get_header();
 
     .contact-cf7-shell .wpcf7-form-control-wrap {
         display: block;
+        position: relative;
         width: 100%;
     }
 
@@ -320,13 +322,57 @@ get_header();
     }
 
     .contact-cf7-shell .wpcf7-not-valid-tip {
+        position: absolute;
+        top: calc(100% + 0.5rem);
+        left: 0.75rem;
+        z-index: 40;
         display: block;
-        margin-top: 0.45rem;
-        margin-left: 0.25rem;
-        color: #dc2626;
-        font-size: 0.75rem;
-        font-weight: 600;
-        line-height: 1.4;
+        width: max-content;
+        max-width: min(17rem, calc(100vw - 3rem));
+        min-height: 2.65rem;
+        margin: 0;
+        padding: 0.65rem 0.85rem 0.65rem 2.65rem;
+        border: 1px solid #a8a8a8;
+        border-radius: 0.25rem;
+        color: #202124;
+        background: #fdfdfd;
+        box-shadow: 0 3px 8px rgba(0, 0, 0, 0.32);
+        font-family: Arial, sans-serif;
+        font-size: 0.8125rem;
+        font-weight: 400;
+        line-height: 1.3;
+    }
+
+    .contact-cf7-shell .wpcf7-not-valid-tip::before {
+        content: "!";
+        position: absolute;
+        top: 50%;
+        left: 0.6rem;
+        display: flex;
+        width: 1.45rem;
+        height: 1.45rem;
+        align-items: center;
+        justify-content: center;
+        border-radius: 0.15rem;
+        color: #fff;
+        background: #f57c00;
+        font-size: 1rem;
+        font-weight: 700;
+        line-height: 1;
+        transform: translateY(-50%);
+    }
+
+    .contact-cf7-shell .wpcf7-not-valid-tip::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0.75rem;
+        width: 0.7rem;
+        height: 0.7rem;
+        border-top: 1px solid #a8a8a8;
+        border-left: 1px solid #a8a8a8;
+        background: #fdfdfd;
+        transform: translateY(-50%) rotate(45deg);
     }
 
     /* Hide CF7 response box initially */
@@ -370,6 +416,10 @@ get_header();
         border: 1px solid #fecaca !important;
         color: #991b1b !important;
         background: #fef2f2 !important;
+    }
+
+    .contact-cf7-shell form.invalid .wpcf7-response-output {
+        display: none !important;
     }
 
     .contact-cf7-shell .wpcf7-spinner {
@@ -529,68 +579,74 @@ get_header();
                 document.getElementById('contactMessage')
             ].filter(Boolean);
 
-            for (const input of requiredInputs) {
+            cf7Form.querySelectorAll('.contact-local-validation').forEach(tip => tip.remove());
+
+            const invalidWrappers = new Set();
+            let firstInvalid = null;
+
+            const showValidation = (input, message) => {
+                const wrapper = input.closest('.wpcf7-form-control-wrap') || input.parentElement;
+                input.classList.add('input-error');
+                if (!firstInvalid) firstInvalid = wrapper || input;
+                if (!wrapper || invalidWrappers.has(wrapper)) return;
+
+                invalidWrappers.add(wrapper);
+                const tip = document.createElement('span');
+                tip.className = 'wpcf7-not-valid-tip contact-local-validation';
+                tip.setAttribute('aria-hidden', 'true');
+                tip.textContent = message;
+                wrapper.appendChild(tip);
+            };
+
+            requiredInputs.forEach(input => {
                 if (!input.value.trim()) {
-                    event.preventDefault();
-                    event.stopImmediatePropagation();
-
-                    input.setCustomValidity('Please complete this field.');
-                    input.classList.add('input-error');
-                    input.reportValidity();
-                    input.focus();
-
-                    return;
+                    showValidation(input, 'Please fill out this field.');
                 }
+            });
+
+            if (firstName && !singleNameRegex.test(firstName)) {
+                showValidation(firstNameInput, 'Enter one first name without spaces.');
             }
 
-            if (!singleNameRegex.test(firstName)) {
-                event.preventDefault();
-                event.stopImmediatePropagation();
-
-                firstNameInput.setCustomValidity('Enter one first name without spaces.');
-                firstNameInput.classList.add('input-error');
-                firstNameInput.reportValidity();
-                firstNameInput.focus();
-
-                return;
+            if (surname && !singleNameRegex.test(surname)) {
+                showValidation(surnameInput, 'Enter one surname without spaces.');
             }
 
-            if (!singleNameRegex.test(surname)) {
-                event.preventDefault();
-                event.stopImmediatePropagation();
-
-                surnameInput.setCustomValidity('Enter one surname without spaces.');
-                surnameInput.classList.add('input-error');
-                surnameInput.reportValidity();
-                surnameInput.focus();
-
-                return;
+            if (phone && !australianMobileRegex.test(phone)) {
+                showValidation(phoneInput, 'Enter a valid 10-digit Australian mobile number starting with 04.');
             }
 
-            if (!australianMobileRegex.test(phone)) {
-                event.preventDefault();
-                event.stopImmediatePropagation();
-
-                phoneInput.setCustomValidity('Enter a valid 10-digit Australian mobile number starting with 04.');
-                phoneInput.classList.add('input-error');
-                phoneInput.reportValidity();
-                phoneInput.focus();
-
-                return;
+            if (email && !emailRegex.test(email)) {
+                showValidation(emailInput, 'Enter a valid email address such as name@example.com.');
             }
 
-            if (!emailRegex.test(email)) {
+            if (firstInvalid) {
                 event.preventDefault();
                 event.stopImmediatePropagation();
-
-                emailInput.setCustomValidity('Enter a valid email address such as name@example.com.');
-                emailInput.classList.add('input-error');
-                emailInput.reportValidity();
-                emailInput.focus();
-
-                return;
+                firstInvalid.scrollIntoView({ behavior: 'smooth', block: 'center' });
             }
         }, true);
+
+        const clearLocalValidation = event => {
+            const wrapper = event.target.closest('.wpcf7-form-control-wrap');
+            if (!wrapper) return;
+
+            wrapper.querySelectorAll('.contact-local-validation').forEach(tip => tip.remove());
+        };
+
+        document.addEventListener('input', clearLocalValidation, true);
+        document.addEventListener('change', clearLocalValidation, true);
+
+        document.addEventListener('wpcf7invalid', function(event) {
+            if (!event.target.contains(phoneInput)) return;
+
+            setTimeout(function() {
+                const invalid = event.target.querySelector('.wpcf7-not-valid');
+                if (invalid) {
+                    invalid.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                }
+            }, 0);
+        });
 
         document.addEventListener('wpcf7mailsent', function(event) {
             if (event.target && event.target.contains(phoneInput)) {

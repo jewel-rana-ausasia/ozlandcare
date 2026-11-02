@@ -341,7 +341,7 @@ get_header();
             </div>
 
             <div class="px-6 md:px-10 py-8">
-                <form id="assessmentForm" onsubmit="handleFormSubmit(event)" class="min-h-[360px] flex flex-col justify-between">
+                <form id="assessmentForm" onsubmit="handleFormSubmit(event)" novalidate class="min-h-[360px] flex flex-col justify-between">
                     <div id="stepsContainer" class="w-full">
 
                         <div class="step-content active animate-fadeIn" data-step="1">
@@ -545,24 +545,32 @@ get_header();
 
                             <div class="border-t border-slate-100 pt-6">
                                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
-                                    <input type="text" id="assessmentFirstName" name="first_name" placeholder="First Name *" autocomplete="given-name" title="Enter one first name without spaces." class="p-3.5 bg-slate-50 border-2 border-transparent focus:border-[#702d7e] focus:bg-white rounded-xl outline-none transition-all text-sm font-bold" required>
-                                    <input type="text" id="assessmentSurname" name="last_name" placeholder="Surname *" autocomplete="family-name" title="Enter one surname without spaces." class="p-3.5 bg-slate-50 border-2 border-transparent focus:border-[#702d7e] focus:bg-white rounded-xl outline-none transition-all text-sm font-bold" required>
+                                    <div class="assessment-validation-anchor relative">
+                                        <input type="text" id="assessmentFirstName" name="first_name" placeholder="First Name *" autocomplete="given-name" title="Enter one first name without spaces." class="w-full p-3.5 bg-slate-50 border-2 border-transparent focus:border-[#702d7e] focus:bg-white rounded-xl outline-none transition-all text-sm font-bold" required>
+                                    </div>
+                                    <div class="assessment-validation-anchor relative">
+                                        <input type="text" id="assessmentSurname" name="last_name" placeholder="Surname *" autocomplete="family-name" title="Enter one surname without spaces." class="w-full p-3.5 bg-slate-50 border-2 border-transparent focus:border-[#702d7e] focus:bg-white rounded-xl outline-none transition-all text-sm font-bold" required>
+                                    </div>
 
-                                    <input
-                                        type="tel"
-                                        id="assessmentPhone"
-                                        name="phone"
-                                        placeholder="Mobile *"
-                                        inputmode="numeric"
-                                        autocomplete="tel"
-                                        pattern="^04[0-9]{8}$"
-                                        minlength="10"
-                                        maxlength="10"
-                                        title="Enter a valid 10-digit Australian mobile number starting with 04."
-                                        class="p-3.5 bg-slate-50 border-2 border-transparent focus:border-[#702d7e] focus:bg-white rounded-xl outline-none transition-all text-sm font-bold"
-                                        required>
+                                    <div class="assessment-validation-anchor relative">
+                                        <input
+                                            type="tel"
+                                            id="assessmentPhone"
+                                            name="phone"
+                                            placeholder="Mobile *"
+                                            inputmode="numeric"
+                                            autocomplete="tel"
+                                            pattern="^04[0-9]{8}$"
+                                            minlength="10"
+                                            maxlength="10"
+                                            title="Enter a valid 10-digit Australian mobile number starting with 04."
+                                            class="w-full p-3.5 bg-slate-50 border-2 border-transparent focus:border-[#702d7e] focus:bg-white rounded-xl outline-none transition-all text-sm font-bold"
+                                            required>
+                                    </div>
 
-                                    <input type="email" id="email" name="email" placeholder="Email Address *" class="p-3.5 bg-slate-50 border-2 border-transparent focus:border-[#702d7e] focus:bg-white rounded-xl outline-none transition-all text-sm font-bold" required>
+                                    <div class="assessment-validation-anchor relative">
+                                        <input type="email" id="email" name="email" placeholder="Email Address *" class="w-full p-3.5 bg-slate-50 border-2 border-transparent focus:border-[#702d7e] focus:bg-white rounded-xl outline-none transition-all text-sm font-bold" required>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -639,6 +647,63 @@ get_header();
         border-color: #ef4444 !important;
         background-color: #fef2f2 !important;
     }
+
+    .assessment-validation-anchor {
+        position: relative;
+    }
+
+    .assessment-validation-tip {
+        position: absolute;
+        top: calc(100% + 0.5rem);
+        left: 0.75rem;
+        z-index: 40;
+        display: block;
+        width: max-content;
+        max-width: min(17rem, calc(100vw - 3rem));
+        min-height: 2.65rem;
+        padding: 0.65rem 0.85rem 0.65rem 2.65rem;
+        border: 1px solid #a8a8a8;
+        border-radius: 0.25rem;
+        color: #202124;
+        background: #fdfdfd;
+        box-shadow: 0 3px 8px rgba(0, 0, 0, 0.32);
+        font-family: Arial, sans-serif;
+        font-size: 0.8125rem;
+        font-weight: 400;
+        line-height: 1.3;
+    }
+
+    .assessment-validation-tip::before {
+        content: "!";
+        position: absolute;
+        top: 50%;
+        left: 0.6rem;
+        display: flex;
+        width: 1.45rem;
+        height: 1.45rem;
+        align-items: center;
+        justify-content: center;
+        border-radius: 0.15rem;
+        color: #fff;
+        background: #f57c00;
+        font-size: 1rem;
+        font-weight: 700;
+        line-height: 1;
+        transform: translateY(-50%);
+    }
+
+    .assessment-validation-tip::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0.75rem;
+        width: 0.7rem;
+        height: 0.7rem;
+        border-top: 1px solid #a8a8a8;
+        border-left: 1px solid #a8a8a8;
+        background: #fdfdfd;
+        transform: translateY(-50%) rotate(45deg);
+    }
 </style>
 
 <script>
@@ -657,6 +722,32 @@ get_header();
     let currentStep = 1;
     let selectedSupportType = 'myself';
     let lastValidPhoneValue = '';
+
+    function clearAssessmentValidation(scope = form) {
+        scope.querySelectorAll('.assessment-validation-tip').forEach(tip => tip.remove());
+    }
+
+    function showAssessmentValidation(anchor, message, input = null) {
+        if (!anchor || anchor.querySelector(':scope > .assessment-validation-tip')) return;
+
+        anchor.classList.add('assessment-validation-anchor');
+        const tip = document.createElement('span');
+        tip.className = 'assessment-validation-tip';
+        tip.setAttribute('aria-hidden', 'true');
+        tip.textContent = message;
+        anchor.appendChild(tip);
+
+        if (input) input.classList.add('input-error');
+    }
+
+    function clearAssessmentFieldValidation(event) {
+        const anchor = event.target.closest('.assessment-validation-anchor');
+        if (!anchor) return;
+        anchor.querySelectorAll(':scope > .assessment-validation-tip').forEach(tip => tip.remove());
+    }
+
+    form.addEventListener('input', clearAssessmentFieldValidation);
+    form.addEventListener('change', clearAssessmentFieldValidation);
 
     phoneInput.addEventListener('input', () => {
         const digitsOnly = phoneInput.value.replace(/\D/g, '').slice(0, 10);
@@ -782,14 +873,18 @@ get_header();
 
     function validateStep() {
         const currentStepEl = document.querySelector(`.step-content[data-step="${currentStep}"]`);
+        clearAssessmentValidation(currentStepEl);
+        let firstInvalid = null;
 
         // 1. Radio Group Validation
         const radioGroups = [...new Set([...currentStepEl.querySelectorAll('input[type="radio"]')].map(i => i.name))];
         for (let groupName of radioGroups) {
             const checked = currentStepEl.querySelector(`input[name="${groupName}"]:checked`);
             if (!checked) {
-                alert("Please select an option to continue.");
-                return false;
+                const firstRadio = currentStepEl.querySelector(`input[name="${groupName}"]`);
+                const anchor = firstRadio && (firstRadio.closest('.grid') || firstRadio.parentElement);
+                showAssessmentValidation(anchor, 'Please fill out this field.');
+                if (!firstInvalid) firstInvalid = anchor;
             }
         }
 
@@ -798,8 +893,9 @@ get_header();
         if (checkboxes.length > 0) {
             const checkedItemExist = Array.from(checkboxes).some(c => c.checked);
             if (!checkedItemExist) {
-                alert("Please select at least one option category domain.");
-                return false;
+                const anchor = checkboxes[0].closest('.grid') || checkboxes[0].parentElement;
+                showAssessmentValidation(anchor, 'Please fill out this field.');
+                if (!firstInvalid) firstInvalid = anchor;
             }
         }
 
@@ -809,10 +905,10 @@ get_header();
             const value = input.value.trim();
 
             if (!value) {
-                input.classList.add('input-error');
-                input.focus();
-                input.reportValidity();
-                return false;
+                const anchor = input.parentElement;
+                showAssessmentValidation(anchor, 'Please fill out this field.', input);
+                if (!firstInvalid) firstInvalid = anchor;
+                continue;
             }
 
             // Step 2 - Validate NSW format only when a postcode is entered by itself
@@ -821,15 +917,20 @@ get_header();
                 const postcodeOnlyRegex = /^\d+$/;
 
                 if (postcodeOnlyRegex.test(value) && !nswPostcodeRegex.test(value)) {
-                    input.classList.add('input-error');
-                    input.focus();
-                    alert("Please enter a valid 4-digit NSW postcode starting with 2 (e.g., 2000).");
-                    return false;
+                    const anchor = input.parentElement;
+                    showAssessmentValidation(anchor, 'Please enter a valid 4-digit NSW postcode starting with 2 (e.g., 2000).', input);
+                    if (!firstInvalid) firstInvalid = anchor;
+                    continue;
                 }
             }
 
             // Remove error if validation passes
             input.classList.remove('input-error');
+        }
+
+        if (firstInvalid) {
+            firstInvalid.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            return false;
         }
 
         return true;
@@ -898,41 +999,46 @@ get_header();
             [emailInput, 'email address'],
         ];
 
+        clearAssessmentValidation(document.querySelector('.step-content[data-step="8"]'));
+        let firstInvalid = null;
+
         for (const [input, label] of mandatoryContactFields) {
             if (!input.value.trim()) {
-                input.classList.add('input-error');
-                input.focus();
-                input.reportValidity();
-                return;
+                const anchor = input.closest('.assessment-validation-anchor') || input.parentElement;
+                showAssessmentValidation(anchor, 'Please fill out this field.', input);
+                if (!firstInvalid) firstInvalid = anchor;
             }
         }
 
-        if (!validateAssessmentName(firstNameInput, 'first name')) {
-            firstNameInput.reportValidity();
-            firstNameInput.focus();
-            return;
+        if (firstNameInput.value.trim() && !validateAssessmentName(firstNameInput, 'first name')) {
+            const anchor = firstNameInput.closest('.assessment-validation-anchor');
+            showAssessmentValidation(anchor, 'Enter one first name without spaces.', firstNameInput);
+            if (!firstInvalid) firstInvalid = anchor;
         }
 
-        if (!validateAssessmentName(surnameInput, 'surname')) {
-            surnameInput.reportValidity();
-            surnameInput.focus();
-            return;
+        if (surnameInput.value.trim() && !validateAssessmentName(surnameInput, 'surname')) {
+            const anchor = surnameInput.closest('.assessment-validation-anchor');
+            showAssessmentValidation(anchor, 'Enter one surname without spaces.', surnameInput);
+            if (!firstInvalid) firstInvalid = anchor;
         }
 
         const australianMobileRegex = /^04\d{8}$/;
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
 
-        if (!australianMobileRegex.test(phone)) {
-            phoneInput.classList.add('input-error');
-            phoneInput.focus();
-            alert("Please enter a valid 10-digit Australian mobile number starting with 04 (e.g. 0412345678).");
-            return;
+        if (phone && !australianMobileRegex.test(phone)) {
+            const anchor = phoneInput.closest('.assessment-validation-anchor');
+            showAssessmentValidation(anchor, 'Please enter a valid 10-digit Australian mobile number starting with 04 (e.g. 0412345678).', phoneInput);
+            if (!firstInvalid) firstInvalid = anchor;
         }
 
-        if (!emailRegex.test(email)) {
-            emailInput.classList.add('input-error');
-            emailInput.focus();
-            alert("Please enter a valid email address.");
+        if (email && !emailRegex.test(email)) {
+            const anchor = emailInput.closest('.assessment-validation-anchor');
+            showAssessmentValidation(anchor, 'Please enter a valid email address.', emailInput);
+            if (!firstInvalid) firstInvalid = anchor;
+        }
+
+        if (firstInvalid) {
+            firstInvalid.scrollIntoView({ behavior: 'smooth', block: 'center' });
             return;
         }
 
@@ -948,6 +1054,7 @@ get_header();
 
         // Reset form back to step 1
         form.reset();
+        clearAssessmentValidation(form);
         firstNameInput.setCustomValidity('');
         surnameInput.setCustomValidity('');
         firstNameInput.classList.remove('input-error');

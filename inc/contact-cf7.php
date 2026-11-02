@@ -17,33 +17,33 @@ function ozlandcare_contact_cf7_template()
 <div id="contactForm" class="oz-contact-form flex flex-col gap-8 h-full">
     <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
         <div class="group flex flex-col">
-            <label class="text-xs font-bold uppercase tracking-widest text-slate-900 mb-2 ml-1 group-focus-within:text-blue transition-colors">Client Name</label>
+            <label for="contactName" class="text-xs font-bold uppercase tracking-widest text-slate-900 mb-2 ml-1 group-focus-within:text-blue transition-colors">Client Name <span class="text-primary">*</span></label>
             [text* your-name id:contactName class:oz-contact-input placeholder "Enter first name"]
         </div>
 
         <div class="group flex flex-col">
-            <label class="text-xs font-bold uppercase tracking-widest text-slate-900 mb-2 ml-1 group-focus-within:text-blue transition-colors">Surname</label>
+            <label for="contactSurname" class="text-xs font-bold uppercase tracking-widest text-slate-900 mb-2 ml-1 group-focus-within:text-blue transition-colors">Surname <span class="text-primary">*</span></label>
             [text* your-surname id:contactSurname class:oz-contact-input placeholder "Enter surname"]
         </div>
 
         <div class="group flex flex-col">
-            <label class="text-xs font-bold uppercase tracking-widest text-slate-900 mb-2 ml-1 group-focus-within:text-blue transition-colors">Phone Number</label>
+            <label for="contactPhone" class="text-xs font-bold uppercase tracking-widest text-slate-900 mb-2 ml-1 group-focus-within:text-blue transition-colors">Phone Number <span class="text-primary">*</span></label>
             [tel* your-phone id:contactPhone class:oz-contact-input placeholder "0412345678"]
         </div>
 
         <div class="group flex flex-col">
-            <label class="text-xs font-bold uppercase tracking-widest text-slate-900 mb-2 ml-1 group-focus-within:text-blue transition-colors">Your Email</label>
+            <label for="contactEmail" class="text-xs font-bold uppercase tracking-widest text-slate-900 mb-2 ml-1 group-focus-within:text-blue transition-colors">Your Email <span class="text-primary">*</span></label>
             [email* your-email id:contactEmail class:oz-contact-input placeholder "name@example.com"]
         </div>
 
         <div class="group flex flex-col md:col-span-2">
-            <label class="text-xs font-bold uppercase tracking-widest text-slate-900 mb-2 ml-1 group-focus-within:text-blue transition-colors">Your Subject</label>
+            <label for="contactSubject" class="text-xs font-bold uppercase tracking-widest text-slate-900 mb-2 ml-1 group-focus-within:text-blue transition-colors">Your Subject <span class="text-primary">*</span></label>
             [text* your-subject id:contactSubject class:oz-contact-input placeholder "How can we help?"]
         </div>
     </div>
 
     <div class="group flex flex-col flex-1">
-        <label class="text-xs font-bold uppercase tracking-widest text-slate-900 mb-2 ml-1 group-focus-within:text-blue transition-colors">Message</label>
+        <label for="contactMessage" class="text-xs font-bold uppercase tracking-widest text-slate-900 mb-2 ml-1 group-focus-within:text-blue transition-colors">Message <span class="text-primary">*</span></label>
         [textarea* your-message id:contactMessage class:oz-contact-textarea placeholder "Write your message here..."]
     </div>
 
@@ -68,7 +68,7 @@ function ozlandcare_provision_contact_cf7_form()
 		return 0;
 	}
 
-	$schema_version = '3';
+	$schema_version = '4';
 	$contact_forms = WPCF7_ContactForm::find(array(
 		'title'          => 'Contact Us',
 		'posts_per_page' => 1,
