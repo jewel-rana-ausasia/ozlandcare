@@ -1095,7 +1095,10 @@ get_header();
         [
             nameInput,
             dateInput,
-            ...form.querySelectorAll('.survey-choices input, .rating-scale input')
+            ...form.querySelectorAll('.survey-choices input, .rating-scale input'),
+            document.getElementById('feedback_what_was_good'),
+            document.getElementById('feedback_what_to_improve'),
+            document.getElementById('feedback_other_comments')
         ].filter(Boolean).forEach(input => {
             input.required = true;
         });

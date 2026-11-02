@@ -147,21 +147,21 @@ function ozlandcare_feedback_cf7_template()
         <span class="feedback-step" aria-hidden="true">4</span>
         <div>
             <h3 class="feedback-panel-title">Your Comments</h3>
-            <p class="feedback-panel-sub">Optional, but every comment is read by our team.</p>
+            <p class="feedback-panel-sub">Please complete all three comment fields.</p>
         </div>
     </div>
     <div class="grid grid-cols-1 gap-6">
         <div class="group flex flex-col">
-            <label for="feedback_what_was_good" class="feedback-label feedback-label--question">What was <strong>good</strong> about the support you received from us?</label>
-            [textarea what_was_good id:feedback_what_was_good rows:4 class:feedback-input placeholder "Tell us what has been working well for you..."]
+            <label for="feedback_what_was_good" class="feedback-label feedback-label--question">What was <strong>good</strong> about the support you received from us? <span class="text-primary">*</span></label>
+            [textarea* what_was_good id:feedback_what_was_good rows:4 class:feedback-input placeholder "Tell us what has been working well for you..."]
         </div>
         <div class="group flex flex-col">
-            <label for="feedback_what_to_improve" class="feedback-label feedback-label--question">What could be <strong>improved</strong> or <strong>changed</strong> about the support you received from us?</label>
-            [textarea what_to_improve id:feedback_what_to_improve rows:4 class:feedback-input placeholder "Your suggestions help us do better..."]
+            <label for="feedback_what_to_improve" class="feedback-label feedback-label--question">What could be <strong>improved</strong> or <strong>changed</strong> about the support you received from us? <span class="text-primary">*</span></label>
+            [textarea* what_to_improve id:feedback_what_to_improve rows:4 class:feedback-input placeholder "Your suggestions help us do better..."]
         </div>
         <div class="group flex flex-col">
-            <label for="feedback_other_comments" class="feedback-label feedback-label--question">Please make any other comments about the service you received. These may be <strong>issues, concerns</strong> or <strong>positive comments</strong>.</label>
-            [textarea other_comments id:feedback_other_comments rows:4 class:feedback-input placeholder "Anything else you would like to share..."]
+            <label for="feedback_other_comments" class="feedback-label feedback-label--question">Please make any other comments about the service you received. These may be <strong>issues, concerns</strong> or <strong>positive comments</strong>. <span class="text-primary">*</span></label>
+            [textarea* other_comments id:feedback_other_comments rows:4 class:feedback-input placeholder "Anything else you would like to share..."]
         </div>
     </div>
 </div>
@@ -184,7 +184,7 @@ function ozlandcare_provision_feedback_cf7_form()
 		return 0;
 	}
 
-	$schema_version = '6';
+	$schema_version = '7';
 	$contact_forms = WPCF7_ContactForm::find(array(
 		'title'          => 'Feedback Form',
 		'posts_per_page' => 1,
