@@ -184,7 +184,7 @@ function ozlandcare_provision_feedback_cf7_form()
 		return 0;
 	}
 
-	$schema_version = '7';
+	$schema_version = '8';
 	$contact_forms = WPCF7_ContactForm::find(array(
 		'title'          => 'Feedback Form',
 		'posts_per_page' => 1,
@@ -281,7 +281,7 @@ function ozlandcare_provision_feedback_cf7_form()
 		: array();
 	$messages['mail_sent_ok'] = 'Thank you for your time in completing this survey. Your feedback helps us improve our services.';
 	$messages['validation_error'] = 'Some answers are missing or need checking. Please review the highlighted items and try again.';
-	$messages['invalid_required'] = 'Please complete this field.';
+	$messages['invalid_required'] = 'Please fill out this field.';
 	$messages['invalid_date'] = 'Enter a valid date.';
 
 	$contact_form->set_title('Feedback Form');
@@ -387,3 +387,23 @@ add_filter('wpcf7_validate_text', 'ozlandcare_validate_feedback_cf7_field', 20, 
 add_filter('wpcf7_validate_text*', 'ozlandcare_validate_feedback_cf7_field', 20, 2);
 add_filter('wpcf7_validate_date', 'ozlandcare_validate_feedback_cf7_field', 20, 2);
 add_filter('wpcf7_validate_date*', 'ozlandcare_validate_feedback_cf7_field', 20, 2);
+
+/**
+ * Keep the required-field copy consistent in both the REST response and the
+ * simultaneous field bubbles, including forms provisioned before this schema.
+ */
+function ozlandcare_feedback_required_message($message, $status)
+{
+	$contact_form = WPCF7_ContactForm::get_current();
+
+	if (
+		'invalid_required' === $status
+		&& $contact_form
+		&& 'Feedback Form' === $contact_form->title()
+	) {
+		return 'Please fill out this field.';
+	}
+
+	return $message;
+}
+add_filter('wpcf7_display_message', 'ozlandcare_feedback_required_message', 20, 2);

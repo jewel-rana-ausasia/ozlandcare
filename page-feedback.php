@@ -268,6 +268,7 @@ get_header();
 
     .feedback-form-shell .wpcf7-form-control-wrap {
         display: block;
+        position: relative;
         width: 100%;
     }
 
@@ -811,10 +812,59 @@ get_header();
         display: none;
     }
 
-    /* The browser bubble already shows the message; don't repeat it below the
-       field - same treatment as the Referral form. */
+    /* Native browser bubbles only show one field at a time. These bubbles use
+       the same visual language while allowing every missed field to show. */
     .feedback-form-shell .wpcf7-not-valid-tip {
-        display: none;
+        position: absolute;
+        top: calc(100% + 0.5rem);
+        left: 0.75rem;
+        z-index: 40;
+        display: block;
+        width: max-content;
+        max-width: min(17rem, calc(100vw - 3rem));
+        min-height: 2.65rem;
+        padding: 0.65rem 0.85rem 0.65rem 2.65rem;
+        border: 1px solid #a8a8a8;
+        border-radius: 0.25rem;
+        color: #202124;
+        background: #fdfdfd;
+        box-shadow: 0 3px 8px rgba(0, 0, 0, 0.32);
+        font-family: Arial, sans-serif;
+        font-size: 0.8125rem;
+        font-weight: 400;
+        line-height: 1.3;
+    }
+
+    .feedback-form-shell .wpcf7-not-valid-tip::before {
+        content: "!";
+        position: absolute;
+        top: 50%;
+        left: 0.6rem;
+        display: flex;
+        width: 1.45rem;
+        height: 1.45rem;
+        align-items: center;
+        justify-content: center;
+        border-radius: 0.15rem;
+        color: #fff;
+        background: #f57c00;
+        font-size: 1rem;
+        font-weight: 700;
+        line-height: 1;
+        transform: translateY(-50%);
+    }
+
+    .feedback-form-shell .wpcf7-not-valid-tip::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0.75rem;
+        width: 0.7rem;
+        height: 0.7rem;
+        border-top: 1px solid #a8a8a8;
+        border-left: 1px solid #a8a8a8;
+        background: #fdfdfd;
+        transform: translateY(-50%) rotate(45deg);
     }
 
     .feedback-form-shell .wpcf7-response-output {
@@ -859,6 +909,10 @@ get_header();
         color: #991b1b;
         background: #fef2f2;
         box-shadow: 0 18px 40px -26px rgba(153, 27, 27, 0.4);
+    }
+
+    .feedback-form-shell form.invalid .wpcf7-response-output {
+        display: none;
     }
 
     .feedback-form-shell form.invalid .wpcf7-response-output::before,
@@ -1179,20 +1233,27 @@ get_header();
             updateReadout();
         });
 
-        // Show the same clear response message pattern used by the Referral
-        // form, then leave the invalid controls highlighted in their panels.
+        // CF7 handles the hidden survey/rating groups; bring the first invalid
+        // panel into view when one of those answers is missing.
         document.addEventListener('wpcf7invalid', event => {
             if (!event.target.contains(form)) {
                 return;
             }
 
-            const response = form.querySelector('.wpcf7-response-output');
-            if (response) {
-                response.scrollIntoView({
-                    behavior: 'smooth',
-                    block: 'center'
+            // CF7 inserts field tips after dispatching this event.
+            setTimeout(() => {
+                form.querySelectorAll('.wpcf7-not-valid-tip').forEach(tip => {
+                    tip.textContent = 'Please fill out this field.';
                 });
-            }
+
+                const invalid = form.querySelector('.wpcf7-not-valid');
+                if (invalid) {
+                    (invalid.closest('.feedback-panel, .survey-row, .survey-rating') || invalid).scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'center'
+                    });
+                }
+            }, 0);
         });
 
         // After a successful send, reset the extras and show the thank-you message.

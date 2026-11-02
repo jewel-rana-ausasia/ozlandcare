@@ -83,6 +83,7 @@ get_header();
 
     .referral-form-shell .wpcf7-form-control-wrap {
         display: block;
+        position: relative;
         width: 100%;
     }
 
@@ -226,9 +227,58 @@ get_header();
         accent-color: #5f2a7d;
     }
 
-    /* The browser bubble already shows the message; don't repeat it below the field */
+    /* Show all missed fields together using the Feedback/Incident browser-style bubble. */
     .referral-form-shell .wpcf7-not-valid-tip {
-        display: none;
+        position: absolute;
+        top: calc(100% + 0.5rem);
+        left: 0.75rem;
+        z-index: 40;
+        display: block;
+        width: max-content;
+        max-width: min(17rem, calc(100vw - 3rem));
+        min-height: 2.65rem;
+        padding: 0.65rem 0.85rem 0.65rem 2.65rem;
+        border: 1px solid #a8a8a8;
+        border-radius: 0.25rem;
+        color: #202124;
+        background: #fdfdfd;
+        box-shadow: 0 3px 8px rgba(0, 0, 0, 0.32);
+        font-family: Arial, sans-serif;
+        font-size: 0.8125rem;
+        font-weight: 400;
+        line-height: 1.3;
+    }
+
+    .referral-form-shell .wpcf7-not-valid-tip::before {
+        content: "!";
+        position: absolute;
+        top: 50%;
+        left: 0.6rem;
+        display: flex;
+        width: 1.45rem;
+        height: 1.45rem;
+        align-items: center;
+        justify-content: center;
+        border-radius: 0.15rem;
+        color: #fff;
+        background: #f57c00;
+        font-size: 1rem;
+        font-weight: 700;
+        line-height: 1;
+        transform: translateY(-50%);
+    }
+
+    .referral-form-shell .wpcf7-not-valid-tip::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0.75rem;
+        width: 0.7rem;
+        height: 0.7rem;
+        border-top: 1px solid #a8a8a8;
+        border-left: 1px solid #a8a8a8;
+        background: #fdfdfd;
+        transform: translateY(-50%) rotate(45deg);
     }
 
     .referral-form-shell .wpcf7-response-output {
@@ -247,6 +297,10 @@ get_header();
         border-color: #fecaca !important;
         color: #991b1b;
         background: #fef2f2;
+    }
+
+    .referral-form-shell form.invalid .wpcf7-response-output {
+        display: none;
     }
 
     .referral-form-shell .referral-submit {
@@ -618,9 +672,68 @@ get_header();
             if (!form.checkValidity()) {
                 event.preventDefault();
                 event.stopImmediatePropagation();
-                form.reportValidity();
+
+                form.querySelectorAll('.referral-local-validation').forEach(tip => tip.remove());
+
+                const invalidWrappers = new Set();
+                let firstInvalid = null;
+
+                form.querySelectorAll(':invalid').forEach(field => {
+                    const wrapper = field.closest('.wpcf7-form-control-wrap') || field.parentElement;
+                    if (!firstInvalid) firstInvalid = wrapper || field;
+                    if (!wrapper || invalidWrappers.has(wrapper)) return;
+
+                    invalidWrappers.add(wrapper);
+                    const tip = document.createElement('span');
+                    tip.className = 'wpcf7-not-valid-tip referral-local-validation';
+                    tip.setAttribute('aria-hidden', 'true');
+                    tip.textContent = field.validity.valueMissing
+                        ? 'Please fill out this field.'
+                        : field.validationMessage;
+                    wrapper.appendChild(tip);
+                    wrapper.querySelectorAll('.wpcf7-form-control').forEach(control => {
+                        control.classList.add('wpcf7-not-valid');
+                    });
+                });
+
+                if (firstInvalid) {
+                    firstInvalid.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                }
             }
         }, true);
+
+        const clearLocalValidation = event => {
+            const wrapper = event.target.closest('.wpcf7-form-control-wrap');
+            if (!wrapper) return;
+
+            wrapper.querySelectorAll('.referral-local-validation').forEach(tip => tip.remove());
+            if (!wrapper.querySelector('.wpcf7-not-valid-tip')) {
+                wrapper.querySelectorAll('.wpcf7-form-control').forEach(control => {
+                    control.classList.remove('wpcf7-not-valid');
+                });
+            }
+        };
+
+        form.addEventListener('input', clearLocalValidation);
+        form.addEventListener('change', clearLocalValidation);
+
+        document.addEventListener('wpcf7invalid', event => {
+            if (!event.target.contains(form)) return;
+
+            setTimeout(() => {
+                form.querySelectorAll('.wpcf7-not-valid-tip').forEach(tip => {
+                    tip.textContent = 'Please fill out this field.';
+                });
+
+                const invalid = form.querySelector('.wpcf7-not-valid');
+                if (invalid) {
+                    (invalid.closest('.referral-panel') || invalid).scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'center'
+                    });
+                }
+            }, 0);
+        });
 
         document.addEventListener('wpcf7reset', event => {
             if (event.target.contains(form)) {
