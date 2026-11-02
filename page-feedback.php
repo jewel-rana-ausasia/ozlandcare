@@ -847,8 +847,7 @@ get_header();
         font-weight: 900;
     }
 
-    .feedback-form-shell .wpcf7-response-output:empty,
-    .feedback-form-shell .wpcf7-response-output[aria-hidden="true"] {
+    .feedback-form-shell .wpcf7-response-output:empty {
         display: none;
     }
 
@@ -1090,19 +1089,6 @@ get_header();
 
         const today = <?php echo wp_json_encode(current_time('Y-m-d')); ?>;
 
-        // Mark every required field, including each answer group, so the
-        // browser shows its own message, as on the Referral form.
-        [
-            nameInput,
-            dateInput,
-            ...form.querySelectorAll('.survey-choices input, .rating-scale input'),
-            document.getElementById('feedback_what_was_good'),
-            document.getElementById('feedback_what_to_improve'),
-            document.getElementById('feedback_other_comments')
-        ].filter(Boolean).forEach(input => {
-            input.required = true;
-        });
-
         if (nameInput) {
             nameInput.autocomplete = 'name';
             nameInput.title = nameMessage;
@@ -1193,27 +1179,16 @@ get_header();
             updateReadout();
         });
 
-        form.addEventListener('submit', event => {
-            if (nameInput) {
-                validateName();
-            }
-
-            if (!form.checkValidity()) {
-                event.preventDefault();
-                event.stopImmediatePropagation();
-                form.reportValidity();
-            }
-        }, true);
-
-        // Bring the first problem into view when CF7 rejects the submission.
+        // Show the same clear response message pattern used by the Referral
+        // form, then leave the invalid controls highlighted in their panels.
         document.addEventListener('wpcf7invalid', event => {
-            if (event.target !== form) {
+            if (!event.target.contains(form)) {
                 return;
             }
 
-            const invalid = form.querySelector('.wpcf7-not-valid');
-            if (invalid) {
-                (invalid.closest('.survey-row, .survey-rating') || invalid).scrollIntoView({
+            const response = form.querySelector('.wpcf7-response-output');
+            if (response) {
+                response.scrollIntoView({
                     behavior: 'smooth',
                     block: 'center'
                 });
@@ -1222,7 +1197,7 @@ get_header();
 
         // After a successful send, reset the extras and show the thank-you message.
         document.addEventListener('wpcf7mailsent', event => {
-            if (event.target !== form) {
+            if (!event.target.contains(form)) {
                 return;
             }
 
