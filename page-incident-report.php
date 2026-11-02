@@ -180,6 +180,22 @@ get_header();
         transform: translateY(-50%) rotate(45deg);
     }
 
+    .incident-form-card .incident-input.wpcf7-not-valid {
+        border-color: #ef4444;
+        background-color: #fef2f2;
+        box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.1);
+    }
+
+    .incident-form-card .incident-options.wpcf7-not-valid .wpcf7-list-item-label {
+        border-color: #ef4444;
+        background-color: #fef2f2;
+    }
+
+    .incident-form-card .incident-declaration .wpcf7-not-valid input {
+        outline: 2px solid #ef4444;
+        outline-offset: 2px;
+    }
+
     .incident-form-card form.invalid .wpcf7-response-output {
         display: none;
     }

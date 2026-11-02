@@ -325,9 +325,22 @@ get_header();
     }
 
     .referral-input:invalid:not(:placeholder-shown),
-    .referral-input.field-invalid {
+    .referral-input.field-invalid,
+    .referral-form-shell .referral-input.wpcf7-not-valid {
         border-color: #ef4444;
         background-color: #fef2f2;
+        box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.1);
+    }
+
+    .referral-form-shell .referral-choice-group.wpcf7-not-valid .wpcf7-list-item-label,
+    .referral-form-shell .referral-yesno.wpcf7-not-valid .wpcf7-list-item-label {
+        border-color: #ef4444;
+        background-color: #fef2f2;
+    }
+
+    .referral-form-shell .wpcf7-form-control-wrap[data-name="consent"] .wpcf7-not-valid input {
+        outline: 2px solid #ef4444;
+        outline-offset: 2px;
     }
 
     @media (max-width: 639px) {
