@@ -201,7 +201,7 @@ function ozlandcare_provision_incident_report_cf7_form()
 		return 0;
 	}
 
-	$schema_version = '14';
+	$schema_version = '15';
 	$forms = WPCF7_ContactForm::find(array('title' => 'Incident Report', 'posts_per_page' => 1));
 	$form = $forms ? $forms[0] : WPCF7_ContactForm::get_template(array('title' => 'Incident Report', 'locale' => get_locale()));
 
@@ -228,7 +228,7 @@ function ozlandcare_provision_incident_report_cf7_form()
 	$mail['body'] = 'Incident reports are stored securely for manager review and are not sent through Contact Form 7 email.';
 
 	$messages = isset($properties['messages']) && is_array($properties['messages']) ? $properties['messages'] : array();
-	$messages['mail_sent_ok'] = 'Your part of the incident report has been saved securely and sent to a manager for review.';
+	$messages['mail_sent_ok'] = 'Your part of the incident report has been saved securely for manager review.';
 	$form->set_title('Incident Report');
 	$form->set_properties(array(
 		'form' => ozlandcare_incident_report_cf7_template(),
@@ -415,7 +415,7 @@ function ozlandcare_store_incident_report_files($submission)
 	return $stored;
 }
 
-/** Save stage one, notify the site manager, and suppress the old full-report email. */
+/** Save stage one to the manager's admin review list without sending email. */
 function ozlandcare_save_incident_staff_stage($contact_form, &$abort, $submission)
 {
 	if ('Incident Report' !== $contact_form->title()) {
@@ -435,14 +435,10 @@ function ozlandcare_save_incident_staff_stage($contact_form, &$abort, $submissio
 	update_post_meta($post_id, '_oz_incident_stage', 'awaiting_manager');
 	update_post_meta($post_id, '_oz_incident_staff_data', $data);
 	update_post_meta($post_id, '_oz_incident_submitted_at', current_time('mysql'));
-	update_post_meta($post_id, '_oz_incident_files', ozlandcare_store_incident_report_files($submission));
+	$files = ozlandcare_store_incident_report_files($submission);
+	update_post_meta($post_id, '_oz_incident_files', $files);
 	$submission->add_result_props(array('incident_report_id' => $post_id));
 	$GLOBALS['ozlandcare_skip_incident_report_mail'] = true;
-	wp_mail(
-		get_option('admin_email'),
-		'Incident report awaiting manager review',
-		"An incident report is awaiting manager review.\n\nOpen the secure record: " . admin_url('post.php?post=' . $post_id . '&action=edit')
-	);
 }
 add_action('wpcf7_before_send_mail', 'ozlandcare_save_incident_staff_stage', 20, 3);
 
@@ -465,6 +461,37 @@ function ozlandcare_incident_field_label($key)
 		'prevention_plan' => 'Prevention plan', 'actions_completed' => 'Actions completed',
 	);
 	return $labels[$key] ?? ucwords(str_replace('_', ' ', $key));
+}
+
+/** Build the complete plain-text report sent after manager approval. */
+function ozlandcare_incident_report_email_body($post_id, $data, $review = array())
+{
+	$final = ! empty($review);
+	$lines = array(
+		'OZLAND CARE - INCIDENT REPORT',
+		$final ? 'Status: Completed manager review' : 'Status: Awaiting manager review',
+		'Record: #' . $post_id,
+		'Secure record: ' . admin_url('post.php?post=' . $post_id . '&action=edit'),
+		'',
+		'STAFF-SUBMITTED REPORT',
+	);
+	foreach ((array) $data as $key => $value) {
+		if ('' === $value || array() === $value) {
+			continue;
+		}
+		$lines[] = ozlandcare_incident_field_label($key) . ': ' . (is_array($value) ? implode(', ', $value) : $value);
+	}
+	if ($final) {
+		$lines[] = '';
+		$lines[] = "MANAGER'S REVIEW";
+		$lines[] = 'Review comments: ' . ($review['comments'] ?? '');
+		$lines[] = 'Manager signature: ' . ($review['signature'] ?? '');
+		$lines[] = 'Review date: ' . ($review['date'] ?? '');
+		$lines[] = 'Manager declaration: Confirmed';
+	}
+	$lines[] = '';
+	$lines[] = 'Any supporting files submitted with this report are attached to this email.';
+	return implode("\n", $lines);
 }
 
 function ozlandcare_add_incident_review_meta_boxes()
@@ -616,15 +643,28 @@ function ozlandcare_save_incident_manager_review($post_id)
 		return;
 	}
 
+	$data = (array) get_post_meta($post_id, '_oz_incident_staff_data', true);
+	$files = (array) get_post_meta($post_id, '_oz_incident_files', true);
+	$attachments = array_values(array_filter(wp_list_pluck($files, 'path'), function ($path) {
+		return is_string($path) && is_file($path);
+	}));
+	$mail_sent = wp_mail(
+		get_option('admin_email'),
+		'Final incident report #' . $post_id,
+		ozlandcare_incident_report_email_body($post_id, $data, $review),
+		array('Content-Type: text/plain; charset=UTF-8'),
+		$attachments
+	);
+	if (! $mail_sent) {
+		update_post_meta($post_id, '_oz_incident_admin_notice', array('error', 'The manager review was saved, but the final report email could not be sent. Check the site mail configuration and submit again.'));
+		return;
+	}
+
 	update_post_meta($post_id, '_oz_incident_stage', 'completed');
 	update_post_meta($post_id, '_oz_incident_completed_at', current_time('mysql'));
 	update_post_meta($post_id, '_oz_incident_reviewed_by', get_current_user_id());
-	update_post_meta($post_id, '_oz_incident_admin_notice', array('success', 'The manager review is complete and the incident report is now final.'));
-	wp_mail(
-		get_option('admin_email'),
-		'Incident report review completed',
-		"A manager has completed an incident report review.\n\nOpen the secure record: " . admin_url('post.php?post=' . $post_id . '&action=edit')
-	);
+	update_post_meta($post_id, '_oz_incident_final_email_sent', 1);
+	update_post_meta($post_id, '_oz_incident_admin_notice', array('success', 'The manager review is complete and the full incident report email has been sent.'));
 }
 add_action('save_post_oz_incident_report', 'ozlandcare_save_incident_manager_review');
 
@@ -690,7 +730,7 @@ add_action('admin_head', 'ozlandcare_incident_review_admin_styles');
 function ozlandcare_incident_review_columns($columns)
 {
 	return array(
-		'cb' => $columns['cb'], 'title' => 'Incident', 'incident_date' => 'Incident date',
+		'cb' => $columns['cb'], 'title' => 'Incident', 'report_number' => 'Incident report number', 'incident_date' => 'Incident date',
 		'incident_stage' => 'Review status', 'date' => 'Staff submitted',
 	);
 }
@@ -699,7 +739,9 @@ add_filter('manage_oz_incident_report_posts_columns', 'ozlandcare_incident_revie
 function ozlandcare_incident_review_column_content($column, $post_id)
 {
 	$data = (array) get_post_meta($post_id, '_oz_incident_staff_data', true);
-	if ('incident_date' === $column) {
+	if ('report_number' === $column) {
+		echo esc_html($data['report_number'] ?? '—');
+	} elseif ('incident_date' === $column) {
 		echo esc_html($data['incident_date'] ?? '—');
 	} elseif ('incident_stage' === $column) {
 		$completed = 'completed' === get_post_meta($post_id, '_oz_incident_stage', true);
