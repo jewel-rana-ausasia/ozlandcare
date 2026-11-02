@@ -125,6 +125,21 @@ $service_image   = function_exists('get_field') ? get_field('service_hero_image'
         }
     }
 
+    /* Keep every service section on one shared 1280px content grid. */
+    .service-details-content > section > .container {
+        width: 100%;
+        max-width: 80rem;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    @media (min-width: 1280px) {
+        .service-details-content > section > .container {
+            padding-left: 0;
+            padding-right: 0;
+        }
+    }
+
     /* Custom Numbering for Process Section */
     .step-number {
         -webkit-text-stroke: 1px rgba(0, 102, 102, 0.2);
@@ -328,11 +343,11 @@ $service_image   = function_exists('get_field') ? get_field('service_hero_image'
     <?php else : ?>
     <section class="relative py-24 lg:py-32">
         <!-- Same width as the header bar (container + px-4) -->
-        <div class="service-intro-container container mx-auto px-6 lg:px-4">
-            <div class="grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-20 xl:gap-32 items-center">
+        <div class="container mx-auto max-w-7xl px-6 xl:px-0">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-20 xl:gap-32 items-center">
 
                 <!-- Text Content -->
-                <div class="lg:col-span-6 order-1 lg:order-1 reveal">
+                <div class="min-w-0 order-1 lg:order-1 reveal">
                     <h1 class="font-serif text-3xl lg:text-5xl text-slate-900 leading-[1.1] mb-8">
                         <?php echo $service_title ? wp_kses_post($service_title) : 'Navigating Your <span class="italic text-[#006666]">Next Chapter</span> with Confidence.'; ?>
                     </h1>
@@ -360,7 +375,7 @@ $service_image   = function_exists('get_field') ? get_field('service_hero_image'
                 </div>
 
                 <!-- Image Content -->
-                <div class="lg:col-span-6 order-2 lg:order-2 reveal" style="transition-delay: 0.2s">
+                <div class="min-w-0 order-2 lg:order-2 reveal" style="transition-delay: 0.2s">
                     <div class="relative">
                         <div class="absolute -top-10 -right-10 w-64 h-64 bg-teal-50 rounded-full mix-blend-multiply filter blur-3xl opacity-70"></div>
                         <div class="service-intro-media image-mask overflow-hidden shadow-[0_32px_64px_-16px_rgba(0,0,0,0.2)] aspect-[16/10] sm:aspect-[4/3] lg:aspect-[4/3] relative">

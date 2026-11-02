@@ -115,11 +115,11 @@ $support_intro_html = $has_support_coordination_layout
 </style>
 
 <section class="relative py-24 lg:py-32">
-    <!-- Same layout as the shared service hero in page-service-details.php -->
-    <div class="service-intro-container container mx-auto px-6 lg:px-4">
-        <div class="grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-20 xl:gap-32 items-center">
+    <!-- Match the width and gutters used by the sections below. -->
+    <div class="container mx-auto max-w-7xl px-6 xl:px-0">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-20 xl:gap-32 items-center">
 
-            <div class="lg:col-span-6 order-1 lg:order-1 reveal">
+            <div class="order-1 lg:order-1 reveal min-w-0">
                 <h1 class="font-serif text-3xl lg:text-5xl text-slate-900 leading-[1.1] mb-8">
                     <?php echo $service_title ? wp_kses_post($service_title) : 'Support Coordination'; ?>
                 </h1>
@@ -128,7 +128,7 @@ $support_intro_html = $has_support_coordination_layout
                 </div>
             </div>
 
-            <div class="lg:col-span-6 order-2 lg:order-2 reveal" style="transition-delay: 0.2s">
+            <div class="order-2 lg:order-2 reveal min-w-0" style="transition-delay: 0.2s">
                 <div class="relative">
                     <div class="absolute -top-10 -right-10 w-64 h-64 bg-teal-50 rounded-full mix-blend-multiply filter blur-3xl opacity-70"></div>
                     <div class="service-intro-media image-mask overflow-hidden shadow-[0_32px_64px_-16px_rgba(0,0,0,0.2)] aspect-[16/10] sm:aspect-[4/3] lg:aspect-[3/2] relative">
@@ -153,7 +153,7 @@ $support_intro_html = $has_support_coordination_layout
 
 <?php if ($has_support_coordination_layout) : ?>
     <section class="pb-16 lg:pb-24">
-        <div class="container mx-auto px-6 max-w-7xl">
+        <div class="container mx-auto max-w-7xl px-6 xl:px-0">
             <div class="reveal">
                 <div class="max-w-4xl mb-7">
                     <h2 class="font-serif text-3xl lg:text-4xl text-slate-900 leading-tight">What is Support Coordination?</h2>
@@ -176,7 +176,7 @@ $support_intro_html = $has_support_coordination_layout
     </section>
 
     <section class="pb-24 lg:pb-32">
-        <div class="container mx-auto px-6 max-w-7xl">
+        <div class="container mx-auto max-w-7xl px-6 xl:px-0">
             <div class="max-w-3xl mb-10 reveal">
                 <h2 class="font-serif text-3xl lg:text-4xl text-slate-900 leading-tight mb-5">The 3 Levels of Support Coordination</h2>
                 <div class="text-slate-700 leading-relaxed">

@@ -1,5 +1,5 @@
 <!-- CTA Section -->
-<section class="px-4 py-8 sm:px-6 sm:py-10 xl:py-20 reveal">
+<section class="px-4 py-8 sm:px-6 sm:py-10 xl:px-0 xl:py-20 reveal">
     <div class="container mx-auto max-w-7xl">
         <div class="relative overflow-hidden rounded-[2rem] bg-white shadow-[0_40px_100px_-20px_rgba(0,102,102,0.15)] sm:rounded-[3rem] lg:rounded-[3.5rem]">
 

@@ -1,5 +1,5 @@
 <section class="py-24 bg-white border-t border-slate-100">
-    <div class="container mx-auto px-6 max-w-7xl">
+    <div class="container mx-auto max-w-7xl px-6 xl:px-0">
         <div class="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6 reveal">
             <div class="max-w-3xl">
                 <h2 class="font-serif text-4xl text-slate-900 mb-4">
@@ -56,7 +56,7 @@
 </section>
 
 <section class="py-24 bg-[#fafcfc]">
-    <div class="container mx-auto px-6 max-w-7xl">
+    <div class="container mx-auto max-w-7xl px-6 xl:px-0">
         <div class="text-center mb-20 reveal">
             <h2 class="font-serif text-4xl text-slate-900 mb-4">
                 How Our Support Coordinators can Assist You
@@ -171,7 +171,7 @@
 </section>
 
 <section class="py-24 bg-[#f8fafb]">
-    <div class="container mx-auto px-6 max-w-7xl">
+    <div class="container mx-auto max-w-7xl px-6 xl:px-0">
         <div class="max-w-3xl mb-20 reveal">
             <div class="flex items-center gap-3 mb-4">
                 <span class="w-12 h-[1px] bg-primary"></span>
@@ -219,7 +219,7 @@
 
 
 
-<?php get_template_part('template-parts/content', 'service-cta'); ?>
+<?php get_template_part('template-parts/content', 'service-cta', ['flush_xl' => true]); ?>
 <?php if (false) : // Legacy duplicated CTA retained inactive for safe rollback. 
 ?>
     <!-- CTA Section -->
