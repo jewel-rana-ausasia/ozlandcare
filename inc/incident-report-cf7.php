@@ -2,9 +2,8 @@
 /**
  * Incident Report (HS FM-003.05) Contact Form 7 configuration.
  *
- * Staff submit the incident first. The report is retained as awaiting review,
- * then a manager completes the protected review section in WordPress admin and
- * sends the final report.
+ * The staff investigation and manager review are completed in one form. The
+ * finished report and any supporting files are then emailed as one submission.
  */
 
 if (! defined('ABSPATH')) {
@@ -178,7 +177,12 @@ function ozlandcare_incident_report_cf7_template()
         <div class="incident-field"><label for="work_stopped_time">Time</label>[text work_stopped_time id:work_stopped_time class:incident-input placeholder "e.g. 2:30 PM"]</div>
     </div>
     <div class="incident-field"><span class="incident-label">Outcome</span>[checkbox final_outcome use_label_element class:incident-options class:incident-options--checks "Treated by Doctor" "Lodged workers compensation claim" "Contacted by RTW Coordinator" "WorkCover notified" "Insurer notified" "Returned to normal duties" "Returned to modified duties" "Hospitalised" "OHS Committee / Representative advised" "N/A"]</div>
-    <div class="incident-alert" role="note"><i class="fas fa-lock" aria-hidden="true"></i><p>The manager's review, signature and confirmation are completed separately after this staff report is submitted.</p></div>
+    <div class="incident-field"><label for="manager_comments">Manager's review comments</label>[textarea manager_comments id:manager_comments class:incident-input rows:7 placeholder "Record the manager's assessment, findings and any further action required"]</div>
+    <div class="incident-grid incident-grid--2">
+        <div class="incident-field"><label for="manager_signature">Manager signature</label>[text* manager_signature id:manager_signature class:incident-input placeholder "Type full name as signature"]</div>
+        <div class="incident-field"><label for="manager_review_date">Review date</label>[date* manager_review_date id:manager_review_date class:incident-input]</div>
+    </div>
+    <div class="incident-declaration">[acceptance declaration] I confirm that the information supplied in this incident report is true and complete to the best of my knowledge. [/acceptance]</div>
 </section>
 
 <div class="incident-actions">
@@ -201,7 +205,7 @@ function ozlandcare_provision_incident_report_cf7_form()
 		return 0;
 	}
 
-	$schema_version = '15';
+	$schema_version = '16';
 	$forms = WPCF7_ContactForm::find(array('title' => 'Incident Report', 'posts_per_page' => 1));
 	$form = $forms ? $forms[0] : WPCF7_ContactForm::get_template(array('title' => 'Incident Report', 'locale' => get_locale()));
 
@@ -215,20 +219,26 @@ function ozlandcare_provision_incident_report_cf7_form()
 	if (! $sender_domain || false === strpos($sender_domain, '.')) {
 		$sender_domain = 'ausasiaonline.com.au';
 	}
-	// Stage one is stored for manager review; Contact Form 7 must not email the
-	// sensitive report directly.
-	$mail['active'] = false;
+	$mail['active'] = true;
 	$mail['subject'] = 'Incident report: [person_first_name] [person_surname] — [incident_date]';
 	$mail['sender'] = sprintf('[_site_title] <wordpress@%s>', sanitize_text_field($sender_domain));
 	$mail['recipient'] = '[_site_admin_email]';
 	$mail['additional_headers'] = '';
-	$mail['attachments'] = '';
+	$mail['attachments'] = '[incident_files]';
 	$mail['use_html'] = false;
 	$mail['exclude_blank'] = true;
-	$mail['body'] = 'Incident reports are stored securely for manager review and are not sent through Contact Form 7 email.';
+	$mail['body'] = "A new HS FM-003.05 Incident Report has been submitted through [_site_title].\n\n"
+		. "REPORT DETAILS\nToday's date: [report_date]\nReport number: [report_number]\nWork location: [work_location] [work_location_other]\nPerson status: [person_status]\nOutcome: [initial_outcome]\n\n"
+		. "INVOLVED PERSON\nName: [person_first_name] [person_surname]\nDOB: [person_dob]\nAddress: [person_address]\nPhone: [person_phone]\nGender: [person_gender]\n\n"
+		. "WITNESSES\n1: [witness_1_name] | [witness_1_phone] | [witness_1_address]\n2: [witness_2_name] | [witness_2_phone] | [witness_2_address]\n\n"
+		. "INCIDENT\nDate/time: [incident_date] [incident_time]\nActivity: [activity]\nLocation: [exact_location]\nVehicle registration: [vehicle_registration]\nDescription: [incident_description]\n\n"
+		. "INJURY / TREATMENT\nCause: [injury_cause] [injury_cause_other]\nBody map selections: [body_map_points]\nAdditional body location details: [body_location]\nHow injury occurred: [injury_how]\nTreatment administered: [treatment_administered]\nTreatment: [treatment_details]\nReferral required/to: [referral_required] [referred_to]\nFirst aid attendant/signature: [first_aid_name] / [first_aid_signature]\n\n"
+		. "STAFF INVESTIGATION\nNDIS reportable: [ndis_reportable]\nNotifier: [notifier_name]\nApprover: [approver_name]\nRegulators notified: [regulators_notified]\nNotification date/time: [notification_datetime]\nNormal activities: [normal_activities]\nEquipment contributed: [equipment_contributed]\nEquipment designed for activity: [equipment_designed]\nEquipment maintained: [equipment_maintained]\nEquipment failed: [equipment_failed]\nRisk assessment: [risk_assessment]\nSafety instructions: [safety_instructions]\nDocumented SWP: [swp_documented]\nSWP followed: [swp_followed]\nPPE used: [ppe_used]\nPerson trained: [person_trained]\nBehaviour contributed: [behaviour_contributed]\nBehaviour plan: [behaviour_plan]\nBehaviour plan followed: [behaviour_plan_followed]\nPoor housekeeping contributed: [housekeeping_contributed]\nWork environment contributed: [environment_contributed]\nIdentified causes: [identified_causes]\n\n"
+		. "REMEDIAL ACTIONS\nRecommended: [remedial_actions] [remedial_other]\nPrevention plan: [prevention_plan]\nCompleted: [actions_completed]\n\n"
+		. "FINAL REVIEW\nRelated to staff: [related_staff]\nRelated to participants: [related_participants]\nStopped work: [stopped_work] [work_stopped_date] [work_stopped_time]\nOutcome: [final_outcome]\nManager comments: [manager_comments]\nManager signature/date: [manager_signature] / [manager_review_date]\nDeclaration: [declaration]\n\nSubmitted from: [_url]\nSubmitted at: [_date] [_time]";
 
 	$messages = isset($properties['messages']) && is_array($properties['messages']) ? $properties['messages'] : array();
-	$messages['mail_sent_ok'] = 'Your part of the incident report has been saved securely for manager review.';
+	$messages['mail_sent_ok'] = 'Your incident report has been submitted securely. Thank you for providing this information.';
 	$form->set_title('Incident Report');
 	$form->set_properties(array(
 		'form' => ozlandcare_incident_report_cf7_template(),
@@ -338,6 +348,7 @@ function ozlandcare_provision_incident_report_page_and_menu()
 add_action('init', 'ozlandcare_provision_incident_report_page_and_menu', 40);
 
 /** Register private incident records for the two-stage manager workflow. */
+if (false) { // Legacy two-stage workflow retained only to preserve existing database records.
 function ozlandcare_register_incident_report_post_type()
 {
 	$manager_caps = array(
@@ -354,7 +365,7 @@ function ozlandcare_register_incident_report_post_type()
 			'edit_item' => 'Review incident report', 'search_items' => 'Search incident reports',
 			'not_found' => 'No incident reports found.',
 		),
-		'public' => false, 'show_ui' => true, 'show_in_menu' => true,
+		'public' => false, 'show_ui' => false, 'show_in_menu' => false,
 		'menu_icon' => 'dashicons-clipboard', 'supports' => array('title'),
 		'capabilities' => $manager_caps, 'map_meta_cap' => false,
 	));
@@ -440,13 +451,11 @@ function ozlandcare_save_incident_staff_stage($contact_form, &$abort, $submissio
 	$submission->add_result_props(array('incident_report_id' => $post_id));
 	$GLOBALS['ozlandcare_skip_incident_report_mail'] = true;
 }
-add_action('wpcf7_before_send_mail', 'ozlandcare_save_incident_staff_stage', 20, 3);
 
 function ozlandcare_skip_incident_report_initial_mail($skip_mail, $contact_form)
 {
 	return ('Incident Report' === $contact_form->title() && ! empty($GLOBALS['ozlandcare_skip_incident_report_mail'])) ? true : $skip_mail;
 }
-add_filter('wpcf7_skip_mail', 'ozlandcare_skip_incident_report_initial_mail', 20, 2);
 
 function ozlandcare_incident_field_label($key)
 {
@@ -787,6 +796,7 @@ function ozlandcare_delete_incident_report_files($post_id)
 	}
 }
 add_action('before_delete_post', 'ozlandcare_delete_incident_report_files');
+}
 
 /**
  * Server-side validation for the Incident Report form.

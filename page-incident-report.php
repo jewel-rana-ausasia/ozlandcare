@@ -66,7 +66,7 @@ get_header();
     .incident-reportable p{margin:0 0 .9rem;color:#7c2d12;font-size:.86rem;font-weight:700;line-height:1.6}
     .incident-reportable ul{display:grid;gap:.55rem;margin:0;padding:0;list-style:none}
     .incident-reportable li{position:relative;padding-left:1.4rem;color:#7c2d12;font-size:.85rem;font-weight:600;line-height:1.6}
-    .incident-reportable li:before{content:"";position:absolute;top:.52rem;left:.35rem;width:6px;height:6px;border-radius:50%;background:#ea580c}.incident-staff-badge{display:inline-flex;gap:.45rem;align-items:center;margin-bottom:1.1rem;padding:.42rem .7rem;border-radius:99px;background:#edf2f7;color:#506176;font-size:.65rem;font-weight:850;letter-spacing:.08em;text-transform:uppercase}.incident-declaration{margin:1rem 0 1.3rem;padding:1rem;border:1px solid #dce4ec;border-radius:13px;background:#f8fafc;color:#506176;font-size:.82rem}.incident-declaration .wpcf7-list-item{margin:0}.incident-declaration label{display:flex;gap:.65rem;cursor:pointer}.incident-declaration input{width:18px;height:18px;accent-color:var(--purple)}.incident-actions{display:flex;justify-content:space-between;align-items:center;margin-top:2.2rem;padding-top:1.6rem;border-top:1px solid #eaeff5}.incident-button,.incident-submit{display:flex;gap:.55rem;align-items:center;justify-content:center;padding:1rem 2.25rem;border:0;border-radius:1rem;font-size:.875rem;font-weight:700;cursor:pointer;transition:all .3s}.incident-button--back{border:1px solid #e1e8f0;background:#fff;color:#56687e}.incident-button--back:hover{border-color:#c6d2e0;background:#f7f9fc;transform:translateY(-.25rem)}.incident-button--back:active{transform:scale(.95)}.incident-button--next,.incident-submit{margin-left:auto;background:var(--brand-purple);color:#fff;box-shadow:0 18px 35px rgba(95,42,125,.25)}.incident-button--next:hover,.incident-button--next:focus-visible,.incident-button--next:active,.incident-submit:hover,.incident-submit:focus-visible,.incident-submit:active{background:var(--brand-blue);box-shadow:0 18px 35px rgba(10,116,187,.3)}.incident-button--next:hover,.incident-submit:hover{transform:translateY(-.25rem)}.incident-button--next:active,.incident-submit:active{transform:scale(.95)}.incident-button:focus-visible,.incident-submit:focus-visible{outline:2px solid var(--brand-blue);outline-offset:3px}.incident-form-card form.submitting button[type="submit"]{opacity:.65;pointer-events:none}.incident-button[hidden],.incident-submit[hidden]{display:none!important}.incident-form-card .wpcf7-not-valid-tip{display:none}.incident-form-card .wpcf7-response-output{margin:1rem 0 0!important;padding:1rem!important;border:1px solid #86efac!important;border-radius:12px;background:#f0fdf4;color:#166534}.incident-form-card form.invalid .wpcf7-response-output,.incident-form-card form.failed .wpcf7-response-output{border-color:#fecaca!important;background:#fef2f2;color:#991b1b}.incident-unavailable{padding:1rem;border-radius:12px;background:#fef2f2;color:#991b1b}
+    .incident-reportable li:before{content:"";position:absolute;top:.52rem;left:.35rem;width:6px;height:6px;border-radius:50%;background:#ea580c}.incident-staff-badge{display:inline-flex;gap:.45rem;align-items:center;margin-bottom:1.1rem;padding:.42rem .7rem;border-radius:99px;background:#edf2f7;color:#506176;font-size:.65rem;font-weight:850;letter-spacing:.08em;text-transform:uppercase}.incident-declaration{margin:1rem 0 1.3rem;padding:1rem;border:1px solid #dce4ec;border-radius:13px;background:#f8fafc;color:#506176;font-size:.82rem}.incident-declaration .wpcf7-list-item{margin:0}.incident-declaration label{display:flex;gap:.65rem;cursor:pointer}.incident-declaration input{width:18px;height:18px;accent-color:var(--purple)}.incident-actions{display:flex;justify-content:space-between;align-items:center;margin-top:2.2rem;padding-top:1.6rem;border-top:1px solid #eaeff5}.incident-button,.incident-submit{display:flex;gap:.55rem;align-items:center;justify-content:center;padding:1rem 2.25rem;border:0;border-radius:1rem;font-size:.875rem;font-weight:700;cursor:pointer;transition:all .3s}.incident-button--back{border:1px solid #e1e8f0;background:#fff;color:#56687e}.incident-button--back:hover{border-color:#c6d2e0;background:#f7f9fc;transform:translateY(-.25rem)}.incident-button--back:active{transform:scale(.95)}.incident-button--next,.incident-submit{margin-left:auto;background:var(--brand-purple);color:#fff;box-shadow:0 18px 35px rgba(95,42,125,.25)}.incident-button--next:hover,.incident-button--next:focus-visible,.incident-button--next:active,.incident-submit:hover,.incident-submit:focus-visible,.incident-submit:active{background:var(--brand-blue);box-shadow:0 18px 35px rgba(10,116,187,.3)}.incident-button--next:hover,.incident-submit:hover{transform:translateY(-.25rem)}.incident-button--next:active,.incident-submit:active{transform:scale(.95)}.incident-button:focus-visible,.incident-submit:focus-visible{outline:2px solid var(--brand-blue);outline-offset:3px}.incident-form-card form.submitting button[type="submit"]{opacity:.65;pointer-events:none}.incident-button[hidden],.incident-submit[hidden]{display:none!important}.incident-form-card .wpcf7-not-valid-tip{display:none}.incident-unavailable{padding:1rem;border-radius:12px;background:#fef2f2;color:#991b1b}
     .incident-investigation-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.75rem;margin-bottom:1.1rem}.incident-prompt{padding:.9rem;border:1px solid #e2e8ef;border-radius:13px;background:#fbfcfd}.incident-prompt>span{display:block;min-height:38px;margin-bottom:.6rem;color:#334961;font-size:.74rem;font-weight:750;line-height:1.4}.incident-options--compact{grid-template-columns:repeat(3,minmax(0,1fr))}.incident-options--compact .wpcf7-list-item-label{justify-content:center;min-height:36px;padding:.35rem;font-size:.69rem}.incident-options--compact .wpcf7-list-item-label:before{display:none}
     .incident-body-map-card{margin:1.5rem 0;padding:1.15rem;border:1px solid #dce5ef;border-radius:20px;background:linear-gradient(145deg,#fff,#f6f8fc);box-shadow:0 14px 35px rgba(21,43,71,.07)}.incident-body-map-heading{display:flex;align-items:center;justify-content:space-between;gap:1rem;padding:.2rem .25rem 1rem}.incident-body-map-heading span{color:var(--purple);font-size:.65rem;font-weight:850;letter-spacing:.12em;text-transform:uppercase}.incident-body-map-heading h3{margin:.15rem 0 .25rem;font-size:1.15rem;font-weight:850}.incident-body-map-heading p{margin:0;color:#68798d;font-size:.76rem;line-height:1.5}.incident-body-map-count{display:flex;min-width:78px;flex-direction:column;align-items:center;padding:.65rem;border:1px solid #dbe4ee;border-radius:14px;background:#fff}.incident-body-map-count strong{color:var(--purple);font-size:1.35rem;line-height:1}.incident-body-map-count span{margin-top:.25rem;color:#7b899a;font-size:.58rem;letter-spacing:.06em}.incident-body-map-stage{position:relative;overflow:hidden;aspect-ratio:3/2;border:1px solid #253c5d;border-radius:16px;background:#07111f;cursor:crosshair;touch-action:manipulation;user-select:none}.incident-body-map-stage:focus-visible{outline:3px solid rgba(8,117,189,.35);outline-offset:3px}.incident-body-map-stage img{display:block;width:100%;height:100%;object-fit:cover;pointer-events:none}.incident-body-map-markers{position:absolute;inset:0}.incident-body-marker{position:absolute;display:grid;place-items:center;width:30px;height:30px;border:3px solid #fff;border-radius:50%;background:#e11d48;color:#fff;font-size:.68rem;font-weight:900;line-height:1;box-shadow:0 0 0 5px rgba(225,29,72,.23),0 7px 15px rgba(0,0,0,.3);transform:translate(-50%,-50%);cursor:pointer;animation:bodyMarkerIn .25s cubic-bezier(.2,.8,.2,1.2)}.incident-body-marker:hover{background:#be123c;transform:translate(-50%,-50%) scale(1.12)}@keyframes bodyMarkerIn{from{opacity:0;transform:translate(-50%,-50%) scale(.35)}to{opacity:1;transform:translate(-50%,-50%) scale(1)}}.incident-body-map-view{position:absolute;bottom:.75rem;padding:.35rem .65rem;border:1px solid rgba(255,255,255,.18);border-radius:99px;background:rgba(8,19,34,.75);color:#fff;font-size:.62rem;font-weight:850;letter-spacing:.12em;text-transform:uppercase;pointer-events:none;backdrop-filter:blur(8px)}.incident-body-map-view--front{left:25%;transform:translateX(-50%)}.incident-body-map-view--back{left:75%;transform:translateX(-50%)}.incident-body-map-toolbar{display:flex;align-items:center;justify-content:space-between;gap:1rem;padding:.85rem .15rem .65rem}.incident-body-map-actions{display:flex;gap:.5rem}.incident-body-map-actions button{display:inline-flex;align-items:center;gap:.4rem;padding:.55rem .75rem;border:1px solid #dbe3ed;border-radius:10px;background:#fff;color:#42566e;font-size:.68rem;font-weight:800;cursor:pointer;transition:.18s}.incident-body-map-actions button:not(:disabled):hover{border-color:var(--blue);color:var(--blue)}.incident-body-map-actions button:disabled{opacity:.4;cursor:not-allowed}.incident-body-map-toolbar p{display:flex;gap:.4rem;align-items:center;margin:0;color:#7b899a;font-size:.68rem}.incident-body-map-toolbar p i{color:var(--blue)}.incident-body-map-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.45rem;margin:0;padding:0;list-style:none}.incident-body-map-list li{padding:.55rem .7rem;border-radius:9px;background:#edf3f8;color:#3f5269;font-size:.69rem;font-weight:700}.incident-body-map-list li:not(.is-empty):before{content:counter(list-item);display:inline-grid;place-items:center;width:18px;height:18px;margin-right:.45rem;border-radius:50%;background:#e11d48;color:#fff;font-size:.58rem}.incident-body-map-list .is-empty{grid-column:1/-1;color:#8794a4;font-weight:600;text-align:center}
     @media(max-width:1023px){.incident-form-card{padding:2rem}.incident-stepper__label{display:none}.incident-stepper{margin-bottom:1.35rem}.incident-progress__copy [data-step-name]{display:inline}.incident-progress__copy [data-step-name]:before{content:"·";margin-right:.55rem;color:#c3cdd9}.incident-options{grid-template-columns:repeat(2,minmax(0,1fr))}.incident-options--compact{grid-template-columns:repeat(3,minmax(0,1fr))}}
@@ -121,63 +121,19 @@ get_header();
 </style>
 
 <style>
-    /* Show every missed Incident Report field together using the same
-       browser-style validation bubble as the Feedback form. */
+    /* Show every missed Incident Report field together as plain red text,
+       matching the Feedback form. */
     .incident-form-card .wpcf7-form-control-wrap {
         position: relative;
     }
 
     .incident-form-card .wpcf7-not-valid-tip {
-        position: absolute;
-        top: calc(100% + 0.5rem);
-        left: 0.75rem;
-        z-index: 40;
         display: block;
-        width: max-content;
-        max-width: min(17rem, calc(100vw - 3rem));
-        min-height: 2.65rem;
-        padding: 0.65rem 0.85rem 0.65rem 2.65rem;
-        border: 1px solid #a8a8a8;
-        border-radius: 0.25rem;
-        color: #202124;
-        background: #fdfdfd;
-        box-shadow: 0 3px 8px rgba(0, 0, 0, 0.32);
-        font-family: Arial, sans-serif;
-        font-size: 0.8125rem;
-        font-weight: 400;
+        margin-top: 0.4rem;
+        color: #dc2626;
+        font-size: 0.75rem;
+        font-weight: 600;
         line-height: 1.3;
-    }
-
-    .incident-form-card .wpcf7-not-valid-tip::before {
-        content: "!";
-        position: absolute;
-        top: 50%;
-        left: 0.6rem;
-        display: flex;
-        width: 1.45rem;
-        height: 1.45rem;
-        align-items: center;
-        justify-content: center;
-        border-radius: 0.15rem;
-        color: #fff;
-        background: #f57c00;
-        font-size: 1rem;
-        font-weight: 700;
-        line-height: 1;
-        transform: translateY(-50%);
-    }
-
-    .incident-form-card .wpcf7-not-valid-tip::after {
-        content: "";
-        position: absolute;
-        top: 0;
-        left: 0.75rem;
-        width: 0.7rem;
-        height: 0.7rem;
-        border-top: 1px solid #a8a8a8;
-        border-left: 1px solid #a8a8a8;
-        background: #fdfdfd;
-        transform: translateY(-50%) rotate(45deg);
     }
 
     .incident-form-card .incident-input.wpcf7-not-valid {
@@ -196,8 +152,65 @@ get_header();
         outline-offset: 2px;
     }
 
+    /* Success keeps the original Incident style; errors use the Feedback card below. */
+    .incident-form-card .wpcf7-response-output {
+        margin: 1rem 0 0 !important;
+        padding: 1rem !important;
+        border: 1px solid #86efac !important;
+        border-radius: 12px;
+        color: #166534;
+        background: #f0fdf4;
+    }
+
+    /* No icon on success; the error states below add the "!" icon. */
+    .incident-form-card .wpcf7-response-output::before {
+        content: none;
+        display: inline-flex;
+        flex: 0 0 auto;
+        width: 2rem;
+        height: 2rem;
+        align-items: center;
+        justify-content: center;
+        border-radius: 9999px;
+        color: #fff;
+        background: #2f9a3e;
+        font-family: "Font Awesome 6 Free";
+        font-size: 0.8125rem;
+        font-weight: 900;
+    }
+
+    .incident-form-card .wpcf7-response-output:empty {
+        display: none;
+    }
+
+    .incident-form-card form.invalid .wpcf7-response-output,
+    .incident-form-card form.unaccepted .wpcf7-response-output,
+    .incident-form-card form.failed .wpcf7-response-output,
+    .incident-form-card form.aborted .wpcf7-response-output,
+    .incident-form-card form.spam .wpcf7-response-output {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        padding: 1.1rem 1.35rem !important;
+        border-radius: 1.25rem;
+        font-weight: 600;
+        border-color: #fecaca !important;
+        color: #991b1b;
+        background: #fef2f2;
+        box-shadow: 0 18px 40px -26px rgba(153, 27, 27, 0.4);
+    }
+
     .incident-form-card form.invalid .wpcf7-response-output {
         display: none;
+    }
+
+    .incident-form-card form.invalid .wpcf7-response-output::before,
+    .incident-form-card form.unaccepted .wpcf7-response-output::before,
+    .incident-form-card form.failed .wpcf7-response-output::before,
+    .incident-form-card form.aborted .wpcf7-response-output::before,
+    .incident-form-card form.spam .wpcf7-response-output::before {
+        content: "\21";
+        background: #dc2626;
     }
 </style>
 

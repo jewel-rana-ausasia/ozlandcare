@@ -464,7 +464,7 @@ require_once get_template_directory() . '/inc/incident-report-cf7.php';
 /**
  * One wording for every compulsory field on the site.
  */
-define('OZLANDCARE_REQUIRED_MESSAGE', 'Please complete this field.');
+define('OZLANDCARE_REQUIRED_MESSAGE', 'Please fill out this field.');
 
 /**
  * Contact Form 7: covers both the live (SWV) tips and the server response.

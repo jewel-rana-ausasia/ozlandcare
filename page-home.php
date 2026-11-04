@@ -653,56 +653,13 @@ get_header();
     }
 
     .assessment-validation-tip {
-        position: absolute;
-        top: calc(100% + 0.5rem);
-        left: 0.75rem;
-        z-index: 40;
+        grid-column: 1 / -1;
         display: block;
-        width: max-content;
-        max-width: min(17rem, calc(100vw - 3rem));
-        min-height: 2.65rem;
-        padding: 0.65rem 0.85rem 0.65rem 2.65rem;
-        border: 1px solid #a8a8a8;
-        border-radius: 0.25rem;
-        color: #202124;
-        background: #fdfdfd;
-        box-shadow: 0 3px 8px rgba(0, 0, 0, 0.32);
-        font-family: Arial, sans-serif;
-        font-size: 0.8125rem;
-        font-weight: 400;
+        margin-top: 0.4rem;
+        color: #dc2626;
+        font-size: 0.75rem;
+        font-weight: 600;
         line-height: 1.3;
-    }
-
-    .assessment-validation-tip::before {
-        content: "!";
-        position: absolute;
-        top: 50%;
-        left: 0.6rem;
-        display: flex;
-        width: 1.45rem;
-        height: 1.45rem;
-        align-items: center;
-        justify-content: center;
-        border-radius: 0.15rem;
-        color: #fff;
-        background: #f57c00;
-        font-size: 1rem;
-        font-weight: 700;
-        line-height: 1;
-        transform: translateY(-50%);
-    }
-
-    .assessment-validation-tip::after {
-        content: "";
-        position: absolute;
-        top: 0;
-        left: 0.75rem;
-        width: 0.7rem;
-        height: 0.7rem;
-        border-top: 1px solid #a8a8a8;
-        border-left: 1px solid #a8a8a8;
-        background: #fdfdfd;
-        transform: translateY(-50%) rotate(45deg);
     }
 </style>
 

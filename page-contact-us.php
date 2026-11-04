@@ -322,57 +322,12 @@ get_header();
     }
 
     .contact-cf7-shell .wpcf7-not-valid-tip {
-        position: absolute;
-        top: calc(100% + 0.5rem);
-        left: 0.75rem;
-        z-index: 40;
         display: block;
-        width: max-content;
-        max-width: min(17rem, calc(100vw - 3rem));
-        min-height: 2.65rem;
-        margin: 0;
-        padding: 0.65rem 0.85rem 0.65rem 2.65rem;
-        border: 1px solid #a8a8a8;
-        border-radius: 0.25rem;
-        color: #202124;
-        background: #fdfdfd;
-        box-shadow: 0 3px 8px rgba(0, 0, 0, 0.32);
-        font-family: Arial, sans-serif;
-        font-size: 0.8125rem;
-        font-weight: 400;
+        margin-top: 0.4rem;
+        color: #dc2626;
+        font-size: 0.75rem;
+        font-weight: 600;
         line-height: 1.3;
-    }
-
-    .contact-cf7-shell .wpcf7-not-valid-tip::before {
-        content: "!";
-        position: absolute;
-        top: 50%;
-        left: 0.6rem;
-        display: flex;
-        width: 1.45rem;
-        height: 1.45rem;
-        align-items: center;
-        justify-content: center;
-        border-radius: 0.15rem;
-        color: #fff;
-        background: #f57c00;
-        font-size: 1rem;
-        font-weight: 700;
-        line-height: 1;
-        transform: translateY(-50%);
-    }
-
-    .contact-cf7-shell .wpcf7-not-valid-tip::after {
-        content: "";
-        position: absolute;
-        top: 0;
-        left: 0.75rem;
-        width: 0.7rem;
-        height: 0.7rem;
-        border-top: 1px solid #a8a8a8;
-        border-left: 1px solid #a8a8a8;
-        background: #fdfdfd;
-        transform: translateY(-50%) rotate(45deg);
     }
 
     /* Hide CF7 response box initially */
@@ -390,36 +345,57 @@ get_header();
         clear: both;
     }
 
-    /* Show only after CF7 returns a status */
-    .contact-cf7-shell form.sent .wpcf7-response-output,
-    .contact-cf7-shell form.invalid .wpcf7-response-output,
-    .contact-cf7-shell form.failed .wpcf7-response-output,
-    .contact-cf7-shell form.spam .wpcf7-response-output,
-    .contact-cf7-shell form.aborted .wpcf7-response-output,
-    .contact-cf7-shell form.unaccepted .wpcf7-response-output {
-        display: block !important;
-    }
-
     /* Success */
     .contact-cf7-shell form.sent .wpcf7-response-output {
+        display: block !important;
         border: 1px solid #bbf7d0 !important;
         color: #166534 !important;
         background: #f0fdf4 !important;
     }
 
-    /* Error */
-    .contact-cf7-shell form.invalid .wpcf7-response-output,
+    /* Error: same card as the Feedback form. */
+    .contact-cf7-shell form.unaccepted .wpcf7-response-output,
     .contact-cf7-shell form.failed .wpcf7-response-output,
-    .contact-cf7-shell form.spam .wpcf7-response-output,
     .contact-cf7-shell form.aborted .wpcf7-response-output,
-    .contact-cf7-shell form.unaccepted .wpcf7-response-output {
+    .contact-cf7-shell form.spam .wpcf7-response-output {
+        display: flex !important;
+        align-items: center;
+        gap: 0.75rem;
+        padding: 1.1rem 1.35rem !important;
         border: 1px solid #fecaca !important;
+        border-radius: 1.25rem !important;
         color: #991b1b !important;
         background: #fef2f2 !important;
+        font-size: 1rem !important;
+        line-height: 1.5 !important;
+        box-shadow: 0 18px 40px -26px rgba(153, 27, 27, 0.4);
     }
 
-    .contact-cf7-shell form.invalid .wpcf7-response-output {
-        display: none !important;
+    .contact-cf7-shell form.unaccepted .wpcf7-response-output::before,
+    .contact-cf7-shell form.failed .wpcf7-response-output::before,
+    .contact-cf7-shell form.aborted .wpcf7-response-output::before,
+    .contact-cf7-shell form.spam .wpcf7-response-output::before {
+        content: "\21";
+        display: inline-flex;
+        flex: 0 0 auto;
+        width: 2rem;
+        height: 2rem;
+        align-items: center;
+        justify-content: center;
+        border-radius: 9999px;
+        color: #fff;
+        background: #dc2626;
+        font-family: "Font Awesome 6 Free";
+        font-size: 0.8125rem;
+        font-weight: 900;
+    }
+
+    @media (max-width: 767px) {
+        .contact-cf7-shell form.sent .wpcf7-response-output {
+            margin-top: 1.25rem !important;
+            padding: 0.875rem 1rem !important;
+            font-size: 0.8125rem !important;
+        }
     }
 
     .contact-cf7-shell .wpcf7-spinner {
@@ -436,14 +412,7 @@ get_header();
         margin: 0;
     }
 
-    @media (max-width: 767px) {
-        .contact-cf7-shell .wpcf7-response-output {
-            margin-top: 1.25rem !important;
-            padding: 0.875rem 1rem !important;
-            font-size: 0.8125rem !important;
-        }
-    }
-</style>
+    </style>
 
 <script>
     document.addEventListener('DOMContentLoaded', function() {
