@@ -39,7 +39,7 @@ get_header();
     </section>
 
     <!-- SURVEY FORM -->
-    <section class="feedback-form-section max-w-5xl mx-auto px-6 pb-20 lg:pb-28">
+    <section class="feedback-form-section max-w-7xl mx-auto px-6 pb-20 lg:pb-28">
         <div class="feedback-form-shell">
             <?php
             $feedback_form = function_exists('ozlandcare_render_feedback_cf7_form')
@@ -516,10 +516,11 @@ get_header();
         align-items: center;
         justify-content: center;
         gap: 0.5rem;
-        padding: 0.5rem;
+        padding: 0.5rem 0.375rem;
         border: 1px solid transparent;
         border-radius: 0.75rem;
         color: #64748b;
+        white-space: nowrap;
         background: transparent;
         font-size: 0.875rem;
         font-weight: 700;
@@ -902,7 +903,7 @@ get_header();
         /* Statements read as a table: number, statement, three answer columns. */
         .survey-head {
             display: grid;
-            grid-template-columns: 2.25rem minmax(0, 1fr) 21rem;
+            grid-template-columns: 2.25rem minmax(0, 1fr) 23rem;
             column-gap: 1.25rem;
             align-items: center;
             padding: 0 1rem 0.375rem;
@@ -934,7 +935,7 @@ get_header();
         .survey-head .is-yes { color: #2f9a3e; }
 
         .survey-row {
-            grid-template-columns: 2.25rem minmax(0, 1fr) 21rem;
+            grid-template-columns: 2.25rem minmax(0, 1fr) 23rem;
             column-gap: 1.25rem;
             padding: 0.75rem 0.75rem 0.75rem 1rem;
         }

@@ -137,7 +137,8 @@
             transform: scaleX(1);
         }
 
-        .primary-menu-container .menu-item-has-children>a::after {
+        .primary-menu-container .menu-item-has-children>a::after,
+        .primary-menu-container .has-premium-services-menu>a::after {
             content: "\f078";
             font-family: "Font Awesome 6 Free";
             font-size: 0.65rem;
@@ -1068,7 +1069,7 @@
                         <div class="flex-shrink-0">
                             <?php if (has_custom_logo()) : ?>
 
-                                <div class="custom-logo-wrapper [&_img]:max-h-10 sm:[&_img]:max-h-14 lg:[&_img]:max-h-20 [&_img]:w-auto hover:scale-105 transition-transform duration-300">
+                                <div class="custom-logo-wrapper [&_img]:max-h-10 sm:[&_img]:max-h-14 lg:[&_img]:max-h-[4.5rem] [&_img]:w-auto hover:scale-105 transition-transform duration-300">
                                     <?php the_custom_logo(); ?>
                                 </div>
 
@@ -1119,7 +1120,7 @@
                              * Add premium service menu class
                              * to the "Our Services" nav item.
                              */
-                            $services_menu_classes = static function ($classes, $menu_item) {
+                            $services_menu_classes = static function ($classes, $menu_item) use ($services_parent) {
 
                                 if (
                                     0 === strcasecmp(
@@ -1128,6 +1129,22 @@
                                     )
                                 ) {
                                     $classes[] = 'has-premium-services-menu';
+
+                                    /*
+                                     * Service pages aren't WordPress menu children,
+                                     * so mark the parent active for the underline.
+                                     */
+                                    if (
+                                        $services_parent &&
+                                        is_page() &&
+                                        in_array(
+                                            $services_parent->ID,
+                                            get_post_ancestors(get_queried_object_id()),
+                                            true
+                                        )
+                                    ) {
+                                        $classes[] = 'current-menu-ancestor';
+                                    }
                                 }
 
                                 return $classes;

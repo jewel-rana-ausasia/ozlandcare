@@ -168,7 +168,7 @@ get_header();
 
 
     <section class="ndis-section ndis-section--faq py-12 lg:py-20 bg-white">
-        <div class="container mx-auto px-6 max-w-6xl">
+        <div class="container mx-auto px-6 max-w-7xl">
 
             <div class="ndis-faq-head text-center mb-16">
                 <span class="text-primary font-black uppercase tracking-[0.5em] text-[10px] mb-4 block">
