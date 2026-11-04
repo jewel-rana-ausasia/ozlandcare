@@ -152,14 +152,15 @@ get_header();
         outline-offset: 2px;
     }
 
-    /* Success keeps the original Incident style; errors use the Feedback card below. */
+    /* Success matches the Referral/Feedback/Contact card; errors use the Feedback card below. */
     .incident-form-card .wpcf7-response-output {
         margin: 1rem 0 0 !important;
-        padding: 1rem !important;
-        border: 1px solid #86efac !important;
-        border-radius: 12px;
+        padding: 1rem 1.25rem !important;
+        border: 1px solid #bbf7d0 !important;
+        border-radius: 1rem;
         color: #166534;
         background: #f0fdf4;
+        font-weight: 600;
     }
 
     /* No icon on success; the error states below add the "!" icon. */

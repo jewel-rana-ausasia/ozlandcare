@@ -68,7 +68,7 @@ $service_image   = function_exists('get_field') ? get_field('service_hero_image'
     }
 
     .image-mask {
-        border-radius: 40px 100px 40px 40px;
+        border-radius: 40px 72px 40px 40px;
     }
 
     /*
@@ -108,11 +108,73 @@ $service_image   = function_exists('get_field') ? get_field('service_hero_image'
         }
     }
 
+    /*
+     * Desktop intro: photo and text share one row height. The photo fills its
+     * stretched column, so it always ends level with the text. The spacer sets
+     * a 4:3 floor for short copy; long copy is split by the script below, with
+     * the rest flowing into .service-intro-more under the row.
+     */
+    .service-intro-spacer {
+        display: none;
+    }
+
+    @media (min-width: 1024px) {
+        /*
+         * Text column is 5% wider than its original half-row width (half of
+         * the row minus the original 5rem gap); the photo takes the rest.
+         */
+        .service-intro .service-intro-grid {
+            grid-template-columns: calc((100% - 5rem) / 2 * 1.05) minmax(0, 1fr);
+            column-gap: 3rem;
+            align-items: stretch;
+        }
+
+        .service-intro .service-intro-text {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .service-intro .service-intro-figure {
+            height: 100%;
+        }
+
+        .service-intro .service-intro-spacer {
+            display: block;
+            aspect-ratio: 4 / 3;
+        }
+
+        .service-details-content .service-intro .service-intro-media {
+            position: absolute;
+            inset: 0;
+            aspect-ratio: auto;
+        }
+    }
+
+    /* Same idea at xl, where the original gap was 8rem. */
+    @media (min-width: 1280px) {
+        .service-intro .service-intro-grid {
+            grid-template-columns: calc((100% - 8rem) / 2 * 1.05) minmax(0, 1fr);
+            column-gap: 4.5rem;
+        }
+    }
+
     /* iPad Pro portrait (1024): beside the text, a 3:2 frame instead of a square. */
     @media (min-width: 1024px) and (max-width: 1024px) {
-        .service-details-content .service-intro-media {
+        .service-intro .service-intro-spacer {
             aspect-ratio: 3 / 2;
         }
+    }
+
+    /* Overflow copy: full width under the photo/text row. */
+    .service-intro-more {
+        margin-top: 4rem;
+        padding-top: 4rem;
+        border-top: 1px solid rgba(15, 23, 42, 0.08);
+    }
+
+    .service-intro-more > * + * {
+        margin-top: 1.5rem;
     }
 
     /*
@@ -341,13 +403,14 @@ $service_image   = function_exists('get_field') ? get_field('service_hero_image'
     <?php if (is_page('ndis-support-coordination')) : ?>
         <?php get_template_part('template-parts/service-single/content', 'ndis-support-coordination-intro'); ?>
     <?php else : ?>
-    <section class="relative py-24 lg:py-32">
+    <section class="service-intro relative py-24 lg:py-32">
         <!-- Same width as the header bar (container + px-4) -->
         <div class="container mx-auto max-w-7xl px-6 xl:px-0">
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-20 xl:gap-32 items-center">
+            <div class="service-intro-grid grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-20 xl:gap-32 items-center">
 
                 <!-- Text Content -->
-                <div class="min-w-0 order-1 lg:order-1 reveal">
+                <div class="service-intro-text min-w-0 order-1 lg:order-1 reveal">
+                    <div class="service-intro-text-inner">
                     <h1 class="font-serif text-3xl lg:text-5xl text-slate-900 leading-[1.1] mb-8">
                         <?php echo $service_title ? wp_kses_post($service_title) : 'Navigating Your <span class="italic text-[#006666]">Next Chapter</span> with Confidence.'; ?>
                     </h1>
@@ -372,12 +435,15 @@ $service_image   = function_exists('get_field') ? get_field('service_hero_image'
                         }
                         ?>
                     </div>
+                    </div>
                 </div>
 
-                <!-- Image Content -->
+                <!-- Image Content: on desktop it fills the row, so it matches the text height exactly -->
                 <div class="min-w-0 order-2 lg:order-2 reveal" style="transition-delay: 0.2s">
-                    <div class="relative">
+                    <div class="service-intro-figure relative">
                         <div class="absolute -top-10 -right-10 w-64 h-64 bg-teal-50 rounded-full mix-blend-multiply filter blur-3xl opacity-70"></div>
+                        <!-- Sets the photo's minimum desktop height when the text is short -->
+                        <div class="service-intro-spacer" aria-hidden="true"></div>
                         <div class="service-intro-media image-mask overflow-hidden shadow-[0_32px_64px_-16px_rgba(0,0,0,0.2)] aspect-[16/10] sm:aspect-[4/3] lg:aspect-[4/3] relative">
                             <?php
                             if ($service_image) :
@@ -393,6 +459,9 @@ $service_image   = function_exists('get_field') ? get_field('service_hero_image'
                 </div>
 
             </div>
+
+            <!-- Intro copy that doesn't fit beside the photo continues here (filled by script on desktop) -->
+            <div class="service-intro-more reveal" hidden></div>
         </div>
     </section>
     <?php endif; ?>
@@ -561,6 +630,68 @@ $service_image   = function_exists('get_field') ? get_field('service_hero_image'
         threshold: 0.1
     });
     document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+    /*
+     * Desktop intro split: keep as much copy beside the photo as fits a
+     * well-proportioned frame, then continue the rest below the row.
+     */
+    (function () {
+        const section = document.querySelector('.service-intro');
+        if (!section) return;
+
+        const inner = section.querySelector('.service-intro-text-inner');
+        const copy = section.querySelector('.service-intro-copy');
+        const figure = section.querySelector('.service-intro-figure');
+        const more = section.querySelector('.service-intro-more');
+        const blocks = Array.from(copy.children);
+        const desktop = window.matchMedia('(min-width: 1024px)');
+
+        // Tallest the photo may grow beside the text, relative to its width.
+        const MAX_HEIGHT_RATIO = 1.1;
+
+        // A heading, or a paragraph that is only bold text, introduces the next block.
+        const isLeadIn = (el) => /^H[2-6]$/.test(el.tagName) ||
+            (el.tagName === 'P' && el.children.length === 1 &&
+                /^(STRONG|B)$/.test(el.firstElementChild.tagName) &&
+                el.textContent.trim() === el.firstElementChild.textContent.trim());
+
+        blocks.forEach((el) => el.classList.toggle('is-lead-in', isLeadIn(el)));
+
+        function layout() {
+            blocks.forEach((el) => copy.appendChild(el));
+            more.hidden = true;
+
+            if (!desktop.matches || blocks.length < 2) return;
+
+            const limit = figure.offsetWidth * MAX_HEIGHT_RATIO;
+            const moved = [];
+
+            while (inner.offsetHeight > limit && copy.children.length > 1) {
+                moved.unshift(copy.removeChild(copy.lastElementChild));
+            }
+
+            // Never leave a lead-in stranded at the bottom of the first part.
+            while (copy.children.length > 1 && copy.lastElementChild.classList.contains('is-lead-in')) {
+                moved.unshift(copy.removeChild(copy.lastElementChild));
+            }
+
+            if (!moved.length) return;
+
+            more.append(...moved);
+            more.hidden = false;
+        }
+
+        let timer;
+        const relayout = () => {
+            clearTimeout(timer);
+            timer = setTimeout(layout, 150);
+        };
+
+        layout();
+        if (document.fonts) document.fonts.ready.then(layout);
+        window.addEventListener('resize', relayout);
+        desktop.addEventListener('change', layout);
+    })();
 </script>
 
 <?php get_footer(); ?>

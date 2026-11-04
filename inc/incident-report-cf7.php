@@ -205,7 +205,7 @@ function ozlandcare_provision_incident_report_cf7_form()
 		return 0;
 	}
 
-	$schema_version = '16';
+	$schema_version = '18';
 	$forms = WPCF7_ContactForm::find(array('title' => 'Incident Report', 'posts_per_page' => 1));
 	$form = $forms ? $forms[0] : WPCF7_ContactForm::get_template(array('title' => 'Incident Report', 'locale' => get_locale()));
 
@@ -238,7 +238,7 @@ function ozlandcare_provision_incident_report_cf7_form()
 		. "FINAL REVIEW\nRelated to staff: [related_staff]\nRelated to participants: [related_participants]\nStopped work: [stopped_work] [work_stopped_date] [work_stopped_time]\nOutcome: [final_outcome]\nManager comments: [manager_comments]\nManager signature/date: [manager_signature] / [manager_review_date]\nDeclaration: [declaration]\n\nSubmitted from: [_url]\nSubmitted at: [_date] [_time]";
 
 	$messages = isset($properties['messages']) && is_array($properties['messages']) ? $properties['messages'] : array();
-	$messages['mail_sent_ok'] = 'Your incident report has been submitted securely. Thank you for providing this information.';
+	$messages['mail_sent_ok'] = 'Thank you for submitting your incident report. A member of our team will be in touch soon.';
 	$form->set_title('Incident Report');
 	$form->set_properties(array(
 		'form' => ozlandcare_incident_report_cf7_template(),

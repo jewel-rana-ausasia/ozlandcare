@@ -82,6 +82,24 @@ $support_intro_html = $has_support_coordination_layout
         margin-top: 1.25rem;
     }
 
+    /*
+     * Desktop hero: a narrower gap than the base grid, and the text column
+     * 5% wider than the 50% - 1rem it would get from that gap alone; the
+     * photo takes the rest.
+     */
+    @media (min-width: 1024px) {
+        .support-intro-grid {
+            grid-template-columns: calc((50% - 1rem) * 1.05) minmax(0, 1fr);
+            column-gap: 3.5rem;
+        }
+    }
+
+    @media (min-width: 1280px) {
+        .support-intro-grid {
+            column-gap: 5rem;
+        }
+    }
+
     .support-overview-paragraph p {
         margin: 0;
     }
@@ -117,7 +135,7 @@ $support_intro_html = $has_support_coordination_layout
 <section class="relative py-24 lg:py-32">
     <!-- Match the width and gutters used by the sections below. -->
     <div class="container mx-auto max-w-7xl px-6 xl:px-0">
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-20 xl:gap-32 items-center">
+        <div class="support-intro-grid grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-20 xl:gap-32 items-center">
 
             <div class="order-1 lg:order-1 reveal min-w-0">
                 <h1 class="font-serif text-3xl lg:text-5xl text-slate-900 leading-[1.1] mb-8">
